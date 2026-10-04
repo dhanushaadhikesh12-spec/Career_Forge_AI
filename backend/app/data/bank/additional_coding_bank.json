@@ -1,0 +1,1295 @@
+[
+  {
+    "title": "Move Zeroes",
+    "slug": "move-zeroes",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "problem_statement": "Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements in-place.\n\nInput:\nFirst line: N\nSecond line: N space-separated integers\n\nOutput:\nSpace-separated integers with all 0s shifted to the end.",
+    "constraints": "1 <= nums.length <= 10^4\n-2^31 <= nums[i] <= 2^31 - 1",
+    "input_format": "Line 1: N\nLine 2: N space-separated integers",
+    "output_format": "Space-separated integers",
+    "examples": [
+      {
+        "input": "5\n0 1 0 3 12",
+        "output": "1 3 12 0 0",
+        "explanation": "0s are shifted to the end."
+      }
+    ],
+    "explanation": "Use two pointers: non-zero write pointer advances when scanning non-zero elements.",
+    "test_cases": [
+      {
+        "input": "5\n0 1 0 3 12",
+        "expected_output": "1 3 12 0 0",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1\n0",
+        "expected_output": "0",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "4\n1 2 3 4",
+        "expected_output": "1 2 3 4",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "4\n0 0 0 1",
+        "expected_output": "1 0 0 0",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Rotate Array",
+    "slug": "rotate-array",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "problem_statement": "Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.\n\nInput:\nLine 1: N\nLine 2: N space-separated integers\nLine 3: k\n\nOutput:\nSpace-separated integers rotated right by k.",
+    "constraints": "1 <= nums.length <= 10^5\n0 <= k <= 10^5",
+    "input_format": "Line 1: N\nLine 2: N space-separated integers\nLine 3: k",
+    "output_format": "Space-separated integers",
+    "examples": [
+      {
+        "input": "7\n1 2 3 4 5 6 7\n3",
+        "output": "5 6 7 1 2 3 4",
+        "explanation": "Rotate 3 steps right."
+      }
+    ],
+    "explanation": "k = k % N. Reverse entire array, then reverse first k elements, then reverse remaining N-k elements.",
+    "test_cases": [
+      {
+        "input": "7\n1 2 3 4 5 6 7\n3",
+        "expected_output": "5 6 7 1 2 3 4",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "4\n-1 -100 3 99\n2",
+        "expected_output": "3 99 -1 -100",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "3\n1 2 3\n0",
+        "expected_output": "1 2 3",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "2\n1 2\n3",
+        "expected_output": "2 1",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Intersection of Two Arrays",
+    "slug": "intersection-of-two-arrays",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "hash-table"
+    ],
+    "problem_statement": "Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and returned in sorted order.",
+    "constraints": "1 <= nums1.length, nums2.length <= 1000",
+    "input_format": "Line 1: space-separated integers for nums1\nLine 2: space-separated integers for nums2",
+    "output_format": "Space-separated sorted unique intersection integers",
+    "examples": [
+      {
+        "input": "1 2 2 1\n2 2",
+        "output": "2",
+        "explanation": "Common unique element is 2."
+      }
+    ],
+    "explanation": "Convert both arrays to sets and find set intersection, then sort.",
+    "test_cases": [
+      {
+        "input": "1 2 2 1\n2 2",
+        "expected_output": "2",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "4 9 5\n9 4 9 8 4",
+        "expected_output": "4 9",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1 2 3\n4 5 6",
+        "expected_output": "",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Maximum Product Subarray",
+    "slug": "maximum-product-subarray",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "problem_statement": "Given an integer array nums, find a contiguous non-empty subarray that has the largest product, and return the product.",
+    "constraints": "1 <= nums.length <= 2 * 10^4\n-10 <= nums[i] <= 10",
+    "input_format": "Line 1: N\nLine 2: N space-separated integers",
+    "output_format": "Maximum product integer",
+    "examples": [
+      {
+        "input": "4\n2 3 -2 4",
+        "output": "6",
+        "explanation": "[2, 3] gives product 6."
+      }
+    ],
+    "explanation": "Track both current maximum and current minimum at each index to handle negative numbers.",
+    "test_cases": [
+      {
+        "input": "4\n2 3 -2 4",
+        "expected_output": "6",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "3\n-2 0 -1",
+        "expected_output": "0",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "3\n-2 3 -4",
+        "expected_output": "24",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "1\n-5",
+        "expected_output": "-5",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Longest Consecutive Sequence",
+    "slug": "longest-consecutive-sequence",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "hash-table"
+    ],
+    "problem_statement": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence in O(N) time.",
+    "constraints": "0 <= nums.length <= 10^5\n-10^9 <= nums[i] <= 10^9",
+    "input_format": "Line 1: N\nLine 2: N space-separated integers",
+    "output_format": "Maximum length integer",
+    "examples": [
+      {
+        "input": "6\n100 4 200 1 3 2",
+        "output": "4",
+        "explanation": "The longest consecutive sequence is [1, 2, 3, 4] with length 4."
+      }
+    ],
+    "explanation": "Store elements in a hash set. Only begin counting sequence length from values where x - 1 is not in the set.",
+    "test_cases": [
+      {
+        "input": "6\n100 4 200 1 3 2",
+        "expected_output": "4",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "10\n0 3 7 2 5 8 4 6 0 1",
+        "expected_output": "9",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "0\n",
+        "expected_output": "0",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "3\n1 2 0",
+        "expected_output": "3",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Spiral Matrix",
+    "slug": "spiral-matrix",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "problem_statement": "Given an m x n matrix, return all elements of the matrix in spiral order (clockwise starting from top-left).",
+    "constraints": "m == matrix.length, n == matrix[i].length\n1 <= m, n <= 10",
+    "input_format": "Line 1: m n\nNext m lines: n space-separated integers per line",
+    "output_format": "Space-separated integers in spiral order",
+    "examples": [
+      {
+        "input": "3 3\n1 2 3\n4 5 6\n7 8 9",
+        "output": "1 2 3 6 9 8 7 4 5",
+        "explanation": "Spiral clockwise traversal."
+      }
+    ],
+    "explanation": "Maintain top, bottom, left, right boundary pointers and traverse along edges shrinking the boundaries.",
+    "test_cases": [
+      {
+        "input": "3 3\n1 2 3\n4 5 6\n7 8 9",
+        "expected_output": "1 2 3 6 9 8 7 4 5",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 3\n1 2 3",
+        "expected_output": "1 2 3",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "3 1\n1\n2\n3",
+        "expected_output": "1 2 3",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Set Matrix Zeroes",
+    "slug": "set-matrix-zeroes",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "problem_statement": "Given an m x n integer matrix, if an element is 0, set its entire row and column to 0's in-place.",
+    "constraints": "1 <= m, n <= 20",
+    "input_format": "Line 1: m n\nNext m lines: n space-separated integers",
+    "output_format": "m lines of space-separated integers",
+    "examples": [
+      {
+        "input": "3 3\n1 1 1\n1 0 1\n1 1 1",
+        "output": "1 0 1\n0 0 0\n1 0 1",
+        "explanation": "Row 1 and col 1 zeroed."
+      }
+    ],
+    "explanation": "Use the first row and first column as markers, with two boolean flags for the first row/column themselves.",
+    "test_cases": [
+      {
+        "input": "3 3\n1 1 1\n1 0 1\n1 1 1",
+        "expected_output": "1 0 1\n0 0 0\n1 0 1",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "2 2\n0 1\n1 1",
+        "expected_output": "0 0\n0 1",
+        "is_sample": false,
+        "order_index": 1
+      }
+    ]
+  },
+  {
+    "title": "First Unique Character in a String",
+    "slug": "first-unique-character",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "hash-table",
+      "string"
+    ],
+    "problem_statement": "Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.",
+    "constraints": "1 <= s.length <= 10^5\ns consists of only lowercase English letters.",
+    "input_format": "Single line: string s",
+    "output_format": "0-based index or -1",
+    "examples": [
+      {
+        "input": "leetcode",
+        "output": "0",
+        "explanation": "'l' is the first unique character at index 0."
+      }
+    ],
+    "explanation": "Count character frequencies in a frequency array of size 26, then find the first character with count 1.",
+    "test_cases": [
+      {
+        "input": "leetcode",
+        "expected_output": "0",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "loveleetcode",
+        "expected_output": "2",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "aabb",
+        "expected_output": "-1",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Longest Common Prefix",
+    "slug": "longest-common-prefix",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "string"
+    ],
+    "problem_statement": "Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.",
+    "constraints": "1 <= strs.length <= 200\n0 <= strs[i].length <= 200",
+    "input_format": "Line 1: N\nNext N lines: one string per line",
+    "output_format": "Common prefix string",
+    "examples": [
+      {
+        "input": "3\nflower\nflow\nflight",
+        "output": "fl",
+        "explanation": "Common prefix is 'fl'."
+      }
+    ],
+    "explanation": "Compare character by character across all strings or sort strings and compare first and last.",
+    "test_cases": [
+      {
+        "input": "3\nflower\nflow\nflight",
+        "expected_output": "fl",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "3\ndog\nracecar\ncar",
+        "expected_output": "",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "2\ninterstellar\ninternet",
+        "expected_output": "inter",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Valid Palindrome",
+    "slug": "valid-palindrome",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "string",
+      "two-pointers"
+    ],
+    "problem_statement": "A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Return 'true' or 'false'.",
+    "constraints": "1 <= s.length <= 2 * 10^5",
+    "input_format": "Single line: string s",
+    "output_format": "true or false",
+    "examples": [
+      {
+        "input": "A man, a plan, a canal: Panama",
+        "output": "true",
+        "explanation": "Cleaned string 'amanaplanacanalpanama' is a palindrome."
+      }
+    ],
+    "explanation": "Filter non-alphanumeric characters, convert to lowercase, and check if string equals its reverse.",
+    "test_cases": [
+      {
+        "input": "A man, a plan, a canal: Panama",
+        "expected_output": "true",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "race a car",
+        "expected_output": "false",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": " ",
+        "expected_output": "true",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Middle of the Linked List",
+    "slug": "middle-of-linked-list",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "linked-list",
+      "two-pointers"
+    ],
+    "problem_statement": "Given the head of a singly linked list represented as space-separated integers, return the values of the list starting from the middle node to the end. If there are two middle nodes, return the second middle node onward.",
+    "constraints": "1 <= number of nodes <= 100",
+    "input_format": "Space-separated node values",
+    "output_format": "Space-separated values from middle to end",
+    "examples": [
+      {
+        "input": "1 2 3 4 5",
+        "output": "3 4 5",
+        "explanation": "Middle node is 3."
+      }
+    ],
+    "explanation": "Fast and slow pointer: fast moves 2 steps, slow moves 1 step.",
+    "test_cases": [
+      {
+        "input": "1 2 3 4 5",
+        "expected_output": "3 4 5",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 2 3 4 5 6",
+        "expected_output": "4 5 6",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1",
+        "expected_output": "1",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Palindrome Linked List",
+    "slug": "palindrome-linked-list",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "linked-list",
+      "two-pointers"
+    ],
+    "problem_statement": "Given the head of a singly linked list as space-separated integers, return 'true' if it is a palindrome or 'false' otherwise.",
+    "constraints": "1 <= number of nodes <= 10^5",
+    "input_format": "Space-separated node values",
+    "output_format": "true or false",
+    "examples": [
+      {
+        "input": "1 2 2 1",
+        "output": "true",
+        "explanation": "1 2 2 1 is symmetric."
+      }
+    ],
+    "explanation": "Find middle using fast/slow pointers, reverse the second half, and compare values.",
+    "test_cases": [
+      {
+        "input": "1 2 2 1",
+        "expected_output": "true",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 2",
+        "expected_output": "false",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1",
+        "expected_output": "true",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Evaluate Reverse Polish Notation",
+    "slug": "evaluate-reverse-polish-notation",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "stack",
+      "math"
+    ],
+    "problem_statement": "Evaluate the value of an arithmetic expression in Reverse Polish Notation (tokens separated by spaces). Valid operators are +, -, *, and /. Division truncates toward zero.",
+    "constraints": "1 <= tokens.length <= 10^4",
+    "input_format": "Space-separated tokens",
+    "output_format": "Evaluated integer",
+    "examples": [
+      {
+        "input": "2 1 + 3 *",
+        "output": "9",
+        "explanation": "((2 + 1) * 3) = 9."
+      }
+    ],
+    "explanation": "Use a stack. Push numbers. On operator, pop top two numbers, apply operation, push result back.",
+    "test_cases": [
+      {
+        "input": "2 1 + 3 *",
+        "expected_output": "9",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "4 13 5 / +",
+        "expected_output": "6",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "10 6 9 3 + -11 * / * 17 + 5 +",
+        "expected_output": "22",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Daily Temperatures",
+    "slug": "daily-temperatures",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "stack",
+      "monotonic-stack"
+    ],
+    "problem_statement": "Given an array of integers temperatures representing the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0.",
+    "constraints": "1 <= temperatures.length <= 10^5\n30 <= temperatures[i] <= 100",
+    "input_format": "Line 1: N\nLine 2: N space-separated integers",
+    "output_format": "Space-separated wait day counts",
+    "examples": [
+      {
+        "input": "8\n73 74 75 71 69 72 76 73",
+        "output": "1 1 4 2 1 1 0 0",
+        "explanation": "Day 0 wait 1 day for 74, etc."
+      }
+    ],
+    "explanation": "Use a monotonic decreasing stack storing indices. Pop and compute index distance when current temp exceeds stack top.",
+    "test_cases": [
+      {
+        "input": "8\n73 74 75 71 69 72 76 73",
+        "expected_output": "1 1 4 2 1 1 0 0",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "4\n30 40 50 60",
+        "expected_output": "1 1 1 0",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "3\n30 60 90",
+        "expected_output": "1 1 0",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Invert Binary Tree",
+    "slug": "invert-binary-tree",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "tree",
+      "binary-tree",
+      "recursion"
+    ],
+    "problem_statement": "Given the root of a binary tree represented as level-order space-separated values ('null' for missing nodes), invert the tree (swap left and right child at every node) and return its level-order traversal.",
+    "constraints": "0 <= number of nodes <= 100",
+    "input_format": "Single line: space-separated level-order nodes",
+    "output_format": "Space-separated inverted level-order nodes",
+    "examples": [
+      {
+        "input": "4 2 7 1 3 6 9",
+        "output": "4 7 2 9 6 3 1",
+        "explanation": "Inverted tree leaves swapped."
+      }
+    ],
+    "explanation": "Recursively swap root.left and root.right, then recurse on left and right children.",
+    "test_cases": [
+      {
+        "input": "4 2 7 1 3 6 9",
+        "expected_output": "4 7 2 9 6 3 1",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "2 1 3",
+        "expected_output": "2 3 1",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1",
+        "expected_output": "1",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Symmetric Tree",
+    "slug": "symmetric-tree",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "tree",
+      "binary-tree",
+      "recursion"
+    ],
+    "problem_statement": "Given the root of a binary tree as level-order space-separated values, check whether it is a mirror of itself (i.e., symmetric around its center). Return 'true' or 'false'.",
+    "constraints": "1 <= number of nodes <= 1000",
+    "input_format": "Space-separated level-order nodes",
+    "output_format": "true or false",
+    "examples": [
+      {
+        "input": "1 2 2 3 4 4 3",
+        "output": "true",
+        "explanation": "Symmetric reflection."
+      }
+    ],
+    "explanation": "Compare left and right subtrees recursively checking if t1.val == t2.val, t1.left matches t2.right, and t1.right matches t2.left.",
+    "test_cases": [
+      {
+        "input": "1 2 2 3 4 4 3",
+        "expected_output": "true",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 2 2 null 3 null 3",
+        "expected_output": "false",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1",
+        "expected_output": "true",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "1 2 3",
+        "expected_output": "false",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Path Sum",
+    "slug": "path-sum",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "tree",
+      "depth-first-search"
+    ],
+    "problem_statement": "Given the root of a binary tree in level-order and an integer targetSum, return 'true' if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.",
+    "constraints": "0 <= number of nodes <= 5000",
+    "input_format": "Line 1: level-order nodes\nLine 2: targetSum",
+    "output_format": "true or false",
+    "examples": [
+      {
+        "input": "5 4 8 11 null 13 4 7 2 null null null 1\n22",
+        "output": "true",
+        "explanation": "Path 5 -> 4 -> 11 -> 2 equals 22."
+      }
+    ],
+    "explanation": "Subtract current node value from targetSum and recurse down children, returning true if leaf node matches 0.",
+    "test_cases": [
+      {
+        "input": "5 4 8 11 null 13 4 7 2 null null null 1\n22",
+        "expected_output": "true",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 2 3\n5",
+        "expected_output": "false",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1 2\n1",
+        "expected_output": "false",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "1 2\n3",
+        "expected_output": "true",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Number of Islands",
+    "slug": "number-of-islands",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "graph",
+      "breadth-first-search",
+      "depth-first-search"
+    ],
+    "problem_statement": "Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.",
+    "constraints": "m == grid.length, n == grid[i].length\n1 <= m, n <= 50",
+    "input_format": "Line 1: m n\nNext m lines: string of 1s and 0s",
+    "output_format": "Total number of islands integer",
+    "examples": [
+      {
+        "input": "4 5\n11110\n11010\n11000\n00000",
+        "output": "1",
+        "explanation": "Connected land forms 1 island."
+      }
+    ],
+    "explanation": "Iterate through cells. When finding '1', increment island count and run DFS/BFS to sink (mark '0') all connected land.",
+    "test_cases": [
+      {
+        "input": "4 5\n11110\n11010\n11000\n00000",
+        "expected_output": "1",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "4 5\n11000\n11000\n00100\n00011",
+        "expected_output": "3",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1 1\n0",
+        "expected_output": "0",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "House Robber",
+    "slug": "house-robber",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "dynamic-programming"
+    ],
+    "problem_statement": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. Adjacent houses have security systems connected that trigger an alarm if two adjacent houses are broken into on the same night. Determine the maximum amount of money you can rob tonight without alerting the police.",
+    "constraints": "1 <= nums.length <= 100\n0 <= nums[i] <= 400",
+    "input_format": "Space-separated house money values",
+    "output_format": "Maximum stolen money integer",
+    "examples": [
+      {
+        "input": "1 2 3 1",
+        "output": "4",
+        "explanation": "Rob house 1 (money = 1) and house 3 (money = 3). Total = 4."
+      }
+    ],
+    "explanation": "DP recurrence: dp[i] = max(dp[i-1], dp[i-2] + nums[i]). Optimize to two variables.",
+    "test_cases": [
+      {
+        "input": "1 2 3 1",
+        "expected_output": "4",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "2 7 9 3 1",
+        "expected_output": "12",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "2 1 1 2",
+        "expected_output": "4",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Coin Change 2",
+    "slug": "coin-change-2",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "dynamic-programming"
+    ],
+    "problem_statement": "You are given an integer amount and an integer array coins representing coins of different denominations. Return the number of combinations that make up that amount. You may assume that you have an infinite number of each kind of coin.",
+    "constraints": "1 <= coins.length <= 300\n1 <= amount <= 5000",
+    "input_format": "Line 1: amount\nLine 2: space-separated coin denominations",
+    "output_format": "Total number of combinations integer",
+    "examples": [
+      {
+        "input": "5\n1 2 5",
+        "output": "4",
+        "explanation": "4 ways: 5=5, 5=2+2+1, 5=2+1+1+1, 5=1+1+1+1+1."
+      }
+    ],
+    "explanation": "Unbounded knapsack: initialize dp[0] = 1. Outer loop over coins, inner loop from coin to amount: dp[j] += dp[j - coin].",
+    "test_cases": [
+      {
+        "input": "5\n1 2 5",
+        "expected_output": "4",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "3\n2",
+        "expected_output": "0",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "10\n10",
+        "expected_output": "1",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Pacific Atlantic Water Flow",
+    "slug": "pacific-atlantic-water-flow",
+    "difficulty": "HARD",
+    "marks": 25,
+    "time_limit_ms": 2000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "graph",
+      "breadth-first-search",
+      "depth-first-search"
+    ],
+    "problem_statement": "There is an m x n rectangular island that borders both the Pacific Ocean (top and left edges) and Atlantic Ocean (bottom and right edges). Water can flow from a cell to adjacent cells with equal or lower elevation. Return the number of grid coordinates from which water can flow to BOTH the Pacific and Atlantic oceans.",
+    "constraints": "m == heights.length, n == heights[r].length\n1 <= m, n <= 50",
+    "input_format": "Line 1: m n\nNext m lines: n space-separated heights",
+    "output_format": "Count of cells reaching both oceans",
+    "examples": [
+      {
+        "input": "5 5\n1 2 2 3 5\n3 2 3 4 4\n2 4 5 3 1\n6 7 1 4 5\n5 1 1 2 4",
+        "output": "7",
+        "explanation": "7 cells can flow to both oceans."
+      }
+    ],
+    "explanation": "Reverse thinking: Run BFS/DFS inward from ocean borders moving only to cells with >= elevation. Count cells visited by both ocean traversals.",
+    "test_cases": [
+      {
+        "input": "5 5\n1 2 2 3 5\n3 2 3 4 4\n2 4 5 3 1\n6 7 1 4 5\n5 1 1 2 4",
+        "expected_output": "7",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1 1\n1",
+        "expected_output": "1",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "2 2\n1 2\n2 1",
+        "expected_output": "4",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "3 3\n10 10 10\n10 1 10\n10 10 10",
+        "expected_output": "8",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Clone Graph",
+    "slug": "clone-graph",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1500,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "graph",
+      "depth-first-search",
+      "breadth-first-search"
+    ],
+    "problem_statement": "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph. Each node's value is represented in 1-based indexing, formatted as an adjacency list string. Return the number of nodes in the cloned graph.",
+    "constraints": "The number of nodes in the graph is in the range [0, 100].",
+    "input_format": "Line 1: N (number of nodes)\nNext N lines: space-separated neighbor node indices",
+    "output_format": "Number of cloned nodes integer",
+    "examples": [
+      {
+        "input": "4\n2 4\n1 3\n2 4\n1 3",
+        "output": "4",
+        "explanation": "Cloned 4 nodes with all neighbor links."
+      }
+    ],
+    "explanation": "Use a hash map mapping original node pointers to newly allocated clone node pointers via DFS.",
+    "test_cases": [
+      {
+        "input": "4\n2 4\n1 3\n2 4\n1 3",
+        "expected_output": "4",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1\n",
+        "expected_output": "1",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "0",
+        "expected_output": "0",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "String to Integer (atoi)",
+    "slug": "string-to-integer-atoi",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "string"
+    ],
+    "problem_statement": "Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer. Discard leading whitespace, determine sign, read subsequent digits, and clamp to [-2^31, 2^31 - 1].",
+    "constraints": "0 <= s.length <= 200",
+    "input_format": "Single line string s",
+    "output_format": "32-bit signed integer",
+    "examples": [
+      {
+        "input": "42",
+        "output": "42",
+        "explanation": "42 read directly."
+      }
+    ],
+    "explanation": "Parse whitespace, optional sign character (+/-), accumulate digits checking for 32-bit integer clamp boundaries.",
+    "test_cases": [
+      {
+        "input": "42",
+        "expected_output": "42",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "   -42",
+        "expected_output": "-42",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "4193 with words",
+        "expected_output": "4193",
+        "is_sample": false,
+        "order_index": 2
+      },
+      {
+        "input": "-91283472332",
+        "expected_output": "-2147483648",
+        "is_sample": false,
+        "order_index": 3
+      }
+    ]
+  },
+  {
+    "title": "Implement strStr()",
+    "slug": "implement-strstr",
+    "difficulty": "EASY",
+    "marks": 10,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "two-pointers",
+      "string"
+    ],
+    "problem_statement": "Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.",
+    "constraints": "1 <= haystack.length, needle.length <= 10^4",
+    "input_format": "Line 1: haystack\nLine 2: needle",
+    "output_format": "0-based index or -1",
+    "examples": [
+      {
+        "input": "sadbutsad\nsad",
+        "output": "0",
+        "explanation": "'sad' first appears at index 0."
+      }
+    ],
+    "explanation": "Sliding window string matching or KMP algorithm.",
+    "test_cases": [
+      {
+        "input": "sadbutsad\nsad",
+        "expected_output": "0",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "leetcode\nleeto",
+        "expected_output": "-1",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "hello\nll",
+        "expected_output": "2",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  },
+  {
+    "title": "Remove Nth Node From End of List",
+    "slug": "remove-nth-node-from-end",
+    "difficulty": "MEDIUM",
+    "marks": 15,
+    "time_limit_ms": 1000,
+    "memory_limit_mb": 256,
+    "supported_languages": [
+      "python",
+      "javascript",
+      "cpp",
+      "java"
+    ],
+    "tags": [
+      "linked-list",
+      "two-pointers"
+    ],
+    "problem_statement": "Given the head of a linked list represented as space-separated integers, remove the nth node from the end of the list and return the remaining space-separated values.",
+    "constraints": "1 <= sz <= 30\n1 <= n <= sz",
+    "input_format": "Line 1: space-separated node values\nLine 2: n",
+    "output_format": "Space-separated remaining node values",
+    "examples": [
+      {
+        "input": "1 2 3 4 5\n2",
+        "output": "1 2 3 5",
+        "explanation": "2nd node from end (4) is removed."
+      }
+    ],
+    "explanation": "Use two pointers separated by n nodes; when the first pointer reaches the end, the second pointer is at the node before the target.",
+    "test_cases": [
+      {
+        "input": "1 2 3 4 5\n2",
+        "expected_output": "1 2 3 5",
+        "is_sample": true,
+        "order_index": 0
+      },
+      {
+        "input": "1\n1",
+        "expected_output": "",
+        "is_sample": true,
+        "order_index": 1
+      },
+      {
+        "input": "1 2\n1",
+        "expected_output": "1",
+        "is_sample": false,
+        "order_index": 2
+      }
+    ]
+  }
+]

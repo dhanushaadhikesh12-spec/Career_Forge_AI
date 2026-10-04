@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 231 100% 61%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 222 30% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 270 60% 55%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 231 100% 61%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+  code, pre, .code-font {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-forge-400 to-purple-400 bg-clip-text text-transparent;
+  }
+  
+  /* Neon border effect */
+  .neon-border {
+    @apply border border-forge-500/50 shadow-[0_0_15px_rgba(59,91,255,0.15)];
+  }
+  
+  /* Glow button */
+  .glow-button {
+    @apply relative overflow-hidden transition-all duration-300;
+    @apply shadow-[0_0_20px_rgba(59,91,255,0.3)] hover:shadow-[0_0_30px_rgba(59,91,255,0.6)];
+  }
+  
+  /* Sidebar nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200;
+    @apply text-muted-foreground hover:text-foreground hover:bg-white/5;
+  }
+  .nav-item.active {
+    @apply text-foreground bg-forge-500/20 text-forge-300 border-l-2 border-forge-400;
+  }
+  
+  /* Status badge */
+  .badge-success { @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-medium px-2.5 py-0.5 rounded-full; }
+  .badge-warning { @apply bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-medium px-2.5 py-0.5 rounded-full; }
+  .badge-error   { @apply bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-medium px-2.5 py-0.5 rounded-full; }
+  .badge-info    { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-medium px-2.5 py-0.5 rounded-full; }
+  .badge-purple  { @apply bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-medium px-2.5 py-0.5 rounded-full; }
+  
+  /* Metric card */
+  .metric-card {
+    @apply glass-card p-5 flex flex-col gap-1 hover:bg-white/8 transition-colors duration-200;
+  }
+  
+  /* Table styles */
+  .cf-table th { @apply text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider py-3 px-4; }
+  .cf-table td { @apply py-3 px-4 text-sm border-t border-border; }
+  .cf-table tr:hover td { @apply bg-white/3; }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-white/20 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-white/30; }
+  
+  /* Page transition */
+  .page-enter { @apply animate-fade-in; }
+  
+  /* Test question card */
+  .question-card { @apply glass-card p-6 mb-4 border border-white/10; }
+  .option-btn {
+    @apply w-full text-left px-4 py-3 rounded-lg border border-white/10 text-sm transition-all duration-200;
+    @apply hover:bg-forge-500/10 hover:border-forge-500/50 cursor-pointer;
+  }
+  .option-btn.selected { @apply bg-forge-500/20 border-forge-500/60 text-forge-300; }
+  .option-btn.correct  { @apply bg-emerald-500/20 border-emerald-500/60 text-emerald-300; }
+  .option-btn.incorrect { @apply bg-red-500/20 border-red-500/60 text-red-300; }
+  
+  /* Progress bar */
+  .progress-track { @apply w-full bg-white/10 rounded-full overflow-hidden; }
+  .progress-fill  { @apply h-full rounded-full transition-all duration-700 ease-out; }
+}
+
+/* Loading skeleton */
+@keyframes skeleton-shine {
+  0%   { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200px 100%;
+  animation: skeleton-shine 1.4s ease-in-out infinite;
+  @apply rounded-lg;
+}

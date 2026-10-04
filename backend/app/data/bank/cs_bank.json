@@ -1,0 +1,4502 @@
+[
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What are the four necessary Coffman conditions for a Deadlock to occur?",
+    "options": [
+      [
+        "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+        true
+      ],
+      [
+        "Multithreading, Paging, Virtual Memory, Cache",
+        false
+      ],
+      [
+        "Segmentation, FIFO, Scheduling, Spooling",
+        false
+      ],
+      [
+        "Kernel, User Space, BIOS, System Call",
+        false
+      ]
+    ],
+    "explanation": "All 4 Coffman conditions must hold simultaneously for a system deadlock to manifest."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Operating System Architecture Analysis:\nWhat are the four necessary Coffman conditions for a Deadlock to occur?",
+    "options": [
+      [
+        "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+        true
+      ],
+      [
+        "Multithreading, Paging, Virtual Memory, Cache",
+        false
+      ],
+      [
+        "Segmentation, FIFO, Scheduling, Spooling",
+        false
+      ],
+      [
+        "Kernel, User Space, BIOS, System Call",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. All 4 Coffman conditions must hold simultaneously for a system deadlock to manifest."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "System Concurrency & Memory Evaluation:\nWhat are the four necessary Coffman conditions for a Deadlock to occur?",
+    "options": [
+      [
+        "Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+        true
+      ],
+      [
+        "Multithreading, Paging, Virtual Memory, Cache",
+        false
+      ],
+      [
+        "Segmentation, FIFO, Scheduling, Spooling",
+        false
+      ],
+      [
+        "Kernel, User Space, BIOS, System Call",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. All 4 Coffman conditions must hold simultaneously for a system deadlock to manifest."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What algorithm is used by an operating system to avoid deadlocks by testing safe states?",
+    "options": [
+      [
+        "Banker's Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Peterson's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Banker's Algorithm simulates resource allocation to ensure the system remains in a safe state with a valid execution sequence."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Operating System Architecture Analysis:\nWhat algorithm is used by an operating system to avoid deadlocks by testing safe states?",
+    "options": [
+      [
+        "Banker's Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Peterson's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: Banker's Algorithm. Banker's Algorithm simulates resource allocation to ensure the system remains in a safe state with a valid execution sequence."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "System Concurrency & Memory Evaluation:\nWhat algorithm is used by an operating system to avoid deadlocks by testing safe states?",
+    "options": [
+      [
+        "Banker's Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Peterson's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: Banker's Algorithm. Banker's Algorithm simulates resource allocation to ensure the system remains in a safe state with a valid execution sequence."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is the primary difference between a Process and a Thread?",
+    "options": [
+      [
+        "A process has its own isolated address space; threads within a process share the same address space",
+        true
+      ],
+      [
+        "Threads run in kernel mode only",
+        false
+      ],
+      [
+        "Processes have no call stack",
+        false
+      ],
+      [
+        "Threads cannot be scheduled",
+        false
+      ]
+    ],
+    "explanation": "Processes provide fault isolation with independent memory spaces; threads are lightweight units sharing code, data, and heap."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Operating System Architecture Analysis:\nWhat is the primary difference between a Process and a Thread?",
+    "options": [
+      [
+        "A process has its own isolated address space; threads within a process share the same address space",
+        true
+      ],
+      [
+        "Threads run in kernel mode only",
+        false
+      ],
+      [
+        "Processes have no call stack",
+        false
+      ],
+      [
+        "Threads cannot be scheduled",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A process has its own isolated address space; threads within a process share the same address space. Processes provide fault isolation with independent memory spaces; threads are lightweight units sharing code, data, and heap."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is the primary difference between a Process and a Thread?",
+    "options": [
+      [
+        "A process has its own isolated address space; threads within a process share the same address space",
+        true
+      ],
+      [
+        "Threads run in kernel mode only",
+        false
+      ],
+      [
+        "Processes have no call stack",
+        false
+      ],
+      [
+        "Threads cannot be scheduled",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A process has its own isolated address space; threads within a process share the same address space. Processes provide fault isolation with independent memory spaces; threads are lightweight units sharing code, data, and heap."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is Thrashing in an operating system?",
+    "options": [
+      [
+        "A condition where the CPU spends more time swapping pages in and out of disk than executing instructions",
+        true
+      ],
+      [
+        "CPU overclocking",
+        false
+      ],
+      [
+        "Disk defragmentation",
+        false
+      ],
+      [
+        "Network packet loss",
+        false
+      ]
+    ],
+    "explanation": "Thrashing occurs when the aggregate working sets of active processes exceed available physical RAM frames."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Operating System Architecture Analysis:\nWhat is Thrashing in an operating system?",
+    "options": [
+      [
+        "A condition where the CPU spends more time swapping pages in and out of disk than executing instructions",
+        true
+      ],
+      [
+        "CPU overclocking",
+        false
+      ],
+      [
+        "Disk defragmentation",
+        false
+      ],
+      [
+        "Network packet loss",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A condition where the CPU spends more time swapping pages in and out of disk than executing instructions. Thrashing occurs when the aggregate working sets of active processes exceed available physical RAM frames."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is Thrashing in an operating system?",
+    "options": [
+      [
+        "A condition where the CPU spends more time swapping pages in and out of disk than executing instructions",
+        true
+      ],
+      [
+        "CPU overclocking",
+        false
+      ],
+      [
+        "Disk defragmentation",
+        false
+      ],
+      [
+        "Network packet loss",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A condition where the CPU spends more time swapping pages in and out of disk than executing instructions. Thrashing occurs when the aggregate working sets of active processes exceed available physical RAM frames."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.2,
+    "text": "What is Belady's Anomaly in page replacement algorithms?",
+    "options": [
+      [
+        "A phenomenon where increasing the number of page frames results in more page faults (observed in FIFO)",
+        true
+      ],
+      [
+        "LRU page replacement failure",
+        false
+      ],
+      [
+        "A stack algorithm bug",
+        false
+      ],
+      [
+        "Memory fragmentation error",
+        false
+      ]
+    ],
+    "explanation": "FIFO page replacement can exhibit more page faults with larger frame capacities because FIFO is not a stack algorithm."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Operating System Architecture Analysis:\nWhat is Belady's Anomaly in page replacement algorithms?",
+    "options": [
+      [
+        "A phenomenon where increasing the number of page frames results in more page faults (observed in FIFO)",
+        true
+      ],
+      [
+        "LRU page replacement failure",
+        false
+      ],
+      [
+        "A stack algorithm bug",
+        false
+      ],
+      [
+        "Memory fragmentation error",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A phenomenon where increasing the number of page frames results in more page faults (observed in FIFO). FIFO page replacement can exhibit more page faults with larger frame capacities because FIFO is not a stack algorithm."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.4,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is Belady's Anomaly in page replacement algorithms?",
+    "options": [
+      [
+        "A phenomenon where increasing the number of page frames results in more page faults (observed in FIFO)",
+        true
+      ],
+      [
+        "LRU page replacement failure",
+        false
+      ],
+      [
+        "A stack algorithm bug",
+        false
+      ],
+      [
+        "Memory fragmentation error",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A phenomenon where increasing the number of page frames results in more page faults (observed in FIFO). FIFO page replacement can exhibit more page faults with larger frame capacities because FIFO is not a stack algorithm."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Which CPU scheduling algorithm is theoretically optimal for minimizing average waiting time?",
+    "options": [
+      [
+        "Shortest Job First (SJF) / Shortest Remaining Time First (SRTF)",
+        true
+      ],
+      [
+        "First Come First Served (FCFS)",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Priority Scheduling",
+        false
+      ]
+    ],
+    "explanation": "Scheduling the shortest job first minimizes the waiting duration for all subsequent queued jobs."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Operating System Architecture Analysis:\nWhich CPU scheduling algorithm is theoretically optimal for minimizing average waiting time?",
+    "options": [
+      [
+        "Shortest Job First (SJF) / Shortest Remaining Time First (SRTF)",
+        true
+      ],
+      [
+        "First Come First Served (FCFS)",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Priority Scheduling",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: Shortest Job First (SJF) / Shortest Remaining Time First (SRTF). Scheduling the shortest job first minimizes the waiting duration for all subsequent queued jobs."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "System Concurrency & Memory Evaluation:\nWhich CPU scheduling algorithm is theoretically optimal for minimizing average waiting time?",
+    "options": [
+      [
+        "Shortest Job First (SJF) / Shortest Remaining Time First (SRTF)",
+        true
+      ],
+      [
+        "First Come First Served (FCFS)",
+        false
+      ],
+      [
+        "Round Robin",
+        false
+      ],
+      [
+        "Priority Scheduling",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: Shortest Job First (SJF) / Shortest Remaining Time First (SRTF). Scheduling the shortest job first minimizes the waiting duration for all subsequent queued jobs."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is a Semaphore in process synchronization?",
+    "options": [
+      [
+        "An integer variable accessed only through atomic `wait()` (P) and `signal()` (V) operations",
+        true
+      ],
+      [
+        "A hardware register",
+        false
+      ],
+      [
+        "A cache line",
+        false
+      ],
+      [
+        "A network socket",
+        false
+      ]
+    ],
+    "explanation": "Dijkstra's semaphore synchronizes concurrent processes via atomic down (`wait`) and up (`signal`) calls."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Operating System Architecture Analysis:\nWhat is a Semaphore in process synchronization?",
+    "options": [
+      [
+        "An integer variable accessed only through atomic `wait()` (P) and `signal()` (V) operations",
+        true
+      ],
+      [
+        "A hardware register",
+        false
+      ],
+      [
+        "A cache line",
+        false
+      ],
+      [
+        "A network socket",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: An integer variable accessed only through atomic `wait()` (P) and `signal()` (V) operations. Dijkstra's semaphore synchronizes concurrent processes via atomic down (`wait`) and up (`signal`) calls."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is a Semaphore in process synchronization?",
+    "options": [
+      [
+        "An integer variable accessed only through atomic `wait()` (P) and `signal()` (V) operations",
+        true
+      ],
+      [
+        "A hardware register",
+        false
+      ],
+      [
+        "A cache line",
+        false
+      ],
+      [
+        "A network socket",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: An integer variable accessed only through atomic `wait()` (P) and `signal()` (V) operations. Dijkstra's semaphore synchronizes concurrent processes via atomic down (`wait`) and up (`signal`) calls."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is the difference between a Binary Semaphore and a Mutex?",
+    "options": [
+      [
+        "A Mutex includes ownership semantics: only the thread that locked the mutex can unlock it",
+        true
+      ],
+      [
+        "A Mutex can take any integer value",
+        false
+      ],
+      [
+        "Binary semaphores are faster",
+        false
+      ],
+      [
+        "They are identical in every way",
+        false
+      ]
+    ],
+    "explanation": "Mutexes have strict thread ownership; a binary semaphore can be signaled/unlocked by any thread."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Operating System Architecture Analysis:\nWhat is the difference between a Binary Semaphore and a Mutex?",
+    "options": [
+      [
+        "A Mutex includes ownership semantics: only the thread that locked the mutex can unlock it",
+        true
+      ],
+      [
+        "A Mutex can take any integer value",
+        false
+      ],
+      [
+        "Binary semaphores are faster",
+        false
+      ],
+      [
+        "They are identical in every way",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A Mutex includes ownership semantics: only the thread that locked the mutex can unlock it. Mutexes have strict thread ownership; a binary semaphore can be signaled/unlocked by any thread."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is the difference between a Binary Semaphore and a Mutex?",
+    "options": [
+      [
+        "A Mutex includes ownership semantics: only the thread that locked the mutex can unlock it",
+        true
+      ],
+      [
+        "A Mutex can take any integer value",
+        false
+      ],
+      [
+        "Binary semaphores are faster",
+        false
+      ],
+      [
+        "They are identical in every way",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A Mutex includes ownership semantics: only the thread that locked the mutex can unlock it. Mutexes have strict thread ownership; a binary semaphore can be signaled/unlocked by any thread."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.2,
+    "text": "What causes the Priority Inversion problem in real-time operating systems?",
+    "options": [
+      [
+        "A lower-priority task holds a resource needed by a high-priority task, while a medium task preempts the low task",
+        true
+      ],
+      [
+        "CPU failure",
+        false
+      ],
+      [
+        "Deadlock on disk",
+        false
+      ],
+      [
+        "Timer interrupt failure",
+        false
+      ]
+    ],
+    "explanation": "Priority inheritance protocols solve priority inversion by temporarily boosting the lower-priority task's priority."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Operating System Architecture Analysis:\nWhat causes the Priority Inversion problem in real-time operating systems?",
+    "options": [
+      [
+        "A lower-priority task holds a resource needed by a high-priority task, while a medium task preempts the low task",
+        true
+      ],
+      [
+        "CPU failure",
+        false
+      ],
+      [
+        "Deadlock on disk",
+        false
+      ],
+      [
+        "Timer interrupt failure",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A lower-priority task holds a resource needed by a high-priority task, while a medium task preempts the low task. Priority inheritance protocols solve priority inversion by temporarily boosting the lower-priority task's priority."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "HARD",
+    "irt": 1.4,
+    "text": "System Concurrency & Memory Evaluation:\nWhat causes the Priority Inversion problem in real-time operating systems?",
+    "options": [
+      [
+        "A lower-priority task holds a resource needed by a high-priority task, while a medium task preempts the low task",
+        true
+      ],
+      [
+        "CPU failure",
+        false
+      ],
+      [
+        "Deadlock on disk",
+        false
+      ],
+      [
+        "Timer interrupt failure",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A lower-priority task holds a resource needed by a high-priority task, while a medium task preempts the low task. Priority inheritance protocols solve priority inversion by temporarily boosting the lower-priority task's priority."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is a Translation Lookaside Buffer (TLB)?",
+    "options": [
+      [
+        "A fast hardware cache that stores recent virtual-to-physical page address translations",
+        true
+      ],
+      [
+        "A hard drive cache",
+        false
+      ],
+      [
+        "A CPU ALU register",
+        false
+      ],
+      [
+        "A graphics buffer",
+        false
+      ]
+    ],
+    "explanation": "The TLB eliminates extra memory accesses by caching virtual page number to physical frame number mappings."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Operating System Architecture Analysis:\nWhat is a Translation Lookaside Buffer (TLB)?",
+    "options": [
+      [
+        "A fast hardware cache that stores recent virtual-to-physical page address translations",
+        true
+      ],
+      [
+        "A hard drive cache",
+        false
+      ],
+      [
+        "A CPU ALU register",
+        false
+      ],
+      [
+        "A graphics buffer",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A fast hardware cache that stores recent virtual-to-physical page address translations. The TLB eliminates extra memory accesses by caching virtual page number to physical frame number mappings."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is a Translation Lookaside Buffer (TLB)?",
+    "options": [
+      [
+        "A fast hardware cache that stores recent virtual-to-physical page address translations",
+        true
+      ],
+      [
+        "A hard drive cache",
+        false
+      ],
+      [
+        "A CPU ALU register",
+        false
+      ],
+      [
+        "A graphics buffer",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A fast hardware cache that stores recent virtual-to-physical page address translations. The TLB eliminates extra memory accesses by caching virtual page number to physical frame number mappings."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is a Context Switch?",
+    "options": [
+      [
+        "The process of saving the state of the current running process/thread and loading the saved state of the next process",
+        true
+      ],
+      [
+        "Rebooting the operating system",
+        false
+      ],
+      [
+        "Switching user accounts",
+        false
+      ],
+      [
+        "Compiling kernel code",
+        false
+      ]
+    ],
+    "explanation": "The OS saves registers, program counter, and stack pointer to the Process Control Block (PCB) and restores the new process."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Operating System Architecture Analysis:\nWhat is a Context Switch?",
+    "options": [
+      [
+        "The process of saving the state of the current running process/thread and loading the saved state of the next process",
+        true
+      ],
+      [
+        "Rebooting the operating system",
+        false
+      ],
+      [
+        "Switching user accounts",
+        false
+      ],
+      [
+        "Compiling kernel code",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: The process of saving the state of the current running process/thread and loading the saved state of the next process. The OS saves registers, program counter, and stack pointer to the Process Control Block (PCB) and restores the new process."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is a Context Switch?",
+    "options": [
+      [
+        "The process of saving the state of the current running process/thread and loading the saved state of the next process",
+        true
+      ],
+      [
+        "Rebooting the operating system",
+        false
+      ],
+      [
+        "Switching user accounts",
+        false
+      ],
+      [
+        "Compiling kernel code",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: The process of saving the state of the current running process/thread and loading the saved state of the next process. The OS saves registers, program counter, and stack pointer to the Process Control Block (PCB) and restores the new process."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "What is an interrupt in computer architecture?",
+    "options": [
+      [
+        "A hardware or software signal emitted to alert the processor to suspend current work and execute an ISR",
+        true
+      ],
+      [
+        "A program crash",
+        false
+      ],
+      [
+        "A deadlocked thread",
+        false
+      ],
+      [
+        "A syntax error",
+        false
+      ]
+    ],
+    "explanation": "Interrupts allow asynchronous event handling (I/O completion, timer ticks) via Interrupt Service Routines (ISRs)."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Operating System Architecture Analysis:\nWhat is an interrupt in computer architecture?",
+    "options": [
+      [
+        "A hardware or software signal emitted to alert the processor to suspend current work and execute an ISR",
+        true
+      ],
+      [
+        "A program crash",
+        false
+      ],
+      [
+        "A deadlocked thread",
+        false
+      ],
+      [
+        "A syntax error",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A hardware or software signal emitted to alert the processor to suspend current work and execute an ISR. Interrupts allow asynchronous event handling (I/O completion, timer ticks) via Interrupt Service Routines (ISRs)."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is an interrupt in computer architecture?",
+    "options": [
+      [
+        "A hardware or software signal emitted to alert the processor to suspend current work and execute an ISR",
+        true
+      ],
+      [
+        "A program crash",
+        false
+      ],
+      [
+        "A deadlocked thread",
+        false
+      ],
+      [
+        "A syntax error",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A hardware or software signal emitted to alert the processor to suspend current work and execute an ISR. Interrupts allow asynchronous event handling (I/O completion, timer ticks) via Interrupt Service Routines (ISRs)."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What page replacement policy replaces the page that has not been accessed for the longest period of time?",
+    "options": [
+      [
+        "Least Recently Used (LRU)",
+        true
+      ],
+      [
+        "First In First Out (FIFO)",
+        false
+      ],
+      [
+        "Optimal Page Replacement",
+        false
+      ],
+      [
+        "Least Frequently Used (LFU)",
+        false
+      ]
+    ],
+    "explanation": "LRU uses past temporal locality to predict future reference patterns, replacing the oldest accessed page."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Operating System Architecture Analysis:\nWhat page replacement policy replaces the page that has not been accessed for the longest period of time?",
+    "options": [
+      [
+        "Least Recently Used (LRU)",
+        true
+      ],
+      [
+        "First In First Out (FIFO)",
+        false
+      ],
+      [
+        "Optimal Page Replacement",
+        false
+      ],
+      [
+        "Least Frequently Used (LFU)",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: Least Recently Used (LRU). LRU uses past temporal locality to predict future reference patterns, replacing the oldest accessed page."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "System Concurrency & Memory Evaluation:\nWhat page replacement policy replaces the page that has not been accessed for the longest period of time?",
+    "options": [
+      [
+        "Least Recently Used (LRU)",
+        true
+      ],
+      [
+        "First In First Out (FIFO)",
+        false
+      ],
+      [
+        "Optimal Page Replacement",
+        false
+      ],
+      [
+        "Least Frequently Used (LFU)",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: Least Recently Used (LRU). LRU uses past temporal locality to predict future reference patterns, replacing the oldest accessed page."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "What is Spooling (Simultaneous Peripheral Operations On-Line)?",
+    "options": [
+      [
+        "Buffering data for a slow peripheral (like a printer) in a temporary disk queue to let the CPU continue",
+        true
+      ],
+      [
+        "Multithreading code",
+        false
+      ],
+      [
+        "Encrypting files",
+        false
+      ],
+      [
+        "Paging memory",
+        false
+      ]
+    ],
+    "explanation": "Spooling decouples high-speed CPU processes from low-speed I/O devices via intermediary disk buffers."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Operating System Architecture Analysis:\nWhat is Spooling (Simultaneous Peripheral Operations On-Line)?",
+    "options": [
+      [
+        "Buffering data for a slow peripheral (like a printer) in a temporary disk queue to let the CPU continue",
+        true
+      ],
+      [
+        "Multithreading code",
+        false
+      ],
+      [
+        "Encrypting files",
+        false
+      ],
+      [
+        "Paging memory",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: Buffering data for a slow peripheral (like a printer) in a temporary disk queue to let the CPU continue. Spooling decouples high-speed CPU processes from low-speed I/O devices via intermediary disk buffers."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "EASY",
+    "irt": -0.7,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is Spooling (Simultaneous Peripheral Operations On-Line)?",
+    "options": [
+      [
+        "Buffering data for a slow peripheral (like a printer) in a temporary disk queue to let the CPU continue",
+        true
+      ],
+      [
+        "Multithreading code",
+        false
+      ],
+      [
+        "Encrypting files",
+        false
+      ],
+      [
+        "Paging memory",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: Buffering data for a slow peripheral (like a printer) in a temporary disk queue to let the CPU continue. Spooling decouples high-speed CPU processes from low-speed I/O devices via intermediary disk buffers."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is a Zombie Process in Unix/Linux systems?",
+    "options": [
+      [
+        "A terminated process whose exit status has not yet been read by its parent process via `wait()`",
+        true
+      ],
+      [
+        "A process consuming 100% CPU",
+        false
+      ],
+      [
+        "A process with no PID",
+        false
+      ],
+      [
+        "A root process",
+        false
+      ]
+    ],
+    "explanation": "Zombie processes remain in the process table holding their exit code until the parent calls wait() to reap them."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Operating System Architecture Analysis:\nWhat is a Zombie Process in Unix/Linux systems?",
+    "options": [
+      [
+        "A terminated process whose exit status has not yet been read by its parent process via `wait()`",
+        true
+      ],
+      [
+        "A process consuming 100% CPU",
+        false
+      ],
+      [
+        "A process with no PID",
+        false
+      ],
+      [
+        "A root process",
+        false
+      ]
+    ],
+    "explanation": "OS kernel theory: A terminated process whose exit status has not yet been read by its parent process via `wait()`. Zombie processes remain in the process table holding their exit code until the parent calls wait() to reap them."
+  },
+  {
+    "topic": "Operating Systems",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "System Concurrency & Memory Evaluation:\nWhat is a Zombie Process in Unix/Linux systems?",
+    "options": [
+      [
+        "A terminated process whose exit status has not yet been read by its parent process via `wait()`",
+        true
+      ],
+      [
+        "A process consuming 100% CPU",
+        false
+      ],
+      [
+        "A process with no PID",
+        false
+      ],
+      [
+        "A root process",
+        false
+      ]
+    ],
+    "explanation": "Verified operating system principle: A terminated process whose exit status has not yet been read by its parent process via `wait()`. Zombie processes remain in the process table holding their exit code until the parent calls wait() to reap them."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.2,
+    "text": "What does the 'ACID' acronym stand for in database transaction management?",
+    "options": [
+      [
+        "Atomicity, Consistency, Isolation, Durability",
+        true
+      ],
+      [
+        "Accuracy, Concurrency, Indexing, Data",
+        false
+      ],
+      [
+        "Access, Control, Integrity, Distribution",
+        false
+      ],
+      [
+        "Array, Column, Index, Database",
+        false
+      ]
+    ],
+    "explanation": "ACID guarantees that database transactions are processed reliably."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0999999999999999,
+    "text": "Relational Database Model & SQL:\nWhat does the 'ACID' acronym stand for in database transaction management?",
+    "options": [
+      [
+        "Atomicity, Consistency, Isolation, Durability",
+        true
+      ],
+      [
+        "Accuracy, Concurrency, Indexing, Data",
+        false
+      ],
+      [
+        "Access, Control, Integrity, Distribution",
+        false
+      ],
+      [
+        "Array, Column, Index, Database",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Atomicity, Consistency, Isolation, Durability. ACID guarantees that database transactions are processed reliably."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Transaction Integrity & Storage Query:\nWhat does the 'ACID' acronym stand for in database transaction management?",
+    "options": [
+      [
+        "Atomicity, Consistency, Isolation, Durability",
+        true
+      ],
+      [
+        "Accuracy, Concurrency, Indexing, Data",
+        false
+      ],
+      [
+        "Access, Control, Integrity, Distribution",
+        false
+      ],
+      [
+        "Array, Column, Index, Database",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Atomicity, Consistency, Isolation, Durability. ACID guarantees that database transactions are processed reliably."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "What does 'Atomicity' guarantee in a database transaction?",
+    "options": [
+      [
+        "All operations in a transaction succeed completely, or none take effect (All or Nothing)",
+        true
+      ],
+      [
+        "Data is stored in atomic units",
+        false
+      ],
+      [
+        "Queries run in 1 microsecond",
+        false
+      ],
+      [
+        "Only one user can query",
+        false
+      ]
+    ],
+    "explanation": "If any statement fails in an atomic transaction, the entire transaction is rolled back."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Relational Database Model & SQL:\nWhat does 'Atomicity' guarantee in a database transaction?",
+    "options": [
+      [
+        "All operations in a transaction succeed completely, or none take effect (All or Nothing)",
+        true
+      ],
+      [
+        "Data is stored in atomic units",
+        false
+      ],
+      [
+        "Queries run in 1 microsecond",
+        false
+      ],
+      [
+        "Only one user can query",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: All operations in a transaction succeed completely, or none take effect (All or Nothing). If any statement fails in an atomic transaction, the entire transaction is rolled back."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "Transaction Integrity & Storage Query:\nWhat does 'Atomicity' guarantee in a database transaction?",
+    "options": [
+      [
+        "All operations in a transaction succeed completely, or none take effect (All or Nothing)",
+        true
+      ],
+      [
+        "Data is stored in atomic units",
+        false
+      ],
+      [
+        "Queries run in 1 microsecond",
+        false
+      ],
+      [
+        "Only one user can query",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: All operations in a transaction succeed completely, or none take effect (All or Nothing). If any statement fails in an atomic transaction, the entire transaction is rolled back."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Which Normal Form requires that all non-key attributes are fully functionally dependent on the entire primary key (no partial dependencies)?",
+    "options": [
+      [
+        "Second Normal Form (2NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Third Normal Form (3NF)",
+        false
+      ],
+      [
+        "Boyce-Codd Normal Form (BCNF)",
+        false
+      ]
+    ],
+    "explanation": "2NF eliminates partial dependencies where non-prime attributes depend on a subset of a composite candidate key."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Relational Database Model & SQL:\nWhich Normal Form requires that all non-key attributes are fully functionally dependent on the entire primary key (no partial dependencies)?",
+    "options": [
+      [
+        "Second Normal Form (2NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Third Normal Form (3NF)",
+        false
+      ],
+      [
+        "Boyce-Codd Normal Form (BCNF)",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Second Normal Form (2NF). 2NF eliminates partial dependencies where non-prime attributes depend on a subset of a composite candidate key."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Transaction Integrity & Storage Query:\nWhich Normal Form requires that all non-key attributes are fully functionally dependent on the entire primary key (no partial dependencies)?",
+    "options": [
+      [
+        "Second Normal Form (2NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Third Normal Form (3NF)",
+        false
+      ],
+      [
+        "Boyce-Codd Normal Form (BCNF)",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Second Normal Form (2NF). 2NF eliminates partial dependencies where non-prime attributes depend on a subset of a composite candidate key."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Which Normal Form eliminates transitive dependencies (non-key attribute depending on another non-key attribute)?",
+    "options": [
+      [
+        "Third Normal Form (3NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Second Normal Form (2NF)",
+        false
+      ],
+      [
+        "Fourth Normal Form (4NF)",
+        false
+      ]
+    ],
+    "explanation": "3NF requires that in X -> Y, either X is a superkey or Y is a prime attribute, eradicating transitive functional dependencies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Relational Database Model & SQL:\nWhich Normal Form eliminates transitive dependencies (non-key attribute depending on another non-key attribute)?",
+    "options": [
+      [
+        "Third Normal Form (3NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Second Normal Form (2NF)",
+        false
+      ],
+      [
+        "Fourth Normal Form (4NF)",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Third Normal Form (3NF). 3NF requires that in X -> Y, either X is a superkey or Y is a prime attribute, eradicating transitive functional dependencies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Transaction Integrity & Storage Query:\nWhich Normal Form eliminates transitive dependencies (non-key attribute depending on another non-key attribute)?",
+    "options": [
+      [
+        "Third Normal Form (3NF)",
+        true
+      ],
+      [
+        "First Normal Form (1NF)",
+        false
+      ],
+      [
+        "Second Normal Form (2NF)",
+        false
+      ],
+      [
+        "Fourth Normal Form (4NF)",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Third Normal Form (3NF). 3NF requires that in X -> Y, either X is a superkey or Y is a prime attribute, eradicating transitive functional dependencies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Why are B+ Trees preferred over B Trees for relational database indexing?",
+    "options": [
+      [
+        "All data records/pointers are stored exclusively in leaf nodes linked sequentially, enabling fast range scans",
+        true
+      ],
+      [
+        "B+ trees use less memory",
+        false
+      ],
+      [
+        "B+ trees cannot have collisions",
+        false
+      ],
+      [
+        "B+ trees eliminate primary keys",
+        false
+      ]
+    ],
+    "explanation": "B+ Tree internal nodes store only routing keys; linked leaf nodes allow linear sequential traversal for range queries (`BETWEEN`)."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Relational Database Model & SQL:\nWhy are B+ Trees preferred over B Trees for relational database indexing?",
+    "options": [
+      [
+        "All data records/pointers are stored exclusively in leaf nodes linked sequentially, enabling fast range scans",
+        true
+      ],
+      [
+        "B+ trees use less memory",
+        false
+      ],
+      [
+        "B+ trees cannot have collisions",
+        false
+      ],
+      [
+        "B+ trees eliminate primary keys",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: All data records/pointers are stored exclusively in leaf nodes linked sequentially, enabling fast range scans. B+ Tree internal nodes store only routing keys; linked leaf nodes allow linear sequential traversal for range queries (`BETWEEN`)."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Transaction Integrity & Storage Query:\nWhy are B+ Trees preferred over B Trees for relational database indexing?",
+    "options": [
+      [
+        "All data records/pointers are stored exclusively in leaf nodes linked sequentially, enabling fast range scans",
+        true
+      ],
+      [
+        "B+ trees use less memory",
+        false
+      ],
+      [
+        "B+ trees cannot have collisions",
+        false
+      ],
+      [
+        "B+ trees eliminate primary keys",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: All data records/pointers are stored exclusively in leaf nodes linked sequentially, enabling fast range scans. B+ Tree internal nodes store only routing keys; linked leaf nodes allow linear sequential traversal for range queries (`BETWEEN`)."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the difference between a CLUSTERED index and a NONCLUSTERED index?",
+    "options": [
+      [
+        "A clustered index physically orders table data rows on disk; a nonclustered index is a separate lookup structure",
+        true
+      ],
+      [
+        "Clustered indexes are slower",
+        false
+      ],
+      [
+        "A table can have 10 clustered indexes",
+        false
+      ],
+      [
+        "Nonclustered indexes hold actual data rows",
+        false
+      ]
+    ],
+    "explanation": "Because physical disk storage can have only one physical sequence, a table can have at most one clustered index."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Relational Database Model & SQL:\nWhat is the difference between a CLUSTERED index and a NONCLUSTERED index?",
+    "options": [
+      [
+        "A clustered index physically orders table data rows on disk; a nonclustered index is a separate lookup structure",
+        true
+      ],
+      [
+        "Clustered indexes are slower",
+        false
+      ],
+      [
+        "A table can have 10 clustered indexes",
+        false
+      ],
+      [
+        "Nonclustered indexes hold actual data rows",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: A clustered index physically orders table data rows on disk; a nonclustered index is a separate lookup structure. Because physical disk storage can have only one physical sequence, a table can have at most one clustered index."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Transaction Integrity & Storage Query:\nWhat is the difference between a CLUSTERED index and a NONCLUSTERED index?",
+    "options": [
+      [
+        "A clustered index physically orders table data rows on disk; a nonclustered index is a separate lookup structure",
+        true
+      ],
+      [
+        "Clustered indexes are slower",
+        false
+      ],
+      [
+        "A table can have 10 clustered indexes",
+        false
+      ],
+      [
+        "Nonclustered indexes hold actual data rows",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: A clustered index physically orders table data rows on disk; a nonclustered index is a separate lookup structure. Because physical disk storage can have only one physical sequence, a table can have at most one clustered index."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "What SQL clause is used to filter records AFTER an aggregation `GROUP BY` operation?",
+    "options": [
+      [
+        "HAVING",
+        true
+      ],
+      [
+        "WHERE",
+        false
+      ],
+      [
+        "ORDER BY",
+        false
+      ],
+      [
+        "DISTINCT",
+        false
+      ]
+    ],
+    "explanation": "`WHERE` filters individual rows before grouping; `HAVING` filters aggregated group records."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Relational Database Model & SQL:\nWhat SQL clause is used to filter records AFTER an aggregation `GROUP BY` operation?",
+    "options": [
+      [
+        "HAVING",
+        true
+      ],
+      [
+        "WHERE",
+        false
+      ],
+      [
+        "ORDER BY",
+        false
+      ],
+      [
+        "DISTINCT",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: HAVING. `WHERE` filters individual rows before grouping; `HAVING` filters aggregated group records."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "Transaction Integrity & Storage Query:\nWhat SQL clause is used to filter records AFTER an aggregation `GROUP BY` operation?",
+    "options": [
+      [
+        "HAVING",
+        true
+      ],
+      [
+        "WHERE",
+        false
+      ],
+      [
+        "ORDER BY",
+        false
+      ],
+      [
+        "DISTINCT",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: HAVING. `WHERE` filters individual rows before grouping; `HAVING` filters aggregated group records."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is a 'Dirty Read' in transaction isolation levels?",
+    "options": [
+      [
+        "A transaction reads uncommitted data modifications written by another concurrent transaction",
+        true
+      ],
+      [
+        "Reading corrupted disk sectors",
+        false
+      ],
+      [
+        "Reading data without an index",
+        false
+      ],
+      [
+        "Reading dropped tables",
+        false
+      ]
+    ],
+    "explanation": "If the modifying transaction later rolls back, the reading transaction has operated on invalid dirty state."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Relational Database Model & SQL:\nWhat is a 'Dirty Read' in transaction isolation levels?",
+    "options": [
+      [
+        "A transaction reads uncommitted data modifications written by another concurrent transaction",
+        true
+      ],
+      [
+        "Reading corrupted disk sectors",
+        false
+      ],
+      [
+        "Reading data without an index",
+        false
+      ],
+      [
+        "Reading dropped tables",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: A transaction reads uncommitted data modifications written by another concurrent transaction. If the modifying transaction later rolls back, the reading transaction has operated on invalid dirty state."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Transaction Integrity & Storage Query:\nWhat is a 'Dirty Read' in transaction isolation levels?",
+    "options": [
+      [
+        "A transaction reads uncommitted data modifications written by another concurrent transaction",
+        true
+      ],
+      [
+        "Reading corrupted disk sectors",
+        false
+      ],
+      [
+        "Reading data without an index",
+        false
+      ],
+      [
+        "Reading dropped tables",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: A transaction reads uncommitted data modifications written by another concurrent transaction. If the modifying transaction later rolls back, the reading transaction has operated on invalid dirty state."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Which ANSI SQL transaction isolation level prevents Dirty Reads, Non-Repeatable Reads, and Phantom Reads?",
+    "options": [
+      [
+        "SERIALIZABLE",
+        true
+      ],
+      [
+        "READ UNCOMMITTED",
+        false
+      ],
+      [
+        "READ COMMITTED",
+        false
+      ],
+      [
+        "REPEATABLE READ",
+        false
+      ]
+    ],
+    "explanation": "SERIALIZABLE enforces strict serial execution order, preventing all concurrency read anomalies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Relational Database Model & SQL:\nWhich ANSI SQL transaction isolation level prevents Dirty Reads, Non-Repeatable Reads, and Phantom Reads?",
+    "options": [
+      [
+        "SERIALIZABLE",
+        true
+      ],
+      [
+        "READ UNCOMMITTED",
+        false
+      ],
+      [
+        "READ COMMITTED",
+        false
+      ],
+      [
+        "REPEATABLE READ",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: SERIALIZABLE. SERIALIZABLE enforces strict serial execution order, preventing all concurrency read anomalies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Transaction Integrity & Storage Query:\nWhich ANSI SQL transaction isolation level prevents Dirty Reads, Non-Repeatable Reads, and Phantom Reads?",
+    "options": [
+      [
+        "SERIALIZABLE",
+        true
+      ],
+      [
+        "READ UNCOMMITTED",
+        false
+      ],
+      [
+        "READ COMMITTED",
+        false
+      ],
+      [
+        "REPEATABLE READ",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: SERIALIZABLE. SERIALIZABLE enforces strict serial execution order, preventing all concurrency read anomalies."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.2,
+    "text": "What is the Two-Phase Locking (2PL) protocol designed to guarantee?",
+    "options": [
+      [
+        "Serializability of concurrent transaction schedules",
+        true
+      ],
+      [
+        "Deadlock prevention",
+        false
+      ],
+      [
+        "Fast query execution",
+        false
+      ],
+      [
+        "Data compression",
+        false
+      ]
+    ],
+    "explanation": "2PL (Growing phase where locks are acquired, Shrinking phase where locks are released) guarantees conflict serializability."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Relational Database Model & SQL:\nWhat is the Two-Phase Locking (2PL) protocol designed to guarantee?",
+    "options": [
+      [
+        "Serializability of concurrent transaction schedules",
+        true
+      ],
+      [
+        "Deadlock prevention",
+        false
+      ],
+      [
+        "Fast query execution",
+        false
+      ],
+      [
+        "Data compression",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Serializability of concurrent transaction schedules. 2PL (Growing phase where locks are acquired, Shrinking phase where locks are released) guarantees conflict serializability."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.4,
+    "text": "Transaction Integrity & Storage Query:\nWhat is the Two-Phase Locking (2PL) protocol designed to guarantee?",
+    "options": [
+      [
+        "Serializability of concurrent transaction schedules",
+        true
+      ],
+      [
+        "Deadlock prevention",
+        false
+      ],
+      [
+        "Fast query execution",
+        false
+      ],
+      [
+        "Data compression",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Serializability of concurrent transaction schedules. 2PL (Growing phase where locks are acquired, Shrinking phase where locks are released) guarantees conflict serializability."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the difference between `DELETE`, `TRUNCATE`, and `DROP` in SQL?",
+    "options": [
+      [
+        "DELETE removes selected rows (DML, can rollback); TRUNCATE empties table space (DDL, fast); DROP deletes table and schema (DDL)",
+        true
+      ],
+      [
+        "TRUNCATE is DML",
+        false
+      ],
+      [
+        "DELETE deletes the table definition",
+        false
+      ],
+      [
+        "They are identical",
+        false
+      ]
+    ],
+    "explanation": "DELETE logs individual row deletions; TRUNCATE deallocates data pages; DROP removes metadata and storage entirely."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Relational Database Model & SQL:\nWhat is the difference between `DELETE`, `TRUNCATE`, and `DROP` in SQL?",
+    "options": [
+      [
+        "DELETE removes selected rows (DML, can rollback); TRUNCATE empties table space (DDL, fast); DROP deletes table and schema (DDL)",
+        true
+      ],
+      [
+        "TRUNCATE is DML",
+        false
+      ],
+      [
+        "DELETE deletes the table definition",
+        false
+      ],
+      [
+        "They are identical",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: DELETE removes selected rows (DML, can rollback); TRUNCATE empties table space (DDL, fast); DROP deletes table and schema (DDL). DELETE logs individual row deletions; TRUNCATE deallocates data pages; DROP removes metadata and storage entirely."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Transaction Integrity & Storage Query:\nWhat is the difference between `DELETE`, `TRUNCATE`, and `DROP` in SQL?",
+    "options": [
+      [
+        "DELETE removes selected rows (DML, can rollback); TRUNCATE empties table space (DDL, fast); DROP deletes table and schema (DDL)",
+        true
+      ],
+      [
+        "TRUNCATE is DML",
+        false
+      ],
+      [
+        "DELETE deletes the table definition",
+        false
+      ],
+      [
+        "They are identical",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: DELETE removes selected rows (DML, can rollback); TRUNCATE empties table space (DDL, fast); DROP deletes table and schema (DDL). DELETE logs individual row deletions; TRUNCATE deallocates data pages; DROP removes metadata and storage entirely."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What does a FOREIGN KEY constraint enforce?",
+    "options": [
+      [
+        "Referential Integrity between two relational tables",
+        true
+      ],
+      [
+        "Domain Integrity",
+        false
+      ],
+      [
+        "Entity Integrity",
+        false
+      ],
+      [
+        "User Authentication",
+        false
+      ]
+    ],
+    "explanation": "Foreign keys ensure that relationships between table rows remain valid and unorphaned."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Relational Database Model & SQL:\nWhat does a FOREIGN KEY constraint enforce?",
+    "options": [
+      [
+        "Referential Integrity between two relational tables",
+        true
+      ],
+      [
+        "Domain Integrity",
+        false
+      ],
+      [
+        "Entity Integrity",
+        false
+      ],
+      [
+        "User Authentication",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Referential Integrity between two relational tables. Foreign keys ensure that relationships between table rows remain valid and unorphaned."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Transaction Integrity & Storage Query:\nWhat does a FOREIGN KEY constraint enforce?",
+    "options": [
+      [
+        "Referential Integrity between two relational tables",
+        true
+      ],
+      [
+        "Domain Integrity",
+        false
+      ],
+      [
+        "Entity Integrity",
+        false
+      ],
+      [
+        "User Authentication",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Referential Integrity between two relational tables. Foreign keys ensure that relationships between table rows remain valid and unorphaned."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is a Deadlock in a database system?",
+    "options": [
+      [
+        "Two or more transactions waiting indefinitely for locks held by each other in a circular wait",
+        true
+      ],
+      [
+        "A crashed database server",
+        false
+      ],
+      [
+        "A slow query",
+        false
+      ],
+      [
+        "A table with no primary key",
+        false
+      ]
+    ],
+    "explanation": "Databases resolve deadlocks using wait-for graphs and aborting/rolling back a victim transaction."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Relational Database Model & SQL:\nWhat is a Deadlock in a database system?",
+    "options": [
+      [
+        "Two or more transactions waiting indefinitely for locks held by each other in a circular wait",
+        true
+      ],
+      [
+        "A crashed database server",
+        false
+      ],
+      [
+        "A slow query",
+        false
+      ],
+      [
+        "A table with no primary key",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Two or more transactions waiting indefinitely for locks held by each other in a circular wait. Databases resolve deadlocks using wait-for graphs and aborting/rolling back a victim transaction."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Transaction Integrity & Storage Query:\nWhat is a Deadlock in a database system?",
+    "options": [
+      [
+        "Two or more transactions waiting indefinitely for locks held by each other in a circular wait",
+        true
+      ],
+      [
+        "A crashed database server",
+        false
+      ],
+      [
+        "A slow query",
+        false
+      ],
+      [
+        "A table with no primary key",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Two or more transactions waiting indefinitely for locks held by each other in a circular wait. Databases resolve deadlocks using wait-for graphs and aborting/rolling back a victim transaction."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.1,
+    "text": "What does the Write-Ahead Logging (WAL) protocol mandate in database engines?",
+    "options": [
+      [
+        "Changes must be written to stable non-volatile log storage before they are applied to data pages on disk",
+        true
+      ],
+      [
+        "Logs are written only after disk sync",
+        false
+      ],
+      [
+        "Logs are stored in RAM only",
+        false
+      ],
+      [
+        "Logs are optional",
+        false
+      ]
+    ],
+    "explanation": "WAL ensures that in the event of sudden server crashes, REDO and UNDO logs can recover state deterministically."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.2000000000000002,
+    "text": "Relational Database Model & SQL:\nWhat does the Write-Ahead Logging (WAL) protocol mandate in database engines?",
+    "options": [
+      [
+        "Changes must be written to stable non-volatile log storage before they are applied to data pages on disk",
+        true
+      ],
+      [
+        "Logs are written only after disk sync",
+        false
+      ],
+      [
+        "Logs are stored in RAM only",
+        false
+      ],
+      [
+        "Logs are optional",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Changes must be written to stable non-volatile log storage before they are applied to data pages on disk. WAL ensures that in the event of sudden server crashes, REDO and UNDO logs can recover state deterministically."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Transaction Integrity & Storage Query:\nWhat does the Write-Ahead Logging (WAL) protocol mandate in database engines?",
+    "options": [
+      [
+        "Changes must be written to stable non-volatile log storage before they are applied to data pages on disk",
+        true
+      ],
+      [
+        "Logs are written only after disk sync",
+        false
+      ],
+      [
+        "Logs are stored in RAM only",
+        false
+      ],
+      [
+        "Logs are optional",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Changes must be written to stable non-volatile log storage before they are applied to data pages on disk. WAL ensures that in the event of sudden server crashes, REDO and UNDO logs can recover state deterministically."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is Sharding in database scalability?",
+    "options": [
+      [
+        "Horizontal partitioning that distributes rows of a table across multiple independent physical database instances",
+        true
+      ],
+      [
+        "Vertical column splitting",
+        false
+      ],
+      [
+        "Replicating read copies",
+        false
+      ],
+      [
+        "Creating backup archives",
+        false
+      ]
+    ],
+    "explanation": "Sharding partitions data by shard key across multiple database servers to scale write throughput and storage capacity."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Relational Database Model & SQL:\nWhat is Sharding in database scalability?",
+    "options": [
+      [
+        "Horizontal partitioning that distributes rows of a table across multiple independent physical database instances",
+        true
+      ],
+      [
+        "Vertical column splitting",
+        false
+      ],
+      [
+        "Replicating read copies",
+        false
+      ],
+      [
+        "Creating backup archives",
+        false
+      ]
+    ],
+    "explanation": "RDBMS architectural principle: Horizontal partitioning that distributes rows of a table across multiple independent physical database instances. Sharding partitions data by shard key across multiple database servers to scale write throughput and storage capacity."
+  },
+  {
+    "topic": "Database Management",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Transaction Integrity & Storage Query:\nWhat is Sharding in database scalability?",
+    "options": [
+      [
+        "Horizontal partitioning that distributes rows of a table across multiple independent physical database instances",
+        true
+      ],
+      [
+        "Vertical column splitting",
+        false
+      ],
+      [
+        "Replicating read copies",
+        false
+      ],
+      [
+        "Creating backup archives",
+        false
+      ]
+    ],
+    "explanation": "Verified database theorem: Horizontal partitioning that distributes rows of a table across multiple independent physical database instances. Sharding partitions data by shard key across multiple database servers to scale write throughput and storage capacity."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.2,
+    "text": "What is the correct 7-layer order of the OSI Model from lowest to highest?",
+    "options": [
+      [
+        "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+        true
+      ],
+      [
+        "Application, Transport, Network, Data Link, Physical",
+        false
+      ],
+      [
+        "Physical, Network, Transport, Application",
+        false
+      ],
+      [
+        "Data Link, Network, Transport, Session, Application",
+        false
+      ]
+    ],
+    "explanation": "The 7 OSI layers organize networking communication from physical bit transmission to user applications."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0999999999999999,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the correct 7-layer order of the OSI Model from lowest to highest?",
+    "options": [
+      [
+        "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+        true
+      ],
+      [
+        "Application, Transport, Network, Data Link, Physical",
+        false
+      ],
+      [
+        "Physical, Network, Transport, Application",
+        false
+      ],
+      [
+        "Data Link, Network, Transport, Session, Application",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Physical, Data Link, Network, Transport, Session, Presentation, Application. The 7 OSI layers organize networking communication from physical bit transmission to user applications."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the correct 7-layer order of the OSI Model from lowest to highest?",
+    "options": [
+      [
+        "Physical, Data Link, Network, Transport, Session, Presentation, Application",
+        true
+      ],
+      [
+        "Application, Transport, Network, Data Link, Physical",
+        false
+      ],
+      [
+        "Physical, Network, Transport, Application",
+        false
+      ],
+      [
+        "Data Link, Network, Transport, Session, Application",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Physical, Data Link, Network, Transport, Session, Presentation, Application. The 7 OSI layers organize networking communication from physical bit transmission to user applications."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "At which layer of the OSI model does an IP router primarily operate?",
+    "options": [
+      [
+        "Network Layer (Layer 3)",
+        true
+      ],
+      [
+        "Data Link Layer (Layer 2)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ],
+      [
+        "Application Layer (Layer 7)",
+        false
+      ]
+    ],
+    "explanation": "Routers inspect Layer 3 IP headers to route packets across disparate networks."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Computer Networking Protocols & Architecture:\nAt which layer of the OSI model does an IP router primarily operate?",
+    "options": [
+      [
+        "Network Layer (Layer 3)",
+        true
+      ],
+      [
+        "Data Link Layer (Layer 2)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ],
+      [
+        "Application Layer (Layer 7)",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Network Layer (Layer 3). Routers inspect Layer 3 IP headers to route packets across disparate networks."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "Network Layer & Packet Routing Query:\nAt which layer of the OSI model does an IP router primarily operate?",
+    "options": [
+      [
+        "Network Layer (Layer 3)",
+        true
+      ],
+      [
+        "Data Link Layer (Layer 2)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ],
+      [
+        "Application Layer (Layer 7)",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Network Layer (Layer 3). Routers inspect Layer 3 IP headers to route packets across disparate networks."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "At which OSI layer does a standard Ethernet Switch operate using MAC addresses?",
+    "options": [
+      [
+        "Data Link Layer (Layer 2)",
+        true
+      ],
+      [
+        "Physical Layer (Layer 1)",
+        false
+      ],
+      [
+        "Network Layer (Layer 3)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ]
+    ],
+    "explanation": "Ethernet switches inspect Layer 2 MAC address frame headers to forward frames on local segments."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Computer Networking Protocols & Architecture:\nAt which OSI layer does a standard Ethernet Switch operate using MAC addresses?",
+    "options": [
+      [
+        "Data Link Layer (Layer 2)",
+        true
+      ],
+      [
+        "Physical Layer (Layer 1)",
+        false
+      ],
+      [
+        "Network Layer (Layer 3)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Data Link Layer (Layer 2). Ethernet switches inspect Layer 2 MAC address frame headers to forward frames on local segments."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "Network Layer & Packet Routing Query:\nAt which OSI layer does a standard Ethernet Switch operate using MAC addresses?",
+    "options": [
+      [
+        "Data Link Layer (Layer 2)",
+        true
+      ],
+      [
+        "Physical Layer (Layer 1)",
+        false
+      ],
+      [
+        "Network Layer (Layer 3)",
+        false
+      ],
+      [
+        "Transport Layer (Layer 4)",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Data Link Layer (Layer 2). Ethernet switches inspect Layer 2 MAC address frame headers to forward frames on local segments."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What are the steps of the TCP Three-Way Handshake to establish a connection?",
+    "options": [
+      [
+        "SYN -> SYN-ACK -> ACK",
+        true
+      ],
+      [
+        "SYN -> ACK -> DATA",
+        false
+      ],
+      [
+        "ACK -> SYN -> SYN-ACK",
+        false
+      ],
+      [
+        "HELLO -> HELLO-ACK -> CONNECT",
+        false
+      ]
+    ],
+    "explanation": "Client sends SYN, server responds with SYN-ACK, client acknowledges with ACK, synchronizing sequence numbers."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Computer Networking Protocols & Architecture:\nWhat are the steps of the TCP Three-Way Handshake to establish a connection?",
+    "options": [
+      [
+        "SYN -> SYN-ACK -> ACK",
+        true
+      ],
+      [
+        "SYN -> ACK -> DATA",
+        false
+      ],
+      [
+        "ACK -> SYN -> SYN-ACK",
+        false
+      ],
+      [
+        "HELLO -> HELLO-ACK -> CONNECT",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: SYN -> SYN-ACK -> ACK. Client sends SYN, server responds with SYN-ACK, client acknowledges with ACK, synchronizing sequence numbers."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Network Layer & Packet Routing Query:\nWhat are the steps of the TCP Three-Way Handshake to establish a connection?",
+    "options": [
+      [
+        "SYN -> SYN-ACK -> ACK",
+        true
+      ],
+      [
+        "SYN -> ACK -> DATA",
+        false
+      ],
+      [
+        "ACK -> SYN -> SYN-ACK",
+        false
+      ],
+      [
+        "HELLO -> HELLO-ACK -> CONNECT",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: SYN -> SYN-ACK -> ACK. Client sends SYN, server responds with SYN-ACK, client acknowledges with ACK, synchronizing sequence numbers."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is the primary difference between TCP and UDP?",
+    "options": [
+      [
+        "TCP is connection-oriented, reliable, and byte-stream based; UDP is connectionless, unreliable, and datagram-based",
+        true
+      ],
+      [
+        "TCP is faster than UDP",
+        false
+      ],
+      [
+        "UDP provides congestion control",
+        false
+      ],
+      [
+        "UDP guarantees delivery",
+        false
+      ]
+    ],
+    "explanation": "TCP guarantees in-order lossless packet delivery via acknowledgments; UDP trades reliability for low latency (VoIP, DNS, gaming)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the primary difference between TCP and UDP?",
+    "options": [
+      [
+        "TCP is connection-oriented, reliable, and byte-stream based; UDP is connectionless, unreliable, and datagram-based",
+        true
+      ],
+      [
+        "TCP is faster than UDP",
+        false
+      ],
+      [
+        "UDP provides congestion control",
+        false
+      ],
+      [
+        "UDP guarantees delivery",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: TCP is connection-oriented, reliable, and byte-stream based; UDP is connectionless, unreliable, and datagram-based. TCP guarantees in-order lossless packet delivery via acknowledgments; UDP trades reliability for low latency (VoIP, DNS, gaming)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the primary difference between TCP and UDP?",
+    "options": [
+      [
+        "TCP is connection-oriented, reliable, and byte-stream based; UDP is connectionless, unreliable, and datagram-based",
+        true
+      ],
+      [
+        "TCP is faster than UDP",
+        false
+      ],
+      [
+        "UDP provides congestion control",
+        false
+      ],
+      [
+        "UDP guarantees delivery",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: TCP is connection-oriented, reliable, and byte-stream based; UDP is connectionless, unreliable, and datagram-based. TCP guarantees in-order lossless packet delivery via acknowledgments; UDP trades reliability for low latency (VoIP, DNS, gaming)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What protocol resolves an IP address to a physical MAC address on a local area network?",
+    "options": [
+      [
+        "ARP (Address Resolution Protocol)",
+        true
+      ],
+      [
+        "DNS",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ],
+      [
+        "ICMP",
+        false
+      ]
+    ],
+    "explanation": "ARP broadcasts an IP inquiry on the local network; the host with matching IP replies with its hardware MAC address."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Computer Networking Protocols & Architecture:\nWhat protocol resolves an IP address to a physical MAC address on a local area network?",
+    "options": [
+      [
+        "ARP (Address Resolution Protocol)",
+        true
+      ],
+      [
+        "DNS",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ],
+      [
+        "ICMP",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: ARP (Address Resolution Protocol). ARP broadcasts an IP inquiry on the local network; the host with matching IP replies with its hardware MAC address."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Network Layer & Packet Routing Query:\nWhat protocol resolves an IP address to a physical MAC address on a local area network?",
+    "options": [
+      [
+        "ARP (Address Resolution Protocol)",
+        true
+      ],
+      [
+        "DNS",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ],
+      [
+        "ICMP",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: ARP (Address Resolution Protocol). ARP broadcasts an IP inquiry on the local network; the host with matching IP replies with its hardware MAC address."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.2,
+    "text": "What protocol translates human-readable domain names (e.g. google.com) into numerical IP addresses?",
+    "options": [
+      [
+        "DNS (Domain Name System)",
+        true
+      ],
+      [
+        "HTTP",
+        false
+      ],
+      [
+        "ARP",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ]
+    ],
+    "explanation": "DNS functions as the internet's distributed directory resolving domain names to IP addresses."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0999999999999999,
+    "text": "Computer Networking Protocols & Architecture:\nWhat protocol translates human-readable domain names (e.g. google.com) into numerical IP addresses?",
+    "options": [
+      [
+        "DNS (Domain Name System)",
+        true
+      ],
+      [
+        "HTTP",
+        false
+      ],
+      [
+        "ARP",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: DNS (Domain Name System). DNS functions as the internet's distributed directory resolving domain names to IP addresses."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Network Layer & Packet Routing Query:\nWhat protocol translates human-readable domain names (e.g. google.com) into numerical IP addresses?",
+    "options": [
+      [
+        "DNS (Domain Name System)",
+        true
+      ],
+      [
+        "HTTP",
+        false
+      ],
+      [
+        "ARP",
+        false
+      ],
+      [
+        "DHCP",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: DNS (Domain Name System). DNS functions as the internet's distributed directory resolving domain names to IP addresses."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is the standard subnet mask for a /24 IPv4 CIDR block?",
+    "options": [
+      [
+        "255.255.255.0",
+        true
+      ],
+      [
+        "255.255.0.0",
+        false
+      ],
+      [
+        "255.0.0.0",
+        false
+      ],
+      [
+        "255.255.255.128",
+        false
+      ]
+    ],
+    "explanation": "/24 indicates 24 network prefix bits (3 octets of all 1s = 255.255.255.0), leaving 8 host bits (256 addresses)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the standard subnet mask for a /24 IPv4 CIDR block?",
+    "options": [
+      [
+        "255.255.255.0",
+        true
+      ],
+      [
+        "255.255.0.0",
+        false
+      ],
+      [
+        "255.0.0.0",
+        false
+      ],
+      [
+        "255.255.255.128",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: 255.255.255.0. /24 indicates 24 network prefix bits (3 octets of all 1s = 255.255.255.0), leaving 8 host bits (256 addresses)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the standard subnet mask for a /24 IPv4 CIDR block?",
+    "options": [
+      [
+        "255.255.255.0",
+        true
+      ],
+      [
+        "255.255.0.0",
+        false
+      ],
+      [
+        "255.0.0.0",
+        false
+      ],
+      [
+        "255.255.255.128",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: 255.255.255.0. /24 indicates 24 network prefix bits (3 octets of all 1s = 255.255.255.0), leaving 8 host bits (256 addresses)."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "How many usable host IP addresses are available in a /28 subnet?",
+    "options": [
+      [
+        "14 usable host addresses",
+        true
+      ],
+      [
+        "16 addresses",
+        false
+      ],
+      [
+        "30 addresses",
+        false
+      ],
+      [
+        "12 addresses",
+        false
+      ]
+    ],
+    "explanation": "Total addresses = 2^(32 - 28) = 16. Subtracting network address (all 0s) and broadcast address (all 1s) leaves 14 usable hosts."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Computer Networking Protocols & Architecture:\nHow many usable host IP addresses are available in a /28 subnet?",
+    "options": [
+      [
+        "14 usable host addresses",
+        true
+      ],
+      [
+        "16 addresses",
+        false
+      ],
+      [
+        "30 addresses",
+        false
+      ],
+      [
+        "12 addresses",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: 14 usable host addresses. Total addresses = 2^(32 - 28) = 16. Subtracting network address (all 0s) and broadcast address (all 1s) leaves 14 usable hosts."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Network Layer & Packet Routing Query:\nHow many usable host IP addresses are available in a /28 subnet?",
+    "options": [
+      [
+        "14 usable host addresses",
+        true
+      ],
+      [
+        "16 addresses",
+        false
+      ],
+      [
+        "30 addresses",
+        false
+      ],
+      [
+        "12 addresses",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: 14 usable host addresses. Total addresses = 2^(32 - 28) = 16. Subtracting network address (all 0s) and broadcast address (all 1s) leaves 14 usable hosts."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "What is the purpose of the TTL (Time to Live) field in an IPv4 packet header?",
+    "options": [
+      [
+        "Prevents packets from circulating indefinitely in routing loops by decrementing at each hop",
+        true
+      ],
+      [
+        "Measures packet latency",
+        false
+      ],
+      [
+        "Encrypts packet payload",
+        false
+      ],
+      [
+        "Guarantees delivery time",
+        false
+      ]
+    ],
+    "explanation": "Each router decrements TTL by 1; when TTL hits 0, the packet is discarded and an ICMP Time Exceeded packet is sent."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the purpose of the TTL (Time to Live) field in an IPv4 packet header?",
+    "options": [
+      [
+        "Prevents packets from circulating indefinitely in routing loops by decrementing at each hop",
+        true
+      ],
+      [
+        "Measures packet latency",
+        false
+      ],
+      [
+        "Encrypts packet payload",
+        false
+      ],
+      [
+        "Guarantees delivery time",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Prevents packets from circulating indefinitely in routing loops by decrementing at each hop. Each router decrements TTL by 1; when TTL hits 0, the packet is discarded and an ICMP Time Exceeded packet is sent."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.7,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the purpose of the TTL (Time to Live) field in an IPv4 packet header?",
+    "options": [
+      [
+        "Prevents packets from circulating indefinitely in routing loops by decrementing at each hop",
+        true
+      ],
+      [
+        "Measures packet latency",
+        false
+      ],
+      [
+        "Encrypts packet payload",
+        false
+      ],
+      [
+        "Guarantees delivery time",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Prevents packets from circulating indefinitely in routing loops by decrementing at each hop. Each router decrements TTL by 1; when TTL hits 0, the packet is discarded and an ICMP Time Exceeded packet is sent."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What algorithm does Link-State routing (e.g. OSPF) use to calculate shortest paths?",
+    "options": [
+      [
+        "Dijkstra's Algorithm",
+        true
+      ],
+      [
+        "Bellman-Ford Algorithm",
+        false
+      ],
+      [
+        "Floyd-Warshall",
+        false
+      ],
+      [
+        "Prim's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Link-state routers flood topological link states and run Dijkstra's shortest path algorithm independently."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Computer Networking Protocols & Architecture:\nWhat algorithm does Link-State routing (e.g. OSPF) use to calculate shortest paths?",
+    "options": [
+      [
+        "Dijkstra's Algorithm",
+        true
+      ],
+      [
+        "Bellman-Ford Algorithm",
+        false
+      ],
+      [
+        "Floyd-Warshall",
+        false
+      ],
+      [
+        "Prim's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Dijkstra's Algorithm. Link-state routers flood topological link states and run Dijkstra's shortest path algorithm independently."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Network Layer & Packet Routing Query:\nWhat algorithm does Link-State routing (e.g. OSPF) use to calculate shortest paths?",
+    "options": [
+      [
+        "Dijkstra's Algorithm",
+        true
+      ],
+      [
+        "Bellman-Ford Algorithm",
+        false
+      ],
+      [
+        "Floyd-Warshall",
+        false
+      ],
+      [
+        "Prim's Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Dijkstra's Algorithm. Link-state routers flood topological link states and run Dijkstra's shortest path algorithm independently."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What algorithm does Distance-Vector routing (e.g. RIP) use?",
+    "options": [
+      [
+        "Bellman-Ford Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Kruskal's Algorithm",
+        false
+      ],
+      [
+        "KMP Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Routers exchange distance vectors with neighbors and update distance estimates using Bellman-Ford equations."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Computer Networking Protocols & Architecture:\nWhat algorithm does Distance-Vector routing (e.g. RIP) use?",
+    "options": [
+      [
+        "Bellman-Ford Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Kruskal's Algorithm",
+        false
+      ],
+      [
+        "KMP Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: Bellman-Ford Algorithm. Routers exchange distance vectors with neighbors and update distance estimates using Bellman-Ford equations."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Network Layer & Packet Routing Query:\nWhat algorithm does Distance-Vector routing (e.g. RIP) use?",
+    "options": [
+      [
+        "Bellman-Ford Algorithm",
+        true
+      ],
+      [
+        "Dijkstra's Algorithm",
+        false
+      ],
+      [
+        "Kruskal's Algorithm",
+        false
+      ],
+      [
+        "KMP Algorithm",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: Bellman-Ford Algorithm. Routers exchange distance vectors with neighbors and update distance estimates using Bellman-Ford equations."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is the fundamental difference between HTTP/1.1 and HTTP/2?",
+    "options": [
+      [
+        "HTTP/2 introduces binary framing and multiplexing multiple concurrent requests over a single TCP connection",
+        true
+      ],
+      [
+        "HTTP/2 removes encryption",
+        false
+      ],
+      [
+        "HTTP/2 uses UDP",
+        false
+      ],
+      [
+        "HTTP/2 is text-only",
+        false
+      ]
+    ],
+    "explanation": "HTTP/2 eliminates HTTP/1.1 head-of-line blocking at the application layer by multiplexing bidirectional streams."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the fundamental difference between HTTP/1.1 and HTTP/2?",
+    "options": [
+      [
+        "HTTP/2 introduces binary framing and multiplexing multiple concurrent requests over a single TCP connection",
+        true
+      ],
+      [
+        "HTTP/2 removes encryption",
+        false
+      ],
+      [
+        "HTTP/2 uses UDP",
+        false
+      ],
+      [
+        "HTTP/2 is text-only",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: HTTP/2 introduces binary framing and multiplexing multiple concurrent requests over a single TCP connection. HTTP/2 eliminates HTTP/1.1 head-of-line blocking at the application layer by multiplexing bidirectional streams."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the fundamental difference between HTTP/1.1 and HTTP/2?",
+    "options": [
+      [
+        "HTTP/2 introduces binary framing and multiplexing multiple concurrent requests over a single TCP connection",
+        true
+      ],
+      [
+        "HTTP/2 removes encryption",
+        false
+      ],
+      [
+        "HTTP/2 uses UDP",
+        false
+      ],
+      [
+        "HTTP/2 is text-only",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: HTTP/2 introduces binary framing and multiplexing multiple concurrent requests over a single TCP connection. HTTP/2 eliminates HTTP/1.1 head-of-line blocking at the application layer by multiplexing bidirectional streams."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "HARD",
+    "irt": 1.2,
+    "text": "What is the underlying transport protocol for HTTP/3?",
+    "options": [
+      [
+        "QUIC (built on top of UDP)",
+        true
+      ],
+      [
+        "TCP",
+        false
+      ],
+      [
+        "SCTP",
+        false
+      ],
+      [
+        "TLS over TCP",
+        false
+      ]
+    ],
+    "explanation": "HTTP/3 replaces TCP with QUIC over UDP to eliminate transport-layer head-of-line blocking and achieve 0-RTT handshakes."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is the underlying transport protocol for HTTP/3?",
+    "options": [
+      [
+        "QUIC (built on top of UDP)",
+        true
+      ],
+      [
+        "TCP",
+        false
+      ],
+      [
+        "SCTP",
+        false
+      ],
+      [
+        "TLS over TCP",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: QUIC (built on top of UDP). HTTP/3 replaces TCP with QUIC over UDP to eliminate transport-layer head-of-line blocking and achieve 0-RTT handshakes."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "HARD",
+    "irt": 1.4,
+    "text": "Network Layer & Packet Routing Query:\nWhat is the underlying transport protocol for HTTP/3?",
+    "options": [
+      [
+        "QUIC (built on top of UDP)",
+        true
+      ],
+      [
+        "TCP",
+        false
+      ],
+      [
+        "SCTP",
+        false
+      ],
+      [
+        "TLS over TCP",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: QUIC (built on top of UDP). HTTP/3 replaces TCP with QUIC over UDP to eliminate transport-layer head-of-line blocking and achieve 0-RTT handshakes."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is NAT (Network Address Translation)?",
+    "options": [
+      [
+        "A technique that maps private non-routable IP addresses in a LAN to a single public IP address for internet routing",
+        true
+      ],
+      [
+        "A routing algorithm",
+        false
+      ],
+      [
+        "A DNS resolver",
+        false
+      ],
+      [
+        "A physical cable standard",
+        false
+      ]
+    ],
+    "explanation": "NAT conserves IPv4 address space by translating internal private subnet addresses to public IP endpoints."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Computer Networking Protocols & Architecture:\nWhat is NAT (Network Address Translation)?",
+    "options": [
+      [
+        "A technique that maps private non-routable IP addresses in a LAN to a single public IP address for internet routing",
+        true
+      ],
+      [
+        "A routing algorithm",
+        false
+      ],
+      [
+        "A DNS resolver",
+        false
+      ],
+      [
+        "A physical cable standard",
+        false
+      ]
+    ],
+    "explanation": "Networking standard: A technique that maps private non-routable IP addresses in a LAN to a single public IP address for internet routing. NAT conserves IPv4 address space by translating internal private subnet addresses to public IP endpoints."
+  },
+  {
+    "topic": "Computer Networks",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Network Layer & Packet Routing Query:\nWhat is NAT (Network Address Translation)?",
+    "options": [
+      [
+        "A technique that maps private non-routable IP addresses in a LAN to a single public IP address for internet routing",
+        true
+      ],
+      [
+        "A routing algorithm",
+        false
+      ],
+      [
+        "A DNS resolver",
+        false
+      ],
+      [
+        "A physical cable standard",
+        false
+      ]
+    ],
+    "explanation": "Verified networking principle: A technique that maps private non-routable IP addresses in a LAN to a single public IP address for internet routing. NAT conserves IPv4 address space by translating internal private subnet addresses to public IP endpoints."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.1,
+    "text": "What is the Single Responsibility Principle (SRP)?",
+    "options": [
+      [
+        "A class should have only one reason to change, meaning it should perform only one cohesive responsibility",
+        true
+      ],
+      [
+        "A class should have only one method",
+        false
+      ],
+      [
+        "A class should have only one instance",
+        false
+      ],
+      [
+        "A class cannot inherit",
+        false
+      ]
+    ],
+    "explanation": "SRP ensures classes encapsulate a single business concern, minimizing regression risks when requirements evolve."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Single Responsibility Principle (SRP)?",
+    "options": [
+      [
+        "A class should have only one reason to change, meaning it should perform only one cohesive responsibility",
+        true
+      ],
+      [
+        "A class should have only one method",
+        false
+      ],
+      [
+        "A class should have only one instance",
+        false
+      ],
+      [
+        "A class cannot inherit",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: A class should have only one reason to change, meaning it should perform only one cohesive responsibility. SRP ensures classes encapsulate a single business concern, minimizing regression risks when requirements evolve."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9000000000000001,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Single Responsibility Principle (SRP)?",
+    "options": [
+      [
+        "A class should have only one reason to change, meaning it should perform only one cohesive responsibility",
+        true
+      ],
+      [
+        "A class should have only one method",
+        false
+      ],
+      [
+        "A class should have only one instance",
+        false
+      ],
+      [
+        "A class cannot inherit",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: A class should have only one reason to change, meaning it should perform only one cohesive responsibility. SRP ensures classes encapsulate a single business concern, minimizing regression risks when requirements evolve."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.2,
+    "text": "Which GoF Design Pattern ensures that a class has only one instance and provides a global point of access to it?",
+    "options": [
+      [
+        "Singleton Pattern",
+        true
+      ],
+      [
+        "Factory Method",
+        false
+      ],
+      [
+        "Prototype Pattern",
+        false
+      ],
+      [
+        "Builder Pattern",
+        false
+      ]
+    ],
+    "explanation": "Singleton privatizes constructors and controls instantiation via a static instance accessor method."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0999999999999999,
+    "text": "Software Architecture & SOLID Principles:\nWhich GoF Design Pattern ensures that a class has only one instance and provides a global point of access to it?",
+    "options": [
+      [
+        "Singleton Pattern",
+        true
+      ],
+      [
+        "Factory Method",
+        false
+      ],
+      [
+        "Prototype Pattern",
+        false
+      ],
+      [
+        "Builder Pattern",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Singleton Pattern. Singleton privatizes constructors and controls instantiation via a static instance accessor method."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Design Pattern Application & Analysis:\nWhich GoF Design Pattern ensures that a class has only one instance and provides a global point of access to it?",
+    "options": [
+      [
+        "Singleton Pattern",
+        true
+      ],
+      [
+        "Factory Method",
+        false
+      ],
+      [
+        "Prototype Pattern",
+        false
+      ],
+      [
+        "Builder Pattern",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Singleton Pattern. Singleton privatizes constructors and controls instantiation via a static instance accessor method."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "Which pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes?",
+    "options": [
+      [
+        "Abstract Factory Pattern",
+        true
+      ],
+      [
+        "Builder Pattern",
+        false
+      ],
+      [
+        "Adapter Pattern",
+        false
+      ],
+      [
+        "Decorator Pattern",
+        false
+      ]
+    ],
+    "explanation": "Abstract Factory decouples client code from concrete product implementations across multiple related product families."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Software Architecture & SOLID Principles:\nWhich pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes?",
+    "options": [
+      [
+        "Abstract Factory Pattern",
+        true
+      ],
+      [
+        "Builder Pattern",
+        false
+      ],
+      [
+        "Adapter Pattern",
+        false
+      ],
+      [
+        "Decorator Pattern",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Abstract Factory Pattern. Abstract Factory decouples client code from concrete product implementations across multiple related product families."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Design Pattern Application & Analysis:\nWhich pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes?",
+    "options": [
+      [
+        "Abstract Factory Pattern",
+        true
+      ],
+      [
+        "Builder Pattern",
+        false
+      ],
+      [
+        "Adapter Pattern",
+        false
+      ],
+      [
+        "Decorator Pattern",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Abstract Factory Pattern. Abstract Factory decouples client code from concrete product implementations across multiple related product families."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "Which Design Pattern converts the interface of a class into another interface that clients expect?",
+    "options": [
+      [
+        "Adapter Pattern (Wrapper)",
+        true
+      ],
+      [
+        "Facade Pattern",
+        false
+      ],
+      [
+        "Bridge Pattern",
+        false
+      ],
+      [
+        "Proxy Pattern",
+        false
+      ]
+    ],
+    "explanation": "Adapter allows incompatible classes to collaborate by translating calls between conflicting interfaces."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Software Architecture & SOLID Principles:\nWhich Design Pattern converts the interface of a class into another interface that clients expect?",
+    "options": [
+      [
+        "Adapter Pattern (Wrapper)",
+        true
+      ],
+      [
+        "Facade Pattern",
+        false
+      ],
+      [
+        "Bridge Pattern",
+        false
+      ],
+      [
+        "Proxy Pattern",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Adapter Pattern (Wrapper). Adapter allows incompatible classes to collaborate by translating calls between conflicting interfaces."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Design Pattern Application & Analysis:\nWhich Design Pattern converts the interface of a class into another interface that clients expect?",
+    "options": [
+      [
+        "Adapter Pattern (Wrapper)",
+        true
+      ],
+      [
+        "Facade Pattern",
+        false
+      ],
+      [
+        "Bridge Pattern",
+        false
+      ],
+      [
+        "Proxy Pattern",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Adapter Pattern (Wrapper). Adapter allows incompatible classes to collaborate by translating calls between conflicting interfaces."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the Decorator Pattern used for?",
+    "options": [
+      [
+        "Attaching additional responsibilities and behaviors to an object dynamically at runtime without subclassing",
+        true
+      ],
+      [
+        "Creating singleton instances",
+        false
+      ],
+      [
+        "Hiding complex subsystems",
+        false
+      ],
+      [
+        "Managing database connections",
+        false
+      ]
+    ],
+    "explanation": "Decorators wrap components recursively, providing a flexible alternative to rigid static inheritance subclassing."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Decorator Pattern used for?",
+    "options": [
+      [
+        "Attaching additional responsibilities and behaviors to an object dynamically at runtime without subclassing",
+        true
+      ],
+      [
+        "Creating singleton instances",
+        false
+      ],
+      [
+        "Hiding complex subsystems",
+        false
+      ],
+      [
+        "Managing database connections",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Attaching additional responsibilities and behaviors to an object dynamically at runtime without subclassing. Decorators wrap components recursively, providing a flexible alternative to rigid static inheritance subclassing."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Decorator Pattern used for?",
+    "options": [
+      [
+        "Attaching additional responsibilities and behaviors to an object dynamically at runtime without subclassing",
+        true
+      ],
+      [
+        "Creating singleton instances",
+        false
+      ],
+      [
+        "Hiding complex subsystems",
+        false
+      ],
+      [
+        "Managing database connections",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Attaching additional responsibilities and behaviors to an object dynamically at runtime without subclassing. Decorators wrap components recursively, providing a flexible alternative to rigid static inheritance subclassing."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is the Observer Pattern?",
+    "options": [
+      [
+        "A behavioral pattern where a subject maintains a list of dependents ('observers') and notifies them automatically of state changes",
+        true
+      ],
+      [
+        "A pattern for logging",
+        false
+      ],
+      [
+        "A pattern for sorting arrays",
+        false
+      ],
+      [
+        "A pattern for creating threads",
+        false
+      ]
+    ],
+    "explanation": "Observer defines a 1-to-many dependency for event-driven publish-subscribe communication."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Observer Pattern?",
+    "options": [
+      [
+        "A behavioral pattern where a subject maintains a list of dependents ('observers') and notifies them automatically of state changes",
+        true
+      ],
+      [
+        "A pattern for logging",
+        false
+      ],
+      [
+        "A pattern for sorting arrays",
+        false
+      ],
+      [
+        "A pattern for creating threads",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: A behavioral pattern where a subject maintains a list of dependents ('observers') and notifies them automatically of state changes. Observer defines a 1-to-many dependency for event-driven publish-subscribe communication."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Observer Pattern?",
+    "options": [
+      [
+        "A behavioral pattern where a subject maintains a list of dependents ('observers') and notifies them automatically of state changes",
+        true
+      ],
+      [
+        "A pattern for logging",
+        false
+      ],
+      [
+        "A pattern for sorting arrays",
+        false
+      ],
+      [
+        "A pattern for creating threads",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: A behavioral pattern where a subject maintains a list of dependents ('observers') and notifies them automatically of state changes. Observer defines a 1-to-many dependency for event-driven publish-subscribe communication."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the Strategy Pattern?",
+    "options": [
+      [
+        "A pattern that defines a family of algorithms, encapsulates each in a class, and makes them interchangeable at runtime",
+        true
+      ],
+      [
+        "A pattern for singleton creation",
+        false
+      ],
+      [
+        "A pattern for compiling code",
+        false
+      ],
+      [
+        "A pattern for caching data",
+        false
+      ]
+    ],
+    "explanation": "Strategy lets algorithms vary independently from clients that use them (e.g. swapping payment or sorting strategies)."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Strategy Pattern?",
+    "options": [
+      [
+        "A pattern that defines a family of algorithms, encapsulates each in a class, and makes them interchangeable at runtime",
+        true
+      ],
+      [
+        "A pattern for singleton creation",
+        false
+      ],
+      [
+        "A pattern for compiling code",
+        false
+      ],
+      [
+        "A pattern for caching data",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: A pattern that defines a family of algorithms, encapsulates each in a class, and makes them interchangeable at runtime. Strategy lets algorithms vary independently from clients that use them (e.g. swapping payment or sorting strategies)."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Strategy Pattern?",
+    "options": [
+      [
+        "A pattern that defines a family of algorithms, encapsulates each in a class, and makes them interchangeable at runtime",
+        true
+      ],
+      [
+        "A pattern for singleton creation",
+        false
+      ],
+      [
+        "A pattern for compiling code",
+        false
+      ],
+      [
+        "A pattern for caching data",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: A pattern that defines a family of algorithms, encapsulates each in a class, and makes them interchangeable at runtime. Strategy lets algorithms vary independently from clients that use them (e.g. swapping payment or sorting strategies)."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is the Facade Pattern?",
+    "options": [
+      [
+        "A structural pattern that provides a simplified, high-level interface to a complex library or subsystem",
+        true
+      ],
+      [
+        "A pattern for singletons",
+        false
+      ],
+      [
+        "A pattern for deep copying",
+        false
+      ],
+      [
+        "A pattern for circular queues",
+        false
+      ]
+    ],
+    "explanation": "Facade shields clients from convoluted underlying subsystem interactions behind a unified simple API."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Facade Pattern?",
+    "options": [
+      [
+        "A structural pattern that provides a simplified, high-level interface to a complex library or subsystem",
+        true
+      ],
+      [
+        "A pattern for singletons",
+        false
+      ],
+      [
+        "A pattern for deep copying",
+        false
+      ],
+      [
+        "A pattern for circular queues",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: A structural pattern that provides a simplified, high-level interface to a complex library or subsystem. Facade shields clients from convoluted underlying subsystem interactions behind a unified simple API."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Facade Pattern?",
+    "options": [
+      [
+        "A structural pattern that provides a simplified, high-level interface to a complex library or subsystem",
+        true
+      ],
+      [
+        "A pattern for singletons",
+        false
+      ],
+      [
+        "A pattern for deep copying",
+        false
+      ],
+      [
+        "A pattern for circular queues",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: A structural pattern that provides a simplified, high-level interface to a complex library or subsystem. Facade shields clients from convoluted underlying subsystem interactions behind a unified simple API."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is the Dependency Inversion Principle (the 'D' in SOLID)?",
+    "options": [
+      [
+        "High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces)",
+        true
+      ],
+      [
+        "Code should have no dependencies",
+        false
+      ],
+      [
+        "Always use concrete classes",
+        false
+      ],
+      [
+        "Dependencies should be hardcoded",
+        false
+      ]
+    ],
+    "explanation": "DIP decouples components by programming against interfaces rather than specific concrete implementations."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Dependency Inversion Principle (the 'D' in SOLID)?",
+    "options": [
+      [
+        "High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces)",
+        true
+      ],
+      [
+        "Code should have no dependencies",
+        false
+      ],
+      [
+        "Always use concrete classes",
+        false
+      ],
+      [
+        "Dependencies should be hardcoded",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces). DIP decouples components by programming against interfaces rather than specific concrete implementations."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Dependency Inversion Principle (the 'D' in SOLID)?",
+    "options": [
+      [
+        "High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces)",
+        true
+      ],
+      [
+        "Code should have no dependencies",
+        false
+      ],
+      [
+        "Always use concrete classes",
+        false
+      ],
+      [
+        "Dependencies should be hardcoded",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: High-level modules should not depend on low-level modules; both should depend on abstractions (interfaces). DIP decouples components by programming against interfaces rather than specific concrete implementations."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the Interface Segregation Principle (the 'I' in SOLID)?",
+    "options": [
+      [
+        "Clients should not be forced to depend upon interfaces that they do not use (prefer small, specific interfaces)",
+        true
+      ],
+      [
+        "All classes must implement 5 interfaces",
+        false
+      ],
+      [
+        "Interfaces must have no methods",
+        false
+      ],
+      [
+        "Never use interfaces",
+        false
+      ]
+    ],
+    "explanation": "ISP breaks bloated 'fat' interfaces into focused, cohesive interfaces tailored to specific consumer requirements."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Interface Segregation Principle (the 'I' in SOLID)?",
+    "options": [
+      [
+        "Clients should not be forced to depend upon interfaces that they do not use (prefer small, specific interfaces)",
+        true
+      ],
+      [
+        "All classes must implement 5 interfaces",
+        false
+      ],
+      [
+        "Interfaces must have no methods",
+        false
+      ],
+      [
+        "Never use interfaces",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Clients should not be forced to depend upon interfaces that they do not use (prefer small, specific interfaces). ISP breaks bloated 'fat' interfaces into focused, cohesive interfaces tailored to specific consumer requirements."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Interface Segregation Principle (the 'I' in SOLID)?",
+    "options": [
+      [
+        "Clients should not be forced to depend upon interfaces that they do not use (prefer small, specific interfaces)",
+        true
+      ],
+      [
+        "All classes must implement 5 interfaces",
+        false
+      ],
+      [
+        "Interfaces must have no methods",
+        false
+      ],
+      [
+        "Never use interfaces",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Clients should not be forced to depend upon interfaces that they do not use (prefer small, specific interfaces). ISP breaks bloated 'fat' interfaces into focused, cohesive interfaces tailored to specific consumer requirements."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "HARD",
+    "irt": 1.2,
+    "text": "What is the Composite Design Pattern?",
+    "options": [
+      [
+        "Composes objects into tree structures to represent part-whole hierarchies, treating individual objects and compositions uniformly",
+        true
+      ],
+      [
+        "A pattern for database connections",
+        false
+      ],
+      [
+        "A pattern for multithreading",
+        false
+      ],
+      [
+        "A pattern for sorting",
+        false
+      ]
+    ],
+    "explanation": "Composite allows clients to treat individual leaf nodes and composite branches identically via a common component interface."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "HARD",
+    "irt": 1.3,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Composite Design Pattern?",
+    "options": [
+      [
+        "Composes objects into tree structures to represent part-whole hierarchies, treating individual objects and compositions uniformly",
+        true
+      ],
+      [
+        "A pattern for database connections",
+        false
+      ],
+      [
+        "A pattern for multithreading",
+        false
+      ],
+      [
+        "A pattern for sorting",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Composes objects into tree structures to represent part-whole hierarchies, treating individual objects and compositions uniformly. Composite allows clients to treat individual leaf nodes and composite branches identically via a common component interface."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "HARD",
+    "irt": 1.4,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Composite Design Pattern?",
+    "options": [
+      [
+        "Composes objects into tree structures to represent part-whole hierarchies, treating individual objects and compositions uniformly",
+        true
+      ],
+      [
+        "A pattern for database connections",
+        false
+      ],
+      [
+        "A pattern for multithreading",
+        false
+      ],
+      [
+        "A pattern for sorting",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Composes objects into tree structures to represent part-whole hierarchies, treating individual objects and compositions uniformly. Composite allows clients to treat individual leaf nodes and composite branches identically via a common component interface."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.1,
+    "text": "What is the Proxy Pattern?",
+    "options": [
+      [
+        "Provides a surrogate or placeholder for another object to control access, perform lazy loading, or log requests",
+        true
+      ],
+      [
+        "A network router",
+        false
+      ],
+      [
+        "A data structure",
+        false
+      ],
+      [
+        "A compiler optimization",
+        false
+      ]
+    ],
+    "explanation": "Virtual proxies delay expensive object creation until needed; protection proxies enforce authorization checks."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Proxy Pattern?",
+    "options": [
+      [
+        "Provides a surrogate or placeholder for another object to control access, perform lazy loading, or log requests",
+        true
+      ],
+      [
+        "A network router",
+        false
+      ],
+      [
+        "A data structure",
+        false
+      ],
+      [
+        "A compiler optimization",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Provides a surrogate or placeholder for another object to control access, perform lazy loading, or log requests. Virtual proxies delay expensive object creation until needed; protection proxies enforce authorization checks."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Proxy Pattern?",
+    "options": [
+      [
+        "Provides a surrogate or placeholder for another object to control access, perform lazy loading, or log requests",
+        true
+      ],
+      [
+        "A network router",
+        false
+      ],
+      [
+        "A data structure",
+        false
+      ],
+      [
+        "A compiler optimization",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Provides a surrogate or placeholder for another object to control access, perform lazy loading, or log requests. Virtual proxies delay expensive object creation until needed; protection proxies enforce authorization checks."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.2,
+    "text": "What is the Command Pattern?",
+    "options": [
+      [
+        "Encapsulates a request as an object, thereby parameterizing clients with different requests, queuing requests, and supporting undo operations",
+        true
+      ],
+      [
+        "A command line script",
+        false
+      ],
+      [
+        "A terminal emulator",
+        false
+      ],
+      [
+        "A bash process",
+        false
+      ]
+    ],
+    "explanation": "Command decouples the invoker from the receiver, turning method calls into standalone executable objects."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.30000000000000004,
+    "text": "Software Architecture & SOLID Principles:\nWhat is the Command Pattern?",
+    "options": [
+      [
+        "Encapsulates a request as an object, thereby parameterizing clients with different requests, queuing requests, and supporting undo operations",
+        true
+      ],
+      [
+        "A command line script",
+        false
+      ],
+      [
+        "A terminal emulator",
+        false
+      ],
+      [
+        "A bash process",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: Encapsulates a request as an object, thereby parameterizing clients with different requests, queuing requests, and supporting undo operations. Command decouples the invoker from the receiver, turning method calls into standalone executable objects."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "MEDIUM",
+    "irt": 0.4,
+    "text": "Design Pattern Application & Analysis:\nWhat is the Command Pattern?",
+    "options": [
+      [
+        "Encapsulates a request as an object, thereby parameterizing clients with different requests, queuing requests, and supporting undo operations",
+        true
+      ],
+      [
+        "A command line script",
+        false
+      ],
+      [
+        "A terminal emulator",
+        false
+      ],
+      [
+        "A bash process",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: Encapsulates a request as an object, thereby parameterizing clients with different requests, queuing requests, and supporting undo operations. Command decouples the invoker from the receiver, turning method calls into standalone executable objects."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is Cohesion in software engineering?",
+    "options": [
+      [
+        "The degree to which the elements inside a module or class belong together and focus on a single well-defined task",
+        true
+      ],
+      [
+        "How many files are in a project",
+        false
+      ],
+      [
+        "The speed of execution",
+        false
+      ],
+      [
+        "How tightly classes depend on each other",
+        false
+      ]
+    ],
+    "explanation": "High cohesion is a hallmark of good design, ensuring classes have tightly focused, unified purposes."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Software Architecture & SOLID Principles:\nWhat is Cohesion in software engineering?",
+    "options": [
+      [
+        "The degree to which the elements inside a module or class belong together and focus on a single well-defined task",
+        true
+      ],
+      [
+        "How many files are in a project",
+        false
+      ],
+      [
+        "The speed of execution",
+        false
+      ],
+      [
+        "How tightly classes depend on each other",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: The degree to which the elements inside a module or class belong together and focus on a single well-defined task. High cohesion is a hallmark of good design, ensuring classes have tightly focused, unified purposes."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Design Pattern Application & Analysis:\nWhat is Cohesion in software engineering?",
+    "options": [
+      [
+        "The degree to which the elements inside a module or class belong together and focus on a single well-defined task",
+        true
+      ],
+      [
+        "How many files are in a project",
+        false
+      ],
+      [
+        "The speed of execution",
+        false
+      ],
+      [
+        "How tightly classes depend on each other",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: The degree to which the elements inside a module or class belong together and focus on a single well-defined task. High cohesion is a hallmark of good design, ensuring classes have tightly focused, unified purposes."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -1.0,
+    "text": "What is Coupling in software architecture?",
+    "options": [
+      [
+        "The degree of interdependence and interconnectedness between software modules",
+        true
+      ],
+      [
+        "The physical network cables",
+        false
+      ],
+      [
+        "The memory size of classes",
+        false
+      ],
+      [
+        "The compilation time",
+        false
+      ]
+    ],
+    "explanation": "Low coupling minimizes cascading ripple effects when one module is modified, enhancing maintainability."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.9,
+    "text": "Software Architecture & SOLID Principles:\nWhat is Coupling in software architecture?",
+    "options": [
+      [
+        "The degree of interdependence and interconnectedness between software modules",
+        true
+      ],
+      [
+        "The physical network cables",
+        false
+      ],
+      [
+        "The memory size of classes",
+        false
+      ],
+      [
+        "The compilation time",
+        false
+      ]
+    ],
+    "explanation": "OOD design heuristic: The degree of interdependence and interconnectedness between software modules. Low coupling minimizes cascading ripple effects when one module is modified, enhancing maintainability."
+  },
+  {
+    "topic": "Object-Oriented Design",
+    "difficulty": "EASY",
+    "irt": -0.8,
+    "text": "Design Pattern Application & Analysis:\nWhat is Coupling in software architecture?",
+    "options": [
+      [
+        "The degree of interdependence and interconnectedness between software modules",
+        true
+      ],
+      [
+        "The physical network cables",
+        false
+      ],
+      [
+        "The memory size of classes",
+        false
+      ],
+      [
+        "The compilation time",
+        false
+      ]
+    ],
+    "explanation": "Verified Gang of Four pattern principle: The degree of interdependence and interconnectedness between software modules. Low coupling minimizes cascading ripple effects when one module is modified, enhancing maintainability."
+  }
+]

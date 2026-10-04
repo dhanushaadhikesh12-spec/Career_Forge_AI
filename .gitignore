@@ -1,0 +1,49 @@
+# Environments
+.env
+*.env
+.env.local
+.env.development
+.env.production
+backend/.env
+frontend/.env.local
+!.env.example
+!*.env.example
+
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+.pytest_cache/
+backend/.pytest_cache/
+*.log
+backend/*.log
+backend/postgres.log
+backend/postgres_data/
+postgres_data/
+*.db
+backend/*.db
+*.sqlite
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+frontend/.vite/
+*.tsbuildinfo
+frontend/*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
