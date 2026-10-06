@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  History, ArrowLeft, CheckCircle2, XCircle, Clock,
-  FileCode, Terminal, AlertCircle
+  History, ArrowLeft, FileCode
 } from 'lucide-react';
 import { api } from '@/services/api';
 import type { CodeSubmission } from '@/types';
@@ -31,23 +30,23 @@ export default function CodingSubmissionsPage() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in pb-12">
+    <div className="space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 pb-2 border-b border-slate-800">
         <div>
           <button
             onClick={() => navigate('/student/coding')}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-white transition-colors mb-2"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors mb-2"
           >
-            <ArrowLeft size={16} />
-            Back to Practice
+            <ArrowLeft size={15} />
+            Back to Coding Hub
           </button>
-          <h1 className="text-2xl font-bold font-display text-white flex items-center gap-2">
-            <History size={24} className="text-forge-400" />
+          <h1 className="text-xl sm:text-2xl font-bold font-display text-white flex items-center gap-2">
+            <History size={20} className="text-teal-400" />
             Coding Submission History
           </h1>
-          <p className="text-xs text-muted-foreground mt-1">
-            Review all your past code solutions, evaluation verdicts, and compiler logs.
+          <p className="text-xs text-slate-400 mt-0.5">
+            Audit history of your compiler submissions, execution scores, and test verdicts.
           </p>
         </div>
       </div>
@@ -57,59 +56,59 @@ export default function CodingSubmissionsPage() {
           <LoadingSpinner size="lg" />
         </div>
       ) : submissions.length === 0 ? (
-        <div className="text-center py-16 border border-dashed border-border/60 rounded-3xl glass-card">
-          <FileCode size={40} className="text-muted-foreground/40 mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-foreground">No submissions found</h3>
-          <p className="text-xs text-muted-foreground mt-1">
-            Solve your first challenge in the Coding Practice Hub to build your placement profile.
+        <div className="text-center py-16 border border-dashed border-slate-800 rounded-xl bg-slate-900">
+          <FileCode size={36} className="text-slate-600 mx-auto mb-2" />
+          <h3 className="text-sm font-semibold text-slate-200">No submissions found</h3>
+          <p className="text-xs text-slate-400 mt-1">
+            Solve problems in the Coding Practice Hub to see your submissions logged here.
           </p>
         </div>
       ) : (
-        <div className="glass-card rounded-2xl border border-border/60 overflow-hidden">
+        <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden shadow-subtle">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-white/5 border-b border-border/40 text-[11px] uppercase tracking-wider text-muted-foreground">
+            <table className="cf-table">
+              <thead>
                 <tr>
-                  <th className="py-3 px-4">Problem</th>
-                  <th className="py-3 px-4">Language</th>
-                  <th className="py-3 px-4">Verdict</th>
-                  <th className="py-3 px-4">Score</th>
-                  <th className="py-3 px-4">Tests Passed</th>
-                  <th className="py-3 px-4">Submitted At</th>
-                  <th className="py-3 px-4 text-right">Action</th>
+                  <th>Problem</th>
+                  <th>Language</th>
+                  <th>Verdict</th>
+                  <th>Score</th>
+                  <th>Tests Passed</th>
+                  <th>Submitted At</th>
+                  <th className="text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/30">
+              <tbody>
                 {submissions.map((sub) => {
                   const isAccepted = sub.verdict === 'ACCEPTED';
                   const dateStr = new Date(sub.submitted_at).toLocaleString();
 
                   return (
-                    <tr key={sub.id} className="hover:bg-white/5 transition-colors">
-                      <td className="py-3 px-4 font-semibold text-foreground">
+                    <tr key={sub.id}>
+                      <td className="font-semibold text-white">
                         {sub.question_title || `Problem #${sub.coding_question_id}`}
                       </td>
-                      <td className="py-3 px-4 uppercase text-muted-foreground font-mono">
+                      <td className="uppercase text-slate-400 font-mono">
                         {sub.language}
                       </td>
-                      <td className="py-3 px-4">
+                      <td>
                         <Badge variant={isAccepted ? 'success' : 'error'}>
                           {sub.verdict.replace(/_/g, ' ')}
                         </Badge>
                       </td>
-                      <td className="py-3 px-4 font-semibold text-forge-300">
+                      <td className="font-semibold text-slate-200">
                         {sub.score} pts
                       </td>
-                      <td className="py-3 px-4 text-muted-foreground">
+                      <td className="text-slate-400">
                         {sub.test_cases_passed} / {sub.test_cases_total}
                       </td>
-                      <td className="py-3 px-4 text-muted-foreground">
+                      <td className="text-slate-400">
                         {dateStr}
                       </td>
-                      <td className="py-3 px-4 text-right">
+                      <td className="text-right">
                         <button
                           onClick={() => setSelectedSub(sub)}
-                          className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-foreground border border-border/40 text-xs font-medium transition-colors"
+                          className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium transition-colors"
                         >
                           View Code
                         </button>
@@ -125,14 +124,14 @@ export default function CodingSubmissionsPage() {
 
       {/* Code Modal */}
       {selectedSub && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-          <div className="glass-card w-full max-w-3xl rounded-2xl border border-border/80 overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
-            <div className="p-4 bg-black/40 border-b border-border/40 flex items-center justify-between">
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-slate-900 w-full max-w-3xl rounded-xl border border-slate-800 overflow-hidden shadow-elevated flex flex-col max-h-[85vh]">
+            <div className="p-4 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-sm text-foreground">
+                <h3 className="font-bold text-sm text-white">
                   {selectedSub.question_title} — Submission #{selectedSub.id}
                 </h3>
-                <div className="text-[11px] text-muted-foreground mt-0.5 flex items-center gap-2">
+                <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-2">
                   <span className="uppercase font-mono">{selectedSub.language}</span>
                   <span>•</span>
                   <span>Score: {selectedSub.score}</span>
@@ -143,7 +142,7 @@ export default function CodingSubmissionsPage() {
 
               <button
                 onClick={() => setSelectedSub(null)}
-                className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold"
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors"
               >
                 Close
               </button>
@@ -151,10 +150,10 @@ export default function CodingSubmissionsPage() {
 
             <div className="p-4 overflow-y-auto space-y-4 text-xs">
               <div>
-                <div className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground mb-1">
-                  Submitted Code:
+                <div className="text-[11px] uppercase tracking-wider font-semibold text-slate-400 mb-1">
+                  Submitted Code
                 </div>
-                <pre className="font-mono text-xs p-4 rounded-xl bg-black/60 border border-border/40 text-slate-200 overflow-x-auto whitespace-pre">
+                <pre className="font-mono text-xs p-4 rounded-lg bg-slate-950 border border-slate-800 text-emerald-400/90 overflow-x-auto whitespace-pre">
                   {selectedSub.source_code}
                 </pre>
               </div>
@@ -162,9 +161,9 @@ export default function CodingSubmissionsPage() {
               {selectedSub.compile_output && (
                 <div>
                   <div className="text-[11px] uppercase tracking-wider font-semibold text-red-400 mb-1">
-                    Compiler Diagnostics:
+                    Compiler Diagnostics
                   </div>
-                  <pre className="font-mono text-xs p-3 rounded-xl bg-red-950/20 border border-red-500/30 text-red-200 whitespace-pre-wrap">
+                  <pre className="font-mono text-xs p-3 rounded-lg bg-red-950/20 border border-red-500/30 text-red-200 whitespace-pre-wrap">
                     {selectedSub.compile_output}
                   </pre>
                 </div>

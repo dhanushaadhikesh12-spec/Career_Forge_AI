@@ -1,15 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '@/services/api';
-import type { TestStartResponse, Question } from '@/types';
+import type { TestStartResponse } from '@/types';
 import { LoadingSpinner, ErrorState, Badge } from '@/components/shared';
 import FullscreenBlocker from '@/components/proctoring/FullscreenBlocker';
 import { useFullscreen } from '@/hooks/useFullscreen';
 import {
   Clock,
   Flag,
-  CheckCircle2,
-  AlertTriangle,
   Send,
   ChevronLeft,
   ChevronRight,
@@ -55,7 +53,7 @@ export default function TestSessionPage() {
     }
   }, [session?.attempt_id]);
 
-  const { isFullscreen, enterFullscreen, exitBlocked } = useFullscreen({
+  const { enterFullscreen, exitBlocked } = useFullscreen({
     onExit: handleFullscreenExit,
     enabled: !!session && !submitting,
   });
@@ -73,7 +71,6 @@ export default function TestSessionPage() {
       const res = await api.startTest(tId);
       setSession(res);
 
-      // Initialize answers state map
       const initialAnswers: Record<number, StudentAnswerState> = {};
       res.questions.forEach((q) => {
         initialAnswers[q.id] = {
@@ -85,12 +82,11 @@ export default function TestSessionPage() {
       });
       setAnswers(initialAnswers);
 
-      // Compute remaining time in seconds
       if (res.expires_at) {
         const remaining = Math.max(0, Math.floor((new Date(res.expires_at).getTime() - Date.now()) / 1000));
         setSecondsRemaining(remaining);
       } else {
-        setSecondsRemaining(60 * 30); // Default 30 min
+        setSecondsRemaining(60 * 30);
       }
       questionStartTimeRef.current = Date.now();
     } catch (err: unknown) {
@@ -120,7 +116,7 @@ export default function TestSessionPage() {
     return () => clearInterval(timer);
   }, [secondsRemaining, submitting]);
 
-  // Anti-Malpractice Listeners (Tab switch, Blur, Copy, Paste)
+  // Anti-Malpractice Listeners
   useEffect(() => {
     if (!session?.attempt_id) return;
 
@@ -158,47 +154,29 @@ export default function TestSessionPage() {
   }, [session?.attempt_id]);
 
   const triggerMalpracticeEvent = (eventType: string, severity: string, description: string) => {
+    if (!session?.attempt_id) return;
     setWarningCount((prev) => prev + 1);
-    if (session?.attempt_id) {
-      api.logProctoringEvent(session.attempt_id, eventType, severity, description, {
-        question_index: currentIndex,
-        timestamp: new Date().toISOString(),
-      }).catch(console.error);
-    }
-  };
-
-  // Record time on question change
-  const recordQuestionTime = () => {
-    if (!currentQuestion) return;
-    const elapsed = Math.max(1, Math.round((Date.now() - questionStartTimeRef.current) / 1000));
-    setAnswers((prev) => ({
-      ...prev,
-      [currentQuestion.id]: {
-        ...prev[currentQuestion.id],
-        timeSpentSeconds: (prev[currentQuestion.id]?.timeSpentSeconds || 0) + elapsed,
-      },
-    }));
-    questionStartTimeRef.current = Date.now();
+    api.logProctoringEvent(
+      session.attempt_id,
+      eventType,
+      severity,
+      description,
+      { timestamp: new Date().toISOString() },
+    ).catch(console.error);
   };
 
   const handleSelectOption = (optionId: number) => {
-    if (!currentQuestion) return;
+    if (!session || !currentQuestion) return;
+    const now = Date.now();
+    const elapsed = Math.round((now - questionStartTimeRef.current) / 1000);
+    questionStartTimeRef.current = now;
+
     setAnswers((prev) => ({
       ...prev,
       [currentQuestion.id]: {
         ...prev[currentQuestion.id],
         selectedOptionId: optionId,
-      },
-    }));
-  };
-
-  const handleClearSelection = () => {
-    if (!currentQuestion) return;
-    setAnswers((prev) => ({
-      ...prev,
-      [currentQuestion.id]: {
-        ...prev[currentQuestion.id],
-        selectedOptionId: null,
+        timeSpentSeconds: (prev[currentQuestion.id]?.timeSpentSeconds || 0) + elapsed,
       },
     }));
   };
@@ -214,39 +192,61 @@ export default function TestSessionPage() {
     }));
   };
 
-  const handleNavigate = (newIndex: number) => {
-    recordQuestionTime();
-    setCurrentIndex(newIndex);
+  const handleClearSelection = () => {
+    if (!currentQuestion) return;
+    setAnswers((prev) => ({
+      ...prev,
+      [currentQuestion.id]: {
+        ...prev[currentQuestion.id],
+        selectedOptionId: null,
+      },
+    }));
+  };
+
+  const handleNavigate = (newIdx: number) => {
+    if (newIdx < 0 || !session || newIdx >= session.questions.length) return;
+    const now = Date.now();
+    const elapsed = Math.round((now - questionStartTimeRef.current) / 1000);
+    questionStartTimeRef.current = now;
+
+    if (currentQuestion) {
+      setAnswers((prev) => ({
+        ...prev,
+        [currentQuestion.id]: {
+          ...prev[currentQuestion.id],
+          timeSpentSeconds: (prev[currentQuestion.id]?.timeSpentSeconds || 0) + elapsed,
+        },
+      }));
+    }
+    setCurrentIndex(newIdx);
   };
 
   const handleAutoSubmit = () => {
     submitAll(true);
   };
 
-  const submitAll = async (isTimeout = false) => {
+  const submitAll = async (isAuto = false) => {
     if (!session || submitting) return;
     setSubmitting(true);
-    recordQuestionTime();
+    setShowSubmitModal(false);
 
     try {
-      const payloadAnswers = Object.values(answers)
-        .filter((a) => a.selectedOptionId !== null)
-        .map((a) => ({
-          question_id: a.questionId,
-          selected_option_id: a.selectedOptionId as number,
-          time_taken_seconds: a.timeSpentSeconds,
-        }));
+      const payloadAnswers = Object.values(answers).map((a) => ({
+        question_id: a.questionId,
+        selected_option_id: a.selectedOptionId ?? 0,
+        time_taken_seconds: a.timeSpentSeconds || 1,
+      }));
 
       const res = await api.submitTest(session.attempt_id, payloadAnswers);
-      navigate(`/student/tests/results/${res.id}`);
+      navigate(`/student/tests/results/${res.id || session.attempt_id}`);
     } catch (err: unknown) {
       const e = err as { response?: { data?: { detail?: string } }; message?: string };
-      alert(e?.response?.data?.detail || 'Error submitting test');
+      alert(e?.response?.data?.detail || 'Failed to submit test. Please check connection.');
       setSubmitting(false);
     }
   };
 
-  if (loading) return <LoadingSpinner size="lg" className="h-[80vh]" />;
+  if (loading) return <LoadingSpinner size="lg" className="h-[70vh]" />;
   if (error) return <ErrorState message={error} onRetry={() => testId && startTestSession(parseInt(testId))} />;
   if (!session || session.questions.length === 0) {
     return <ErrorState message="No questions available for this test." />;
@@ -255,72 +255,71 @@ export default function TestSessionPage() {
   const currentQuestion = session.questions[currentIndex];
   const currentAnswer = currentQuestion ? answers[currentQuestion.id] : null;
 
-  // Format Time
   const mins = Math.floor((secondsRemaining || 0) / 60);
   const secs = (secondsRemaining || 0) % 60;
   const timeFormatted = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  const isTimeCritical = (secondsRemaining || 0) < 300; // < 5 mins
+  const isTimeCritical = (secondsRemaining || 0) < 300;
 
-  // Question counts
   const totalQuestions = session.questions.length;
   const answeredCount = Object.values(answers).filter((a) => a.selectedOptionId !== null).length;
   const flaggedCount = Object.values(answers).filter((a) => a.isFlagged).length;
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Fullscreen blocking overlay — shown if student exits fullscreen */}
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased">
       {exitBlocked && (
         <FullscreenBlocker
           onReenter={enterFullscreen}
           warningNumber={warningCount}
         />
       )}
+
       {/* Top Test Header Bar */}
-      <header className="sticky top-0 z-40 bg-card/90 backdrop-blur-md border-b border-border/60 px-6 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-base font-display gradient-text">CareerForge Test</span>
-            <Badge variant="purple">LIVE</Badge>
+      <header className="sticky top-0 z-40 bg-slate-900 border-b border-slate-800 px-6 py-3 flex items-center justify-between shadow-subtle">
+        <div className="flex items-center gap-3">
+          <div className="font-bold text-sm text-white font-display">
+            CareerForge Examination Platform
           </div>
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">
+            PROCTORED
+          </span>
           {warningCount > 0 && (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold animate-pulse">
-              <ShieldAlert size={14} />
-              <span>{warningCount} Proctor Warnings</span>
+            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+              <ShieldAlert size={13} />
+              <span>{warningCount} Warnings</span>
             </div>
           )}
         </div>
 
         {/* Timer */}
         <div
-          className={`px-4 py-1.5 rounded-xl border flex items-center gap-2 font-mono font-bold text-sm tracking-wider shadow-sm transition-all ${
+          className={`px-3.5 py-1 rounded-md border flex items-center gap-2 font-mono font-bold text-sm tracking-wider ${
             isTimeCritical
-              ? 'bg-red-500/20 border-red-500/40 text-red-400 animate-pulse'
-              : 'bg-white/5 border-border text-foreground'
+              ? 'bg-red-500/15 border-red-500/40 text-red-400 animate-pulse'
+              : 'bg-slate-950 border-slate-800 text-slate-200'
           }`}
         >
-          <Clock size={16} className={isTimeCritical ? 'text-red-400' : 'text-forge-400'} />
+          <Clock size={15} className={isTimeCritical ? 'text-red-400' : 'text-teal-400'} />
           <span>{timeFormatted}</span>
         </div>
 
-        {/* Action: Finish test */}
+        {/* Submit Action */}
         <button
           onClick={() => setShowSubmitModal(true)}
-          className="px-4 py-2 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold text-xs glow-button flex items-center gap-1.5 shadow-md"
+          className="px-4 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-subtle"
         >
-          <Send size={14} />
+          <Send size={13} />
           Submit Test
         </button>
       </header>
 
-      {/* Main Container: Question Area & Navigation Palette */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left: Current Question Pane */}
-        <div className="lg:col-span-8 flex flex-col justify-between glass-card p-8 border border-border/60 min-h-[580px]">
+      {/* Main Container */}
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5">
+        {/* Left: Question Pane */}
+        <div className="lg:col-span-8 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-7 min-h-[560px] shadow-subtle">
           <div>
-            {/* Question meta header */}
-            <div className="flex items-center justify-between border-b border-border/50 pb-4 mb-6">
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3.5 mb-5">
+              <div className="flex items-center gap-2.5">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   Question {currentIndex + 1} of {totalQuestions}
                 </span>
                 <Badge variant={currentQuestion.difficulty === 'EASY' ? 'success' : currentQuestion.difficulty === 'HARD' ? 'error' : 'warning'}>
@@ -328,28 +327,26 @@ export default function TestSessionPage() {
                 </Badge>
               </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleToggleFlag}
-                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1.5 ${
-                    currentAnswer?.isFlagged
-                      ? 'bg-amber-500/20 border-amber-500 text-amber-300'
-                      : 'bg-white/5 border-border text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <Flag size={14} className={currentAnswer?.isFlagged ? 'fill-amber-400 text-amber-400' : ''} />
-                  {currentAnswer?.isFlagged ? 'Flagged' : 'Flag for Review'}
-                </button>
-              </div>
+              <button
+                onClick={handleToggleFlag}
+                className={`px-2.5 py-1 rounded border text-xs font-medium transition-colors flex items-center gap-1.5 ${
+                  currentAnswer?.isFlagged
+                    ? 'bg-amber-500/15 border-amber-500/40 text-amber-300'
+                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Flag size={13} className={currentAnswer?.isFlagged ? 'fill-amber-400 text-amber-400' : ''} />
+                {currentAnswer?.isFlagged ? 'Flagged' : 'Flag for Review'}
+              </button>
             </div>
 
             {/* Question Text */}
-            <h2 className="text-lg font-semibold text-foreground leading-relaxed mb-8">
+            <h2 className="text-base sm:text-lg font-semibold text-white leading-relaxed mb-6">
               {currentQuestion.text}
             </h2>
 
             {/* MCQ Options */}
-            <div className="space-y-3.5">
+            <div className="space-y-2.5">
               {currentQuestion.options.map((option, idx) => {
                 const isSelected = currentAnswer?.selectedOptionId === option.id;
                 const letter = String.fromCharCode(65 + idx);
@@ -358,103 +355,105 @@ export default function TestSessionPage() {
                   <button
                     key={option.id}
                     onClick={() => handleSelectOption(option.id)}
-                    className={`w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 ${
+                    className={`w-full text-left p-3.5 rounded-lg border transition-colors flex items-center gap-3.5 ${
                       isSelected
-                        ? 'bg-forge-600/20 border-forge-500 text-white font-semibold ring-1 ring-forge-500/50'
-                        : 'bg-white/5 border-border/50 text-muted-foreground hover:bg-white/10 hover:text-foreground'
+                        ? 'bg-navy-800 border-teal-500 text-white font-medium ring-1 ring-teal-500/40'
+                        : 'bg-slate-950/70 border-slate-800 text-slate-300 hover:bg-slate-800/80 hover:text-white'
                     }`}
                   >
                     <span
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-colors ${
+                      className={`w-6 h-6 rounded flex items-center justify-center font-mono font-bold text-xs shrink-0 ${
                         isSelected
-                          ? 'bg-forge-500 text-white'
-                          : 'bg-white/10 text-muted-foreground'
+                          ? 'bg-teal-600 text-white'
+                          : 'bg-slate-800 text-slate-400 border border-slate-700'
                       }`}
                     >
                       {letter}
                     </span>
-                    <span className="text-sm">{option.text}</span>
+                    <span className="text-xs sm:text-sm">{option.text}</span>
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Bottom Bar: Clear Answer + Prev / Next */}
-          <div className="pt-6 border-t border-border/50 flex items-center justify-between mt-8">
+          {/* Navigation & Clear */}
+          <div className="pt-5 border-t border-slate-800 flex items-center justify-between mt-6">
             <button
               onClick={handleClearSelection}
               disabled={currentAnswer?.selectedOptionId === null}
-              className="text-xs text-muted-foreground hover:text-red-400 transition-colors disabled:opacity-30 flex items-center gap-1.5"
+              className="text-xs text-slate-500 hover:text-red-400 transition-colors disabled:opacity-30 flex items-center gap-1"
             >
-              <RotateCcw size={14} /> Clear Selection
+              <RotateCcw size={13} /> Clear Choice
             </button>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <button
                 onClick={() => handleNavigate(currentIndex - 1)}
                 disabled={currentIndex === 0}
-                className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-border text-xs font-semibold text-foreground transition-all disabled:opacity-30 flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 transition-colors disabled:opacity-30 flex items-center gap-1"
               >
-                <ChevronLeft size={16} /> Previous
+                <ChevronLeft size={15} /> Previous
               </button>
 
               <button
                 onClick={() => handleNavigate(currentIndex + 1)}
                 disabled={currentIndex === totalQuestions - 1}
-                className="px-5 py-2 rounded-xl bg-forge-600 hover:bg-forge-500 text-white text-xs font-semibold glow-button transition-all disabled:opacity-30 flex items-center gap-1.5"
+                className="px-4 py-1.5 rounded-lg bg-navy-700 hover:bg-navy-600 text-white text-xs font-semibold transition-colors disabled:opacity-30 flex items-center gap-1 border border-navy-600/60 shadow-subtle"
               >
-                Next <ChevronRight size={16} />
+                Next <ChevronRight size={15} />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Right: Question Palette & Test Summary */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="glass-card p-6 border border-border/60">
-            <h3 className="font-bold text-sm text-foreground mb-4">Question Navigation Palette</h3>
+        {/* Right: Question Palette */}
+        <div className="lg:col-span-4 space-y-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-subtle">
+            <h3 className="font-bold text-xs uppercase tracking-wider text-slate-300 mb-3">
+              Question Navigator
+            </h3>
 
-            {/* Legend */}
-            <div className="grid grid-cols-3 gap-2 mb-6 text-center">
-              <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+            {/* Legend Stats */}
+            <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+              <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
                 <div className="text-xs font-bold text-emerald-400">{answeredCount}</div>
-                <div className="text-[10px] text-muted-foreground uppercase">Answered</div>
+                <div className="text-[10px] text-slate-400 uppercase">Answered</div>
               </div>
-              <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
+              <div className="p-2 rounded bg-amber-500/10 border border-amber-500/20">
                 <div className="text-xs font-bold text-amber-400">{flaggedCount}</div>
-                <div className="text-[10px] text-muted-foreground uppercase">Flagged</div>
+                <div className="text-[10px] text-slate-400 uppercase">Flagged</div>
               </div>
-              <div className="p-2 rounded-lg bg-white/5 border border-border/40">
-                <div className="text-xs font-bold text-muted-foreground">{totalQuestions - answeredCount}</div>
-                <div className="text-[10px] text-muted-foreground uppercase">Remaining</div>
+              <div className="p-2 rounded bg-slate-950 border border-slate-800">
+                <div className="text-xs font-bold text-slate-400">{totalQuestions - answeredCount}</div>
+                <div className="text-[10px] text-slate-500 uppercase">Remaining</div>
               </div>
             </div>
 
-            {/* Palette Buttons Grid */}
-            <div className="grid grid-cols-5 gap-2.5 max-h-[300px] overflow-y-auto pr-1">
+            {/* Grid of question buttons */}
+            <div className="grid grid-cols-5 gap-2 max-h-[300px] overflow-y-auto pr-1">
               {session.questions.map((q, idx) => {
                 const ans = answers[q.id];
                 const isCurrent = idx === currentIndex;
                 const isAnswered = ans?.selectedOptionId !== null;
                 const isFlagged = ans?.isFlagged;
 
-                let btnStyle = 'bg-white/5 border-border/50 text-muted-foreground hover:bg-white/10';
+                let btnStyle = 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200';
                 if (isFlagged) {
-                  btnStyle = 'bg-amber-500/20 border-amber-500 text-amber-300 font-bold';
+                  btnStyle = 'bg-amber-500/20 border-amber-500/50 text-amber-300 font-bold';
                 } else if (isAnswered) {
-                  btnStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold';
+                  btnStyle = 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 font-bold';
                 }
 
                 if (isCurrent) {
-                  btnStyle += ' ring-2 ring-forge-400 ring-offset-2 ring-offset-background';
+                  btnStyle += ' ring-2 ring-teal-400 ring-offset-2 ring-offset-slate-900 font-bold text-white';
                 }
 
                 return (
                   <button
                     key={q.id}
                     onClick={() => handleNavigate(idx)}
-                    className={`h-10 rounded-xl border text-xs font-mono transition-all flex items-center justify-center relative ${btnStyle}`}
+                    className={`h-9 rounded-lg border text-xs font-mono transition-colors flex items-center justify-center relative ${btnStyle}`}
                   >
                     {idx + 1}
                     {isFlagged && (
@@ -466,14 +465,14 @@ export default function TestSessionPage() {
             </div>
           </div>
 
-          {/* Test Guidelines Reminder */}
-          <div className="glass-card p-5 border border-border/60 text-xs text-muted-foreground space-y-2">
-            <div className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
-              <ShieldAlert size={14} className="text-forge-400" /> Proctored Test Rules
+          {/* Proctored Rules Note */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-[11px] text-slate-400 space-y-1.5 shadow-subtle">
+            <div className="font-semibold text-slate-300 flex items-center gap-1.5 text-xs">
+              <ShieldAlert size={13} className="text-teal-400" /> Proctored Test Rules
             </div>
-            <p>• Avoid switching tabs or opening external applications.</p>
-            <p>• All tab blurs are automatically logged to the trainer audit trail.</p>
-            <p>• Answers are auto-submitted when the countdown expires.</p>
+            <p>• Avoid leaving fullscreen or switching browser tabs.</p>
+            <p>• Proctor events are recorded in your attempt audit log.</p>
+            <p>• Automatic submission triggers when timer reaches 00:00.</p>
           </div>
         </div>
       </main>
@@ -481,32 +480,32 @@ export default function TestSessionPage() {
       {/* Confirmation Submit Modal */}
       {showSubmitModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-card p-6 border border-forge-500/30 max-w-md w-full space-y-5 animate-scale-in">
-            <h3 className="text-lg font-bold text-foreground">Submit Assessment?</h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              You have answered <span className="font-bold text-foreground">{answeredCount}</span> of{' '}
-              <span className="font-bold text-foreground">{totalQuestions}</span> questions.
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 max-w-sm w-full space-y-4 shadow-elevated">
+            <h3 className="text-base font-bold text-white">Submit Assessment?</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              You have completed <strong className="text-white">{answeredCount}</strong> of{' '}
+              <strong className="text-white">{totalQuestions}</strong> questions.
               {totalQuestions - answeredCount > 0 && (
-                <span className="text-amber-400 font-semibold block mt-1">
-                  Warning: You have {totalQuestions - answeredCount} unanswered questions!
+                <span className="text-amber-400 block mt-1 font-medium">
+                  {totalQuestions - answeredCount} question(s) remain unanswered!
                 </span>
               )}
             </p>
 
-            <div className="flex items-center justify-end gap-3 pt-3 border-t border-border/50">
+            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
               <button
                 onClick={() => setShowSubmitModal(false)}
                 disabled={submitting}
-                className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-border text-xs font-semibold text-foreground transition-colors"
+                className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 transition-colors"
               >
-                Continue Test
+                Cancel
               </button>
               <button
                 onClick={() => submitAll(false)}
                 disabled={submitting}
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white text-xs font-semibold glow-button transition-all"
+                className="px-4 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white text-xs font-semibold transition-colors"
               >
-                {submitting ? 'Submitting…' : 'Confirm Submission'}
+                {submitting ? 'Submitting…' : 'Confirm Submit'}
               </button>
             </div>
           </div>

@@ -215,15 +215,15 @@ export default function TrainerAIAssistantPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-border/40">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
-              <Sparkles size={20} />
+            <div className="p-2 rounded-lg bg-navy-800 text-teal-400 border border-teal-500/30">
+              <Sparkles size={18} />
             </div>
-            <h1 className="text-2xl font-bold font-display gradient-text">
-              Trainer AI Assistant
+            <h1 className="text-xl sm:text-2xl font-bold font-display text-white">
+              AI Academic Assistant
             </h1>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            Gemma 12B Co-Pilot with tool calling & strict cohort authorization
+          <p className="text-xs text-slate-400 mt-0.5">
+            Gemma AI Co-Pilot with real-time cohort analytics, IRT queries, and placement telemetry
           </p>
         </div>
 
@@ -266,10 +266,10 @@ export default function TrainerAIAssistantPage() {
           <div className="p-3.5 border-b border-border/40 space-y-2.5">
             <button
               onClick={handleNewChat}
-              className="w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold text-xs transition flex items-center justify-center gap-2 shadow-sm"
+              className="w-full py-2 px-3 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition flex items-center justify-center gap-1.5 shadow-subtle"
             >
-              <Plus size={15} />
-              New Chat
+              <Plus size={14} />
+              New Conversation
             </button>
             <div className="relative">
               <Search size={13} className="absolute left-3 top-2.5 text-muted-foreground" />
@@ -370,7 +370,7 @@ export default function TrainerAIAssistantPage() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {loadingHistory ? (
               <div className="h-full flex items-center justify-center text-xs text-muted-foreground gap-2">
-                <div className="w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-teal-500 border-t-transparent rounded-full animate-spin" />
                 Loading conversation history...
               </div>
             ) : (
@@ -380,18 +380,18 @@ export default function TrainerAIAssistantPage() {
                   className={`flex gap-3.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 mt-1">
-                      <Bot size={16} />
+                    <div className="w-7 h-7 rounded-lg bg-navy-800 border border-teal-500/30 flex items-center justify-center text-teal-400 shrink-0 mt-0.5">
+                      <Bot size={15} />
                     </div>
                   )}
 
                   <div
-                    className={`max-w-2xl rounded-2xl p-4 text-xs leading-relaxed space-y-3 ${
+                    className={`max-w-2xl rounded-xl p-3.5 text-xs leading-relaxed space-y-2.5 ${
                       msg.role === 'user'
-                        ? 'bg-forge-600 text-white rounded-tr-none'
+                        ? 'bg-navy-800 text-white border border-slate-700/80 rounded-tr-none'
                         : msg.isError
-                        ? 'bg-red-500/10 text-red-300 border border-red-500/20 rounded-tl-none'
-                        : 'glass-card border border-border/60 text-foreground rounded-tl-none'
+                        ? 'bg-red-950/20 text-red-300 border border-red-500/30 rounded-tl-none'
+                        : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none'
                     }`}
                   >
                     {/* Tool Execution Badge */}
@@ -423,7 +423,7 @@ export default function TrainerAIAssistantPage() {
                             <ShieldCheck size={11} /> Grounded on Database
                           </span>
                         ) : (
-                          <span className="flex items-center gap-1 text-purple-400" title="Conversational response">
+                          <span className="flex items-center gap-1 text-teal-400" title="Conversational response">
                             <Sparkles size={11} /> Conversational Response
                           </span>
                         )}
@@ -442,11 +442,11 @@ export default function TrainerAIAssistantPage() {
 
             {loading && (
               <div className="flex gap-3.5 justify-start">
-                <div className="w-8 h-8 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 animate-pulse">
-                  <Bot size={16} />
+                <div className="w-7 h-7 rounded-lg bg-navy-800 border border-teal-500/30 flex items-center justify-center text-teal-400 shrink-0">
+                  <Bot size={15} />
                 </div>
-                <div className="glass-card border border-border/60 p-4 rounded-2xl rounded-tl-none text-xs text-muted-foreground flex items-center gap-3">
-                  <div className="w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                <div className="bg-slate-900 border border-slate-800 p-3.5 rounded-xl rounded-tl-none text-xs text-slate-400 flex items-center gap-3">
+                  <div className="w-4 h-4 border-2 border-teal-500 border-t-transparent rounded-full animate-spin" />
                   <span>{loadingMessage}</span>
                 </div>
               </div>
@@ -475,7 +475,7 @@ export default function TrainerAIAssistantPage() {
               <button
                 type="submit"
                 disabled={loading || !inputValue.trim()}
-                className="absolute right-2 top-2 p-1.5 rounded-lg bg-gradient-to-r from-forge-500 to-purple-600 text-white disabled:opacity-40 hover:opacity-90 transition shadow-sm"
+                className="absolute right-2 top-2 p-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white disabled:opacity-40 transition shadow-subtle"
               >
                 <Send size={14} />
               </button>
@@ -490,25 +490,135 @@ export default function TrainerAIAssistantPage() {
 /**
  * Renders structured backend JSON into rich UI cards alongside Gemma's explanation.
  */
-function StructuredDataRenderer({ data, tool }: { data: any; tool?: string }) {
+function StructuredDataRenderer({ data }: { data: any; tool?: string }) {
   if (!data || typeof data !== 'object') return null;
 
-  // Weak students card
+  // 1. Single student performance profile
+  if (data.student_name && data.readiness_score !== undefined && !data.batch_names && data.total_students === undefined) {
+    return (
+      <div className="p-3.5 rounded-xl bg-navy-900/90 border border-teal-500/30 space-y-3 text-xs">
+        <div className="flex justify-between items-center border-b border-border/40 pb-2">
+          <div>
+            <div className="font-bold text-sm text-white flex items-center gap-2">
+              <UserIcon size={14} className="text-teal-400" />
+              {data.student_name}
+            </div>
+            {data.batch_name && (
+              <div className="text-[10px] text-muted-foreground">{data.batch_name}</div>
+            )}
+          </div>
+          <Badge variant={data.readiness_score >= 75 ? 'success' : data.readiness_score < 55 ? 'error' : 'warning'}>
+            Readiness: {data.readiness_score}%
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 text-center text-[11px]">
+          <div className="p-2 rounded-lg bg-white/5 border border-white/5">
+            <div className="font-bold text-teal-400">{data.aptitude_score}%</div>
+            <div className="text-[9px] text-muted-foreground uppercase">Aptitude</div>
+          </div>
+          <div className="p-2 rounded-lg bg-white/5 border border-white/5">
+            <div className="font-bold text-emerald-400">{data.coding_score}%</div>
+            <div className="text-[9px] text-muted-foreground uppercase">Coding</div>
+          </div>
+        </div>
+
+        <div className="space-y-1.5 text-[11px]">
+          {data.strong_areas && data.strong_areas.length > 0 && (
+            <div className="flex items-start gap-1.5">
+              <CheckCircle2 size={12} className="text-emerald-400 mt-0.5 shrink-0" />
+              <span><strong className="text-slate-300">Strengths:</strong> {data.strong_areas.join(', ')}</span>
+            </div>
+          )}
+          {data.weak_areas && data.weak_areas.length > 0 && (
+            <div className="flex items-start gap-1.5">
+              <AlertTriangle size={12} className="text-amber-400 mt-0.5 shrink-0" />
+              <span><strong className="text-slate-300">Areas for Focus:</strong> {data.weak_areas.join(', ')}</span>
+            </div>
+          )}
+          {data.recent_trend && (
+            <div className="flex items-start gap-1.5">
+              <TrendingUp size={12} className="text-blue-400 mt-0.5 shrink-0" />
+              <span><strong className="text-slate-300">Trend:</strong> {data.recent_trend}</span>
+            </div>
+          )}
+        </div>
+
+        {data.recommended_action && (
+          <div className="p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-[11px] text-teal-300">
+            <strong>Action:</strong> {data.recommended_action}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // 2. Placement ready students
+  if (data.placement_ready_students && Array.isArray(data.placement_ready_students)) {
+    const ready = data.placement_ready_students;
+    return (
+      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+        <div className="font-semibold text-[11px] text-teal-400 flex items-center justify-between">
+          <span className="flex items-center gap-1.5">
+            <TrendingUp size={13} className="text-teal-400" />
+            Placement-Ready Students ({data.placement_ready_count || ready.length}):
+          </span>
+          {data.category_breakdown && (
+            <span className="text-[10px] text-muted-foreground font-normal">
+              {data.category_breakdown.PLACEMENT_READY || ready.length} Ready • {data.category_breakdown.DEVELOPING || 0} Developing • {data.category_breakdown.NEEDS_IMPROVEMENT || 0} Needs Work
+            </span>
+          )}
+        </div>
+
+        {ready.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {ready.slice(0, 8).map((s: any, idx: number) => (
+              <div key={idx} className="p-2.5 rounded-lg bg-white/5 border border-white/5 flex justify-between items-center text-[11px]">
+                <div className="min-w-0 pr-2">
+                  <div className="font-semibold text-white truncate flex items-center gap-1.5">
+                    <CheckCircle2 size={12} className="text-emerald-400 shrink-0" />
+                    {s.student_name}
+                  </div>
+                  <div className="text-muted-foreground text-[10px] mt-0.5">
+                    Apt: {s.aptitude_score}% • Cod: {s.coding_score}%
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <strong className="text-emerald-400 font-mono text-xs">{s.readiness_score}%</strong>
+                  <div className="text-[9px] uppercase tracking-wider text-emerald-500 font-medium">Ready</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-xs text-muted-foreground italic p-2">
+            No students currently meet the full placement-readiness cutoff.
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // 3. Weak students list
   if (data.weak_students && Array.isArray(data.weak_students)) {
     return (
       <div className="p-3 rounded-xl bg-black/20 border border-border/40 space-y-2">
         <div className="font-semibold text-[11px] text-forge-300 flex items-center gap-1.5">
           <AlertTriangle size={13} className="text-amber-400" />
-          Weak Students in {data.topic || 'Cohort'} ({data.count || data.weak_students.length}):
+          Students Needing Support in {data.topic || 'Cohort'} ({data.count || data.weak_students.length}):
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {data.weak_students.slice(0, 6).map((s: any, idx: number) => (
-            <div key={idx} className="p-2 rounded-lg bg-white/5 flex justify-between items-center text-[11px]">
-              <div>
-                <div className="font-semibold text-foreground">{s.student_name}</div>
-                <div className="text-muted-foreground text-[10px]">Elo: {s.skill_rating} • {s.questions_attempted} attempts</div>
+          {data.weak_students.slice(0, 8).map((s: any, idx: number) => (
+            <div key={idx} className="p-2.5 rounded-lg bg-white/5 flex justify-between items-center text-[11px]">
+              <div className="min-w-0 pr-2">
+                <div className="font-semibold text-foreground truncate">{s.student_name}</div>
+                <div className="text-muted-foreground text-[10px] truncate">
+                  {s.weak_topics && s.weak_topics.length > 0 ? `Weak: ${s.weak_topics.join(', ')}` : s.reason || 'Below benchmark'}
+                </div>
               </div>
-              <strong className="text-red-400">{s.accuracy}%</strong>
+              <strong className="text-red-400 shrink-0 font-mono text-xs">
+                {s.topic_accuracy !== undefined ? `${s.topic_accuracy}%` : `${s.accuracy}%`}
+              </strong>
             </div>
           ))}
         </div>
@@ -516,61 +626,119 @@ function StructuredDataRenderer({ data, tool }: { data: any; tool?: string }) {
     );
   }
 
-  // Placement readiness card
-  if (data.category_breakdown) {
-    const cb = data.category_breakdown;
+  // 4. At-risk students
+  if (data.at_risk_students && Array.isArray(data.at_risk_students)) {
     return (
-      <div className="p-3 rounded-xl bg-black/20 border border-border/40 space-y-2">
-        <div className="font-semibold text-[11px] text-purple-300 flex items-center gap-1.5">
-          <TrendingUp size={13} className="text-emerald-400" />
-          XGBoost Placement Readiness Breakdown:
+      <div className="p-3 rounded-xl bg-red-950/20 border border-red-500/30 space-y-2">
+        <div className="font-semibold text-[11px] text-red-400 flex items-center gap-1.5">
+          <AlertTriangle size={13} className="text-red-400" />
+          At-Risk Students Requiring Intervention ({data.count || data.at_risk_students.length}):
         </div>
-        <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
-          <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold">
-            <div>{cb.PLACEMENT_READY || 0}</div>
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-normal">Ready</div>
-          </div>
-          <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold">
-            <div>{cb.DEVELOPING || 0}</div>
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-normal">Developing</div>
-          </div>
-          <div className="p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 font-bold">
-            <div>{cb.NEEDS_IMPROVEMENT || 0}</div>
-            <div className="text-[9px] uppercase tracking-wider text-muted-foreground font-normal">Needs Work</div>
-          </div>
+        <div className="space-y-1.5">
+          {data.at_risk_students.slice(0, 6).map((s: any, idx: number) => (
+            <div key={idx} className="p-2 rounded-lg bg-white/5 flex items-center justify-between text-[11px]">
+              <div>
+                <div className="font-semibold text-white flex items-center gap-2">
+                  {s.student_name}
+                  <Badge variant={s.risk_level === 'High Risk' ? 'error' : 'warning'}>
+                    {s.risk_level || 'At Risk'}
+                  </Badge>
+                </div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">
+                  {s.main_reason || `Apt: ${s.aptitude_score}% | Cod: ${s.coding_score}%`}
+                </div>
+              </div>
+              <strong className="text-red-400 font-mono">{s.readiness_score}%</strong>
+            </div>
+          ))}
         </div>
       </div>
     );
   }
 
-  // Batch summary card
-  if (data.total_students !== undefined && data.avg_aptitude_score !== undefined) {
+  // 5. Top students
+  if (data.top_students && Array.isArray(data.top_students)) {
     return (
-      <div className="p-3 rounded-xl bg-black/20 border border-border/40 space-y-2">
+      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+        <div className="font-semibold text-[11px] text-emerald-400 flex items-center gap-1.5">
+          <TrendingUp size={13} className="text-emerald-400" />
+          Top Performers ({data.ranking_metric || 'Cohort Rankings'}):
+        </div>
+        <div className="space-y-1.5">
+          {data.top_students.slice(0, 6).map((s: any, idx: number) => (
+            <div key={idx} className="p-2 rounded-lg bg-white/5 flex items-center justify-between text-[11px]">
+              <div className="flex items-center gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-teal-500/20 text-teal-400 font-bold text-[10px] flex items-center justify-center">
+                  {s.rank || idx + 1}
+                </span>
+                <span className="font-semibold text-white">{s.student_name}</span>
+              </div>
+              <div className="flex items-center gap-2 font-mono">
+                <span className="text-muted-foreground text-[10px]">Readiness: {s.readiness_score}%</span>
+                <strong className="text-emerald-400">{s.ranking_score || s.score || s.readiness_score}%</strong>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // 6. Batch summary card & student breakdown table
+  if (data.total_students !== undefined && (data.avg_aptitude_score !== undefined || data.avg_readiness !== undefined)) {
+    return (
+      <div className="p-3.5 rounded-xl bg-black/20 border border-border/40 space-y-3 text-xs">
         <div className="font-semibold text-[11px] text-blue-300 flex items-center gap-1.5">
           <Users size={13} className="text-blue-400" />
           Batch Performance Metrics ({data.batch_names?.join(', ') || 'Cohort'}):
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[11px]">
-          <div className="p-2 rounded-lg bg-white/5">
-            <div className="font-bold text-foreground">{data.total_students}</div>
-            <div className="text-[9px] text-muted-foreground uppercase">Students</div>
+          <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
+            <div className="font-bold text-white">{data.total_students}</div>
+            <div className="text-[9px] text-slate-500 uppercase">Students</div>
           </div>
-          <div className="p-2 rounded-lg bg-purple-400">{data.avg_aptitude_score}%</div>
-          <div className="p-2 rounded-lg bg-white/5">
+          <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
+            <div className="font-bold text-teal-400">{data.avg_aptitude_score}%</div>
+            <div className="text-[9px] text-slate-500 uppercase">Avg Aptitude</div>
+          </div>
+          <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
             <div className="font-bold text-emerald-400">{data.avg_coding_score}%</div>
-            <div className="text-[9px] text-muted-foreground uppercase">Avg Coding</div>
+            <div className="text-[9px] text-slate-500 uppercase">Avg Coding</div>
           </div>
-          <div className="p-2 rounded-lg bg-white/5">
-            <div className="font-bold text-red-400">{data.at_risk_students_count}</div>
-            <div className="text-[9px] text-muted-foreground uppercase">At-Risk</div>
+          <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
+            <div className="font-bold text-red-400">{data.at_risk_count ?? data.at_risk_students_count ?? 0}</div>
+            <div className="text-[9px] text-slate-500 uppercase">At-Risk</div>
           </div>
         </div>
+
+        {/* Student breakdown list */}
+        {data.students && Array.isArray(data.students) && data.students.length > 0 && (
+          <div className="mt-2 space-y-1.5 border-t border-border/30 pt-2">
+            <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+              Enrolled Students:
+            </div>
+            <div className="max-h-40 overflow-y-auto space-y-1 pr-1">
+              {data.students.map((s: any, idx: number) => (
+                <div key={idx} className="p-1.5 rounded bg-white/5 flex items-center justify-between text-[11px]">
+                  <span className="font-medium text-slate-200">{s.student_name}</span>
+                  <div className="flex items-center gap-2 font-mono text-[10px]">
+                    <span className="text-slate-400">R: {s.readiness}%</span>
+                    <span className="text-teal-400">A: {s.aptitude}%</span>
+                    <span className="text-emerald-400">C: {s.coding}%</span>
+                    <Badge variant={s.status === 'Ready' ? 'success' : s.status === 'At Risk' ? 'error' : 'warning'}>
+                      {s.status}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 
-  // Coding performance card
+  // 7. Coding performance card
   if (data.pass_rate !== undefined && data.total_submissions !== undefined) {
     return (
       <div className="p-3 rounded-xl bg-black/20 border border-border/40 space-y-2">

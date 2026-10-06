@@ -165,8 +165,100 @@ class MockLLMProvider(LLMProvider):
         role = last_msg.get("role")
         content = (last_msg.get("content") or "").lower()
 
-        # If previous message is tool result, summarize
+        # If previous message is tool result, synthesize an intelligent response with student names
         if role == "tool":
+            import json
+            try:
+                data = json.loads(last_msg.get("content") or "{}")
+            except Exception:
+                data = {}
+
+            if "error" in data:
+                return LLMResponse(content=f"Error: {data['error']}", tool_calls=[], model=self.model)
+
+            if data.get("ambiguous"):
+                return LLMResponse(content=data.get("message", "Multiple matching students found. Please specify the batch or full name."), tool_calls=[], model=self.model)
+
+            # 1. Placement ready students
+            if "placement_ready_students" in data:
+                ready = data.get("placement_ready_students", [])
+                total = data.get("placement_ready_count", len(ready))
+                if ready:
+                    lines = [f"{idx+1}. **{s['student_name']}** — Readiness: {s.get('readiness_score')}% | Aptitude: {s.get('aptitude_score')}% | Coding: {s.get('coding_score')}%" for idx, s in enumerate(ready)]
+                    text = f"**Placement-ready students:**\n\n" + "\n".join(lines) + f"\n\nTotal: {total} students currently meet the placement-readiness threshold."
+                else:
+                    text = f"No students currently meet the full placement readiness threshold ({total} ready)."
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 2. Weak students
+            if "weak_students" in data:
+                weak = data.get("weak_students", [])
+                topic = data.get("topic", "DSA")
+                if weak:
+                    lines = [f"{idx+1}. **{s['student_name']}** — {topic} accuracy: {s.get('topic_accuracy')}% — Weak: {', '.join(s.get('weak_topics', [])) or 'Fundamental topics'}" for idx, s in enumerate(weak)]
+                    text = f"**Students weak in {topic}:**\n\n" + "\n".join(lines)
+                else:
+                    text = f"No students currently below benchmark in {topic}."
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 3. At-risk students
+            if "at_risk_students" in data:
+                risk = data.get("at_risk_students", [])
+                if risk:
+                    lines = [f"{idx+1}. **{s['student_name']}** — {s.get('risk_level')} — Readiness: {s.get('readiness_score')}% — {s.get('main_reason')}" for idx, s in enumerate(risk)]
+                    text = f"**At-risk students:**\n\n" + "\n".join(lines)
+                else:
+                    text = "No students are currently flagged as at-risk."
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 4. Top students
+            if "top_students" in data:
+                top = data.get("top_students", [])
+                metric = data.get("ranking_metric", "Placement Readiness Score")
+                lines = [f"{s.get('rank', idx+1)}. **{s['student_name']}** — {metric}: {s.get('ranking_score', s.get('readiness_score'))}% | Status: {s.get('status')}" for idx, s in enumerate(top)]
+                text = f"**Top performers (Ranked by {metric}):**\n\n" + "\n".join(lines)
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 5. Single student performance
+            if "student_name" in data and "readiness_score" in data and "batch_names" not in data:
+                name = data["student_name"]
+                text = (
+                    f"### {name}\n\n"
+                    f"- **Readiness Score:** {data.get('readiness_score')}%\n"
+                    f"- **Aptitude Performance:** {data.get('aptitude_score')}%\n"
+                    f"- **Coding Performance:** {data.get('coding_score')}%\n"
+                    f"- **Strong Areas:** {', '.join(data.get('strong_areas', [])) or 'None recorded'}\n"
+                    f"- **Weak Areas:** {', '.join(data.get('weak_areas', [])) or 'None recorded'}\n"
+                    f"- **Recent Trend:** {data.get('recent_trend')}\n"
+                    f"- **Recommended Action:** {data.get('recommended_action')}"
+                )
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 6. Batch performance
+            if "total_students" in data and "students" in data:
+                text = (
+                    f"### Batch Overview\n"
+                    f"- **Total Students:** {data.get('total_students')}\n"
+                    f"- **Average Readiness:** {data.get('avg_readiness')}%\n"
+                    f"- **Average Aptitude:** {data.get('avg_aptitude_score')}%\n"
+                    f"- **Average Coding:** {data.get('avg_coding_score')}%\n"
+                    f"- **Placement Ready:** {data.get('placement_ready_count')}\n"
+                    f"- **At Risk:** {data.get('at_risk_count')}\n\n"
+                    f"### Student Performance\n\n"
+                    f"| Student | Readiness | Aptitude | Coding | Status |\n"
+                    f"| :--- | :---: | :---: | :---: | :---: |\n"
+                )
+                for s in data.get("students", []):
+                    text += f"| {s['student_name']} | {s['readiness']}% | {s['aptitude']}% | {s['coding']}% | {s['status']} |\n"
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
+            # 7. Malpractice
+            if "students_requiring_review" in data:
+                rev = data.get("students_requiring_review", [])
+                lines = [f"{idx+1}. **{s['student_name']}** — {s.get('risk_level')} anomaly risk — {s.get('reason')}" for idx, s in enumerate(rev)]
+                text = f"**Students requiring review ({data.get('test_title')}):**\n\n" + "\n".join(lines)
+                return LLMResponse(content=text, tool_calls=[], model=self.model)
+
             return LLMResponse(
                 content="Based on the database records, here is the analyzed breakdown of your cohort's performance.",
                 tool_calls=[],
@@ -174,15 +266,39 @@ class MockLLMProvider(LLMProvider):
             )
 
         # Detect tool call from user query
-        if "reasoning" in content or "weak" in content or "arrays" in content:
-            topic = "Logical Reasoning" if "reasoning" in content else ("Arrays" if "arrays" in content else None)
+
+        # Student-specific questions (e.g., "How is Rahul performing?", "How is Rahul Kumar doing?")
+        import re
+        name_match = re.search(r"\b(how is|how's|about)\s+([a-zA-Z\s]+?)(?:\s+(?:performing|doing|in coding|scores?))?\??$", content)
+        named_students = ["rahul kumar", "rahul sharma", "rahul", "priya", "priya s", "arun", "arun k", "meena", "karthik", "alice", "bob"]
+        queried_name = None
+        for n in named_students:
+            if re.search(r"\b" + re.escape(n) + r"\b", content):
+                queried_name = n.title()
+                break
+
+        if queried_name and ("how is" in content or "performing" in content or "doing" in content or "performance" in content):
             return LLMResponse(
                 content="",
                 tool_calls=[
                     ToolCall(
-                        id="call_mock_weak",
-                        name="get_weak_students",
-                        arguments={"topic": topic} if topic else {},
+                        id="call_mock_student_perf",
+                        name="get_student_performance",
+                        arguments={"student_name": queried_name},
+                    )
+                ],
+                model=self.model,
+            )
+
+        if "top" in content or "highest" in content or "better in coding" in content or "best" in content:
+            metric = "coding" if ("coding" in content or "code" in content) else ("aptitude" if "aptitude" in content else "readiness")
+            return LLMResponse(
+                content="",
+                tool_calls=[
+                    ToolCall(
+                        id="call_mock_top",
+                        name="get_top_students",
+                        arguments={"metric": metric, "limit": 5},
                     )
                 ],
                 model=self.model,
@@ -201,26 +317,53 @@ class MockLLMProvider(LLMProvider):
                 model=self.model,
             )
 
-        if "summary" in content or "overview" in content or "batch" in content:
-            return LLMResponse(
-                content="",
-                tool_calls=[
-                    ToolCall(
-                        id="call_mock_summary",
-                        name="get_batch_summary",
-                        arguments={},
-                    )
-                ],
-                model=self.model,
-            )
-
-        if "risk" in content or "at-risk" in content:
+        if "risk" in content or "at-risk" in content or "need help" in content or "improvement" in content or "attention" in content or "struggling" in content:
             return LLMResponse(
                 content="",
                 tool_calls=[
                     ToolCall(
                         id="call_mock_risk",
                         name="get_at_risk_students",
+                        arguments={},
+                    )
+                ],
+                model=self.model,
+            )
+
+        if "reasoning" in content or "weak" in content or "arrays" in content or "dsa" in content or "trees" in content or "graphs" in content or "poorly" in content:
+            topic = "Logical Reasoning" if "reasoning" in content else ("Arrays" if "arrays" in content else ("DSA" if "dsa" in content else None))
+            return LLMResponse(
+                content="",
+                tool_calls=[
+                    ToolCall(
+                        id="call_mock_weak",
+                        name="get_weak_students",
+                        arguments={"topic": topic} if topic else {},
+                    )
+                ],
+                model=self.model,
+            )
+
+        if "malpractice" in content or "suspicious" in content or "cheat" in content or "violation" in content:
+            return LLMResponse(
+                content="",
+                tool_calls=[
+                    ToolCall(
+                        id="call_mock_malpractice",
+                        name="get_malpractice_summary",
+                        arguments={},
+                    )
+                ],
+                model=self.model,
+            )
+
+        if "summary" in content or "overview" in content or "batch" in content or "cohort" in content:
+            return LLMResponse(
+                content="",
+                tool_calls=[
+                    ToolCall(
+                        id="call_mock_summary",
+                        name="get_batch_summary",
                         arguments={},
                     )
                 ],
@@ -235,19 +378,6 @@ class MockLLMProvider(LLMProvider):
                         id="call_mock_coding",
                         name="get_coding_performance",
                         arguments={},
-                    )
-                ],
-                model=self.model,
-            )
-
-        if "malpractice" in content or "suspicious" in content:
-            return LLMResponse(
-                content="",
-                tool_calls=[
-                    ToolCall(
-                        id="call_mock_malpractice",
-                        name="get_malpractice_summary",
-                        arguments={"test_id": 1},
                     )
                 ],
                 model=self.model,

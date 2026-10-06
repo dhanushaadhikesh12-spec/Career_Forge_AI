@@ -56,7 +56,7 @@ export function getStatusColor(status: string): string {
     case 'TIMED_OUT': return 'badge-error';
     case 'PUBLISHED': return 'badge-success';
     case 'DRAFT': return 'badge-warning';
-    case 'ARCHIVED': return 'badge-purple';
+    case 'ARCHIVED': return 'badge-neutral';
     default: return 'badge-info';
   }
 }

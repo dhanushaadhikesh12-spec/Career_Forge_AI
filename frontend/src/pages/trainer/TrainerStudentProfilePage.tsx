@@ -66,7 +66,7 @@ export default function TrainerStudentProfilePage() {
       {/* Candidate Card */}
       <div className="glass-card p-6 rounded-2xl border border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-forge-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+          <div className="w-12 h-12 rounded-xl bg-navy-800 border border-teal-500/40 flex items-center justify-center text-teal-300 font-bold text-lg shadow-sm">
             {student.full_name?.charAt(0) || 'S'}
           </div>
           <div>
@@ -104,10 +104,10 @@ export default function TrainerStudentProfilePage() {
         <StatCard
           label="Aptitude Mastery"
           value={`${Math.round(student.aptitude_score || 0)}%`}
-          icon={<Brain size={18} className="text-purple-400" />}
+          icon={<Brain size={18} className="text-teal-400" />}
           trend="Calibrated IRT Elo"
           trendUp={true}
-          color="purple"
+          color="teal"
         />
         <StatCard
           label="Coding Score"

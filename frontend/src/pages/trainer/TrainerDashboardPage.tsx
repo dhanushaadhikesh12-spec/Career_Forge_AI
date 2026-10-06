@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import api from '@/services/api';
 import type { TrainerDashboard } from '@/types';
 import {
-  PageHeader,
   StatCard,
   LoadingSpinner,
   ErrorState,
@@ -15,7 +14,6 @@ import {
   GraduationCap,
   FileCheck,
   TrendingUp,
-  Plus,
   ArrowRight,
   ShieldCheck,
   Sparkles,
@@ -23,7 +21,6 @@ import {
 
 export default function TrainerDashboardPage() {
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [data, setData] = useState<TrainerDashboard | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -53,110 +50,121 @@ export default function TrainerDashboardPage() {
   const recentTests = data?.recent_tests || [];
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6">
       {/* Top Banner */}
-      <div className="glass-card p-8 border border-purple-500/20 bg-gradient-to-r from-purple-950/30 via-card to-forge-950/20 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-subtle">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold mb-3">
-            <ShieldCheck size={14} className="text-purple-400" />
-            <span>Trainer Portal • Batch Management Active</span>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium mb-3">
+            <ShieldCheck size={14} className="text-amber-400" />
+            <span>Trainer Portal • Cohort Intelligence</span>
           </div>
-          <h1 className="text-3xl font-bold font-display text-white">
-            Welcome, <span className="gradient-text">{data?.trainer?.full_name || user?.full_name || 'Trainer'}</span>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+            Welcome, {data?.trainer?.full_name || user?.full_name || 'Trainer'}
           </h1>
-          <p className="text-xs text-muted-foreground mt-1 max-w-lg">
-            Monitor student placement cohorts, schedule standardized aptitude tests, and track real-time score distributions.
+          <p className="text-slate-400 mt-1.5 text-xs sm:text-sm max-w-xl">
+            Monitor college placement cohorts, review score distributions, inspect proctoring logs, and utilize AI diagnostic reports.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <Link
+            to="/trainer/assistant"
+            className="px-3.5 py-2 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center gap-2 shadow-subtle"
+          >
+            <Sparkles size={14} />
+            AI Trainer
+          </Link>
           <Link
             to="/trainer/batches"
-            className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-xs transition-colors flex items-center gap-2"
+            className="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium text-xs transition-colors flex items-center gap-2"
           >
-            <Users size={15} />
+            <Users size={14} />
             Manage Batches
           </Link>
         </div>
       </div>
 
       {/* KPI Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          label="Active Batches"
+          label="Active Cohorts"
           value={data?.batch_count || 0}
-          icon={<GraduationCap size={18} className="text-purple-400" />}
-          trend="Assigned cohorts"
+          icon={<GraduationCap size={17} className="text-teal-400" />}
+          trend="Assigned student batches"
           trendUp={true}
-          color="purple"
+          color="teal"
         />
         <StatCard
-          label="Total Students"
+          label="Enrolled Students"
           value={data?.student_count || 0}
-          icon={<Users size={18} className="text-forge-400" />}
-          trend="Enrolled across batches"
+          icon={<Users size={17} className="text-sky-400" />}
+          trend="Active candidates"
           trendUp={true}
           color="blue"
         />
         <StatCard
-          label="Tests Created"
+          label="Created Assessments"
           value={recentTests.length}
-          icon={<FileCheck size={18} className="text-emerald-400" />}
-          trend="Placement evaluations"
+          icon={<FileCheck size={17} className="text-emerald-400" />}
+          trend="Evaluations scheduled"
           trendUp={true}
           color="green"
         />
         <StatCard
-          label="Avg Performance"
+          label="Cohort Average"
           value={
             batches.length > 0
               ? `${Math.round(batches.reduce((acc, b) => acc + (b.avg_score || 0), 0) / batches.length)}%`
               : '82%'
           }
-          icon={<TrendingUp size={18} className="text-amber-400" />}
-          trend="Cohort benchmark"
+          icon={<TrendingUp size={17} className="text-amber-400" />}
+          trend="Benchmark performance"
           trendUp={true}
           color="orange"
         />
       </div>
 
-      {/* Batches Overview & Performance */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 glass-card p-6 border border-border/60 space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-foreground">Cohort Performance by Batch</h2>
+      {/* Batches Overview & Recent Assessments */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Batches Overview Table */}
+        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6 space-y-4 shadow-subtle">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div>
+              <h2 className="text-sm font-bold text-white uppercase tracking-wider">Cohort Performance by Batch</h2>
+              <p className="text-xs text-slate-400 mt-0.5">Average scores and student headcount per batch</p>
+            </div>
             <Link
               to="/trainer/batches"
-              className="text-xs text-forge-400 hover:text-forge-300 font-semibold flex items-center gap-1"
+              className="text-xs text-teal-400 hover:text-teal-300 font-semibold flex items-center gap-1"
             >
-              All Batches <ArrowRight size={14} />
+              All Batches <ArrowRight size={13} />
             </Link>
           </div>
 
           {batches.length === 0 ? (
-            <div className="text-center py-10 text-xs text-muted-foreground">
-              No batches with test submissions yet.
+            <div className="text-center py-10 text-xs text-slate-500">
+              No batches with test submissions recorded yet.
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {batches.map((b) => (
                 <div
                   key={b.batch_id}
-                  className="p-4 rounded-xl bg-white/5 border border-border/50 hover:border-purple-500/40 transition-colors flex items-center justify-between gap-4"
+                  className="p-3.5 rounded-lg bg-slate-950/70 border border-slate-800/80 hover:border-slate-700 transition-colors flex items-center justify-between gap-4"
                 >
                   <div>
-                    <div className="text-sm font-bold text-foreground">{b.batch_name}</div>
-                    <div className="text-xs text-muted-foreground mt-0.5">
+                    <div className="text-xs sm:text-sm font-bold text-white">{b.batch_name}</div>
+                    <div className="text-[11px] text-slate-400 mt-0.5">
                       {b.student_count} Students enrolled
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <div className="text-sm font-bold text-purple-400 font-display">
+                      <div className="text-sm font-bold text-teal-400 font-display">
                         {Math.round(b.avg_score || 0)}%
                       </div>
-                      <div className="text-[10px] text-muted-foreground uppercase font-semibold">
+                      <div className="text-[10px] text-slate-500 uppercase font-semibold">
                         Average
                       </div>
                     </div>
@@ -167,24 +175,27 @@ export default function TrainerDashboardPage() {
           )}
         </div>
 
-        {/* Tests conducted sidebar */}
-        <div className="lg:col-span-1 glass-card p-6 border border-border/60 space-y-4">
-          <h2 className="text-base font-bold text-foreground">Recent Assessments</h2>
+        {/* Recent Assessments Sidebar */}
+        <div className="lg:col-span-1 bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6 space-y-4 shadow-subtle">
+          <div className="pb-3 border-b border-slate-800">
+            <h2 className="text-sm font-bold text-white uppercase tracking-wider">Recent Assessments</h2>
+            <p className="text-xs text-slate-400 mt-0.5">Test publishing status</p>
+          </div>
 
           {recentTests.length === 0 ? (
-            <div className="text-center py-10 text-xs text-muted-foreground">
+            <div className="text-center py-10 text-xs text-slate-500">
               No assessments created yet.
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {recentTests.map((t) => (
-                <div key={t.id} className="p-3.5 rounded-xl bg-white/5 border border-border/40">
-                  <div className="text-xs font-semibold text-foreground truncate">{t.title}</div>
+                <div key={t.id} className="p-3 rounded-lg bg-slate-950/70 border border-slate-800/80">
+                  <div className="text-xs font-semibold text-slate-200 truncate">{t.title}</div>
                   <div className="flex items-center justify-between mt-2">
                     <Badge variant={t.status === 'PUBLISHED' ? 'success' : 'warning'}>
                       {t.status}
                     </Badge>
-                    <span className="text-[11px] text-muted-foreground">
+                    <span className="text-[11px] text-slate-500">
                       {new Date(t.created_at).toLocaleDateString()}
                     </span>
                   </div>

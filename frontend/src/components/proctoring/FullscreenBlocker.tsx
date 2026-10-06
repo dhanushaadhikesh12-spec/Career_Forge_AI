@@ -48,9 +48,9 @@ export default function FullscreenBlocker({ onReenter, warningNumber = 1 }: Full
 
       <button
         onClick={onReenter}
-        className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-bold text-sm flex items-center gap-2.5 shadow-lg shadow-forge-900/50 transition-all hover:scale-105 active:scale-95"
+        className="px-6 py-2.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-bold text-xs flex items-center gap-2 shadow-subtle transition-colors"
       >
-        <Maximize2 size={18} />
+        <Maximize2 size={16} />
         Return to Fullscreen
       </button>
 

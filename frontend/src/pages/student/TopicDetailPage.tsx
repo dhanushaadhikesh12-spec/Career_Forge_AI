@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '@/services/api';
 import type { Lesson } from '@/types';
-import { PageHeader, LoadingSpinner, ErrorState } from '@/components/shared';
+import { LoadingSpinner, ErrorState } from '@/components/shared';
 import {
   BookOpen,
   CheckCircle2,
   ArrowLeft,
   Target,
-  Sparkles,
   Clock,
   ChevronRight,
 } from 'lucide-react';
@@ -62,34 +61,35 @@ export default function TopicDetailPage() {
   if (error) return <ErrorState message={error} onRetry={() => topicId && fetchLessons(parseInt(topicId))} />;
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6">
+      {/* Top Header & Navigation */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
         <button
           onClick={() => navigate('/student/learn')}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
         >
-          <ArrowLeft size={16} /> Back to Learning Hub
+          <ArrowLeft size={15} /> Back to Learning Hub
         </button>
 
         <button
           onClick={() => navigate(`/student/practice?topic_id=${topicId}`)}
-          className="px-4 py-2 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 text-white font-semibold text-xs glow-button flex items-center gap-2"
+          className="px-3.5 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-subtle"
         >
-          <Target size={16} />
+          <Target size={14} />
           Practice Questions
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Lesson Directory */}
         <div className="lg:col-span-4 space-y-3">
-          <div className="glass-card p-5 border border-border/60">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
-              <BookOpen size={16} className="text-forge-400" />
-              Lesson Outline ({lessons.length})
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-subtle">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+              <BookOpen size={14} className="text-teal-400" />
+              Topic Lessons ({lessons.length})
             </h2>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               {lessons.map((lesson, idx) => {
                 const isSelected = selectedLesson?.id === lesson.id;
                 const isCompleted = completedLessonIds.includes(lesson.id);
@@ -97,23 +97,23 @@ export default function TopicDetailPage() {
                   <button
                     key={lesson.id}
                     onClick={() => setSelectedLesson(lesson)}
-                    className={`w-full text-left p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 ${
+                    className={`w-full text-left p-3 rounded-lg border text-xs transition-colors flex items-center justify-between gap-3 ${
                       isSelected
-                        ? 'bg-forge-600/20 border-forge-500 text-white font-semibold ring-1 ring-forge-500/40'
-                        : 'bg-white/5 border-border/50 text-muted-foreground hover:text-foreground hover:bg-white/10'
+                        ? 'bg-navy-800 border-teal-500/60 text-white font-semibold shadow-subtle'
+                        : 'bg-slate-950/70 border-slate-850 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 border-slate-800'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="w-6 h-6 rounded-lg bg-white/5 flex items-center justify-center text-xs font-bold font-mono">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className="w-5 h-5 rounded bg-slate-800 flex items-center justify-center text-[10px] font-mono font-bold text-slate-300 shrink-0">
                         {idx + 1}
                       </span>
-                      <span className="text-xs font-medium truncate max-w-[180px]">{lesson.title}</span>
+                      <span className="truncate">{lesson.title}</span>
                     </div>
 
                     {isCompleted ? (
-                      <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+                      <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
                     ) : (
-                      <ChevronRight size={14} className="opacity-50 shrink-0" />
+                      <ChevronRight size={13} className="text-slate-600 shrink-0" />
                     )}
                   </button>
                 );
@@ -125,55 +125,55 @@ export default function TopicDetailPage() {
         {/* Right Column: Selected Lesson Content */}
         <div className="lg:col-span-8">
           {selectedLesson ? (
-            <div className="glass-card p-8 border border-border/60 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/60">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-7 space-y-6 shadow-subtle">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
                 <div>
-                  <div className="text-xs font-semibold text-forge-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                    <Sparkles size={14} /> Lesson Concept
+                  <div className="text-[10px] font-bold text-teal-400 uppercase tracking-wider mb-1">
+                    Lesson Content
                   </div>
-                  <h1 className="text-2xl font-bold font-display text-white">{selectedLesson.title}</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold text-white font-display">
+                    {selectedLesson.title}
+                  </h1>
                 </div>
 
                 <button
                   onClick={() => handleComplete(selectedLesson.id)}
                   disabled={completing || completedLessonIds.includes(selectedLesson.id)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 ${
                     completedLessonIds.includes(selectedLesson.id)
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 cursor-default'
-                      : 'bg-white/10 hover:bg-white/15 text-white border border-white/20'
+                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 cursor-default'
+                      : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
                   }`}
                 >
-                  <CheckCircle2 size={15} />
-                  {completedLessonIds.includes(selectedLesson.id) ? 'Completed' : 'Mark as Done'}
+                  <CheckCircle2 size={14} />
+                  {completedLessonIds.includes(selectedLesson.id) ? 'Completed' : 'Mark as Completed'}
                 </button>
               </div>
 
-              {/* Rich Lesson Content Display */}
-              <div className="prose prose-invert max-w-none text-sm leading-relaxed text-muted-foreground space-y-4">
-                <div className="p-4 rounded-xl bg-white/5 border border-border/40 text-foreground font-mono text-xs whitespace-pre-wrap leading-relaxed">
-                  {selectedLesson.content}
-                </div>
+              {/* Lesson Text Container */}
+              <div className="bg-slate-950/80 rounded-lg p-5 border border-slate-800/80 text-slate-300 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed font-sans">
+                {selectedLesson.content}
               </div>
 
               {/* Action footer */}
-              <div className="pt-6 border-t border-border/60 flex items-center justify-between">
-                <div className="text-xs text-muted-foreground flex items-center gap-2">
-                  <Clock size={14} /> Recommended reading time: ~5 mins
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="text-xs text-slate-500 flex items-center gap-1.5">
+                  <Clock size={13} /> Estimated study time: ~5 mins
                 </div>
 
                 <button
                   onClick={() => navigate(`/student/practice?topic_id=${topicId}`)}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 text-white font-semibold text-xs glow-button flex items-center gap-2"
+                  className="px-4 py-2 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-subtle"
                 >
-                  <Target size={16} />
-                  Solve Topic Practice Problems
+                  <Target size={14} />
+                  Practice Topic Questions
                 </button>
               </div>
             </div>
           ) : (
-            <div className="glass-card p-12 text-center border border-dashed border-border">
-              <BookOpen size={40} className="text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-sm font-medium text-foreground">Select a lesson from the outline</p>
+            <div className="bg-slate-900 border border-dashed border-slate-800 rounded-xl p-12 text-center">
+              <BookOpen size={36} className="text-slate-600 mx-auto mb-2" />
+              <p className="text-xs font-medium text-slate-400">Select a lesson from the outline</p>
             </div>
           )}
         </div>

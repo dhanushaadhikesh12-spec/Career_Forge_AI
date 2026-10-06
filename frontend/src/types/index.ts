@@ -254,6 +254,9 @@ export interface StudentDashboard {
     topic_name: string;
     accuracy: number;
     skill_rating: number;
+    questions_attempted?: number;
+    questions_correct?: number;
+    category_label?: string;
   }>;
   practice_count: number;
   tests_taken: number;

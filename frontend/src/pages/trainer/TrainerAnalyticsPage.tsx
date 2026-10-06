@@ -94,29 +94,27 @@ export default function TrainerAnalyticsPage() {
   return (
     <div className="space-y-8 animate-fade-in pb-12">
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-r from-purple-900/40 via-blue-900/30 to-forge-900/40 border border-purple-500/20 backdrop-blur-xl">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold mb-3">
-              <Sparkles size={14} className="text-purple-400" />
-              <span>Trainer Intelligence Hub • Machine Learning & Analytics</span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold font-display text-white">
-              Cohort <span className="gradient-text">Analytics Engine</span>
-            </h1>
-            <p className="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
-              Real-time multi-dimensional assessment metrics, K-Means student grouping, code similarity detection, and automated malpractice risk monitoring.
-            </p>
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-subtle">
+        <div>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium mb-3">
+            <Sparkles size={14} className="text-teal-400" />
+            <span>Trainer Intelligence Hub • Machine Learning & Analytics</span>
           </div>
-
-          <button
-            onClick={loadAllAnalytics}
-            className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-xs transition-colors flex items-center gap-2 self-start md:self-auto"
-          >
-            <RefreshCw size={15} />
-            Refresh Analytics
-          </button>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+            Cohort Analytics Engine
+          </h1>
+          <p className="text-slate-400 mt-1.5 text-xs sm:text-sm max-w-xl">
+            Real-time multi-dimensional assessment metrics, K-Means student grouping, code similarity detection, and automated malpractice risk monitoring.
+          </p>
         </div>
+
+        <button
+          onClick={loadAllAnalytics}
+          className="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium text-xs transition-colors flex items-center gap-2 self-start md:self-auto"
+        >
+          <RefreshCw size={14} />
+          Refresh Analytics
+        </button>
       </div>
 
       {/* KPI Stats Grid */}
@@ -132,10 +130,10 @@ export default function TrainerAnalyticsPage() {
         <StatCard
           label="Avg Aptitude"
           value={`${overview?.avg_aptitude_score || 0}%`}
-          icon={<Brain size={18} className="text-purple-400" />}
+          icon={<Brain size={18} className="text-teal-400" />}
           trend="Mastery index"
           trendUp={true}
-          color="purple"
+          color="teal"
         />
         <StatCard
           label="Avg Coding"
@@ -311,7 +309,7 @@ export default function TrainerAnalyticsPage() {
                 Submissions analyzed across token n-grams, identifier normalization, and whitespace stripping.
               </p>
             </div>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">
               {plagiarism?.flagged_pairs_count || 0} Flagged Pairs
             </span>
           </div>
@@ -574,10 +572,10 @@ export default function TrainerAnalyticsPage() {
             <button
               onClick={handleRetrainReadiness}
               disabled={retraining}
-              className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center gap-2 transition shadow-md disabled:opacity-50"
+              className="px-3.5 py-2 rounded-lg bg-teal-700 hover:bg-teal-600 text-white text-xs font-semibold flex items-center gap-1.5 transition disabled:opacity-50 shadow-subtle"
             >
-              <RefreshCw size={14} className={retraining ? 'animate-spin' : ''} />
-              {retraining ? 'Retraining ML Pipeline...' : 'Retrain Readiness Model'}
+              <RefreshCw size={13} className={retraining ? 'animate-spin' : ''} />
+              {retraining ? 'Retraining Pipeline...' : 'Retrain Readiness Model'}
             </button>
           </div>
 

@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { Zap, Eye, EyeOff, Loader2, GraduationCap, Briefcase } from 'lucide-react';
+import { Eye, EyeOff, Loader2, GraduationCap, Briefcase } from 'lucide-react';
 import type { UserRole } from '@/types';
 
 export default function RegisterPage() {
@@ -35,89 +35,92 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden py-12">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-forge-600/20 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative w-full max-w-md px-4">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-forge-500 to-purple-600 rounded-2xl shadow-xl shadow-forge-500/30 mb-3">
-            <Zap size={26} className="text-white" />
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 antialiased">
+      <div className="w-full max-w-md space-y-6">
+        {/* Brand Header */}
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-navy-800 border border-teal-500/40 rounded-xl text-teal-400 font-bold text-lg shadow-subtle mb-1">
+            CF
           </div>
-          <h1 className="text-2xl font-bold font-display">
-            Create an Account on <span className="gradient-text">CareerForge</span>
+          <h1 className="text-2xl font-bold tracking-tight text-white font-display">
+            CAREERFORGE
           </h1>
-          <p className="text-muted-foreground mt-1 text-sm">Join the next-gen placement prep platform</p>
+          <p className="text-xs text-slate-400">
+            Create your placement workspace account
+          </p>
         </div>
 
-        <div className="glass-card neon-border p-8">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-7 sm:p-8 shadow-subtle space-y-5">
+          <div>
+            <h2 className="text-base font-bold text-white">Register Account</h2>
+            <p className="text-xs text-slate-400 mt-0.5">Select role and enter your profile information</p>
+          </div>
+
           {error && (
-            <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            <div className="p-3 rounded-lg bg-red-950/30 border border-red-500/40 text-red-300 text-xs leading-relaxed">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">I am a</label>
-              <div className="grid grid-cols-2 gap-3">
+              <label className="block font-semibold mb-1.5 text-slate-300">Account Type</label>
+              <div className="grid grid-cols-2 gap-2.5">
                 <button
                   type="button"
                   onClick={() => setRole('STUDENT')}
-                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border text-sm font-medium transition-all ${
+                  className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-xs font-semibold transition-colors ${
                     role === 'STUDENT'
-                      ? 'bg-forge-600/20 border-forge-500 text-forge-400 ring-1 ring-forge-500'
-                      : 'bg-white/5 border-border text-muted-foreground hover:bg-white/10'
+                      ? 'bg-navy-800 border-teal-500/60 text-white shadow-subtle'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                   }`}
                 >
-                  <GraduationCap size={16} />
+                  <GraduationCap size={15} className="text-teal-400" />
                   Student
                 </button>
                 <button
                   type="button"
                   onClick={() => setRole('TRAINER')}
-                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border text-sm font-medium transition-all ${
+                  className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-xs font-semibold transition-colors ${
                     role === 'TRAINER'
-                      ? 'bg-purple-600/20 border-purple-500 text-purple-400 ring-1 ring-purple-500'
-                      : 'bg-white/5 border-border text-muted-foreground hover:bg-white/10'
+                      ? 'bg-navy-800 border-amber-500/60 text-white shadow-subtle'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                   }`}
                 >
-                  <Briefcase size={16} />
+                  <Briefcase size={15} className="text-amber-400" />
                   Trainer
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">Full Name</label>
+              <label className="block font-semibold mb-1 text-slate-300">Full Name</label>
               <input
                 id="register-fullname"
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-forge-500/50"
-                placeholder="John Doe"
+                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-teal-500"
+                placeholder="Candidate Full Name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">Email</label>
+              <label className="block font-semibold mb-1 text-slate-300">Email Address</label>
               <input
                 id="register-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-forge-500/50"
-                placeholder="you@college.edu"
+                className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-teal-500"
+                placeholder="candidate@university.edu"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1.5 text-muted-foreground">Password</label>
+              <label className="block font-semibold mb-1 text-slate-300">Password</label>
               <div className="relative">
                 <input
                   id="register-password"
@@ -126,15 +129,15 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="w-full px-4 py-3 pr-12 bg-white/5 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-forge-500/50"
+                  className="w-full px-3.5 py-2.5 pr-10 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs placeholder:text-slate-500 focus:outline-none focus:border-teal-500"
                   placeholder="At least 6 characters"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
                 >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                 </button>
               </div>
             </div>
@@ -143,16 +146,16 @@ export default function RegisterPage() {
               id="register-submit"
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold rounded-xl glow-button transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
+              className="w-full py-2.5 bg-teal-700 hover:bg-teal-600 text-white font-semibold rounded-lg text-xs transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-subtle mt-2"
             >
-              {loading ? <Loader2 size={18} className="animate-spin" /> : null}
+              {loading ? <Loader2 size={16} className="animate-spin" /> : null}
               {loading ? 'Creating Account…' : 'Create Account'}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account?{' '}
-            <Link to="/login" className="text-forge-400 hover:text-forge-300 font-medium transition-colors">
+          <p className="text-center text-xs text-slate-400 pt-2 border-t border-slate-800">
+            Already registered?{' '}
+            <Link to="/login" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors">
               Sign In
             </Link>
           </p>

@@ -482,9 +482,9 @@ export default function CodingAssessmentPage() {
             <button
               onClick={handleBeginAssessment}
               disabled={!agreedToRules}
-              className="px-7 py-3 rounded-xl bg-gradient-to-r from-forge-600 via-purple-600 to-forge-500 hover:from-forge-500 hover:to-purple-500 text-white font-bold text-xs glow-button flex items-center gap-2 transition-all disabled:opacity-50"
+              className="px-6 py-2.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-bold text-xs flex items-center gap-2 transition-colors disabled:opacity-50 shadow-subtle"
             >
-              Start 20-Question Assessment ({activeLangConfig.name}) <ArrowRight size={16} />
+              Start Assessment ({activeLangConfig.name}) <ArrowRight size={15} />
             </button>
           </div>
         </div>
@@ -510,7 +510,7 @@ export default function CodingAssessmentPage() {
       {/* Top Authoritative Assessment Bar */}
       <header className="px-6 py-3 bg-black/70 border-b border-border/60 backdrop-blur-md flex items-center justify-between gap-4 sticky top-0 z-40">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-forge-500 to-purple-600 flex items-center justify-center text-white font-extrabold text-xs shadow-md">
+          <div className="w-8 h-8 rounded-lg bg-navy-800 border border-teal-500/40 flex items-center justify-center text-teal-300 font-extrabold text-xs shadow-sm">
             20Q
           </div>
           <div>
@@ -790,7 +790,7 @@ export default function CodingAssessmentPage() {
                 <button
                   onClick={handleSubmitCurrentProblem}
                   disabled={isRunning || isSubmittingProblem}
-                  className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 glow-button disabled:opacity-50 transition-all"
+                  className="px-4 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs flex items-center gap-1.5 disabled:opacity-50 transition-colors shadow-subtle"
                 >
                   {isSubmittingProblem ? <LoadingSpinner size="sm" /> : <Send size={13} />}
                   Submit Q{activeQuestionIndex + 1}

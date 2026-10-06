@@ -16,9 +16,9 @@ from sqlalchemy import select, func, case
 from sqlalchemy.orm import selectinload
 import logging
 
-from app.models.user import StudentProfile
-from app.models.content import PracticeAttempt
-from app.models.test import Test, TestAttempt, AttemptStatus, TestType
+from app.models.user import StudentProfile, TopicProgress
+from app.models.content import Question, PracticeAttempt
+from app.models.test import Test, TestAttempt, AttemptStatus, TestType, TestAnswer
 from app.models.coding import CodeSubmission, SubmissionVerdict
 
 logger = logging.getLogger(__name__)
@@ -163,10 +163,128 @@ async def calculate_student_scores(db: AsyncSession, student_id: int) -> Dict[st
     }
 
 
+async def sync_student_topic_progress(db: AsyncSession, student_id: int) -> None:
+    """
+    Authoritative synchronization of TopicProgress from actual PracticeAttempt and TestAnswer records.
+    Ensures topic-level attempts, correctness, accuracy, and Elo ratings are live, mathematically
+    sound, and accurately reflected in the student portal Focus Areas and Adaptive Engine.
+    """
+    # 1. Practice attempts by question topic
+    pa_query = (
+        select(
+            Question.topic_id,
+            func.count(PracticeAttempt.id),
+            func.sum(case((PracticeAttempt.is_correct == True, 1), else_=0)),
+            func.coalesce(func.avg(PracticeAttempt.time_taken_seconds), 30.0),
+            func.max(PracticeAttempt.attempted_at),
+        )
+        .join(Question, Question.id == PracticeAttempt.question_id)
+        .where(PracticeAttempt.student_id == student_id)
+        .where(Question.topic_id != None)
+        .group_by(Question.topic_id)
+    )
+    pa_rows = (await db.execute(pa_query)).all()
+
+    # 2. Test answers by question topic
+    ta_query = (
+        select(
+            Question.topic_id,
+            func.count(TestAnswer.id),
+            func.sum(case((TestAnswer.is_correct == True, 1), else_=0)),
+            func.coalesce(func.avg(TestAnswer.time_taken_seconds), 30.0),
+            func.max(TestAnswer.answered_at),
+        )
+        .join(TestAttempt, TestAttempt.id == TestAnswer.attempt_id)
+        .join(Question, Question.id == TestAnswer.question_id)
+        .where(TestAttempt.student_id == student_id)
+        .where(TestAttempt.status.in_([AttemptStatus.GRADED, AttemptStatus.TIMED_OUT]))
+        .where(Question.topic_id != None)
+        .group_by(Question.topic_id)
+    )
+    ta_rows = (await db.execute(ta_query)).all()
+
+    topic_aggregates: Dict[int, Dict[str, Any]] = {}
+    for tid, att, corr, avg_t, last_t in pa_rows:
+        topic_aggregates[tid] = {
+            "attempts": int(att or 0),
+            "correct": int(corr or 0),
+            "avg_time": float(avg_t or 30.0),
+            "last_time": last_t,
+        }
+
+    for tid, att, corr, avg_t, last_t in ta_rows:
+        if tid not in topic_aggregates:
+            topic_aggregates[tid] = {
+                "attempts": int(att or 0),
+                "correct": int(corr or 0),
+                "avg_time": float(avg_t or 30.0),
+                "last_time": last_t,
+            }
+        else:
+            prev = topic_aggregates[tid]
+            prev["attempts"] += int(att or 0)
+            prev["correct"] += int(corr or 0)
+            if last_t and (not prev["last_time"] or last_t > prev["last_time"]):
+                prev["last_time"] = last_t
+
+    tp_result = await db.execute(
+        select(TopicProgress).where(TopicProgress.student_id == student_id)
+    )
+    existing_tps = {tp.topic_id: tp for tp in tp_result.scalars().all()}
+
+    for tid, data in topic_aggregates.items():
+        att = data["attempts"]
+        corr = data["correct"]
+        acc = (float(corr) / float(att) * 100.0) if att > 0 else 0.0
+
+        tp = existing_tps.get(tid)
+        if not tp:
+            initial_skill = 1000.0 + (acc - 50.0) * 10.0
+            initial_theta = (acc - 50.0) / 25.0
+            tp = TopicProgress(
+                student_id=student_id,
+                topic_id=tid,
+                questions_attempted=att,
+                questions_correct=corr,
+                skill_rating=max(400.0, min(2000.0, initial_skill)),
+                irt_ability=max(-3.0, min(3.0, initial_theta)),
+                recent_accuracy=round(acc / 100.0, 2),
+                avg_response_time_seconds=data["avg_time"],
+                last_practiced=data["last_time"],
+                streak=min(corr, 3),
+            )
+            db.add(tp)
+        else:
+            tp.questions_attempted = att
+            tp.questions_correct = corr
+            if data["last_time"]:
+                tp.last_practiced = data["last_time"]
+            if data["avg_time"]:
+                tp.avg_response_time_seconds = data["avg_time"]
+            calculated_skill = 1000.0 + (acc - 50.0) * 10.0
+            calculated_theta = (acc - 50.0) / 25.0
+            if tp.skill_rating and abs(tp.skill_rating - 1000.0) > 0.1:
+                tp.skill_rating = 0.5 * tp.skill_rating + 0.5 * calculated_skill
+            else:
+                tp.skill_rating = calculated_skill
+            tp.skill_rating = max(400.0, min(2000.0, tp.skill_rating))
+            tp.irt_ability = max(-3.0, min(3.0, calculated_theta))
+            tp.recent_accuracy = round(acc / 100.0, 2)
+
+    for tid, tp in existing_tps.items():
+        if tid not in topic_aggregates:
+            tp.questions_attempted = 0
+            tp.questions_correct = 0
+            tp.recent_accuracy = 0.5
+            tp.streak = 0
+            tp.last_practiced = None
+
+
 async def calculate_and_sync_student_scores(db: AsyncSession, profile: StudentProfile) -> Dict[str, Any]:
     """
     Authoritative method to compute student metrics and synchronize profile in database.
     """
+    await sync_student_topic_progress(db, profile.id)
     metrics = await calculate_student_scores(db, profile.id)
 
     profile.aptitude_score = metrics["aptitude_score"]

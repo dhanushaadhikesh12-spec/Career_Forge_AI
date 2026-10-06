@@ -138,7 +138,7 @@ class ApiClient {
 
   // ── Practice ──────────────────────────────────────────────────────────────
 
-  async startPracticeSession(topicId: number, difficulty?: string, count = 10): Promise<Question[]> {
+  async startPracticeSession(topicId?: number, difficulty?: string, count = 10): Promise<Question[]> {
     const res = await this.client.post('/students/practice/session', {
       topic_id: topicId,
       difficulty,

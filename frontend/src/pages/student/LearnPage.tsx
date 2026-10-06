@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '@/services/api';
 import type { Subject, Topic } from '@/types';
 import { PageHeader, LoadingSpinner, ErrorState } from '@/components/shared';
-import { BookOpen, ChevronRight, Brain, Target, Sparkles, Layers } from 'lucide-react';
+import { BookOpen, Brain, Layers, ArrowRight, Target, CheckCircle2 } from 'lucide-react';
 
 export default function LearnPage() {
   const navigate = useNavigate();
@@ -59,45 +59,48 @@ export default function LearnPage() {
   const activeSubject = subjects.find((s) => s.id === selectedSubjectId);
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6">
       <PageHeader
         title="Learning Hub"
-        subtitle="Master placement aptitude & core computer science concepts with bite-sized lessons"
+        subtitle="Explore the structured placement curriculum across aptitude, programming, and technical problem solving."
       />
 
-      {/* Subject Filter Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-2 border-b border-border/60">
+      {/* Subject Filter Pills */}
+      <div className="flex gap-2 overflow-x-auto pb-2 border-b border-slate-800/80">
         {subjects.map((sub) => {
           const isActive = sub.id === selectedSubjectId;
           return (
             <button
               key={sub.id}
               onClick={() => handleSelectSubject(sub.id)}
-              className={`px-5 py-2.5 rounded-xl font-medium text-sm transition-all whitespace-nowrap flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap flex items-center gap-2 border ${
                 isActive
-                  ? 'bg-forge-600 text-white shadow-lg shadow-forge-600/30'
-                  : 'bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground border border-border/40'
+                  ? 'bg-navy-800 text-white border-teal-500/50 shadow-subtle'
+                  : 'bg-slate-900 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border-slate-800'
               }`}
             >
-              <Layers size={16} />
+              <Layers size={14} className={isActive ? 'text-teal-400' : 'text-slate-500'} />
               <span>{sub.name}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Selected Subject Intro */}
+      {/* Selected Subject Banner */}
       {activeSubject && (
-        <div className="glass-card p-6 border border-forge-500/20 bg-gradient-to-r from-forge-950/20 to-purple-950/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-subtle">
           <div>
-            <h2 className="text-xl font-bold text-foreground">{activeSubject.name}</h2>
-            <p className="text-xs text-muted-foreground mt-1 max-w-xl">
-              {activeSubject.description || 'Comprehensive curriculum aligned with top tech company campus hiring tests.'}
+            <div className="text-[10px] uppercase font-bold tracking-wider text-teal-400 mb-1">
+              Active Curriculum
+            </div>
+            <h2 className="text-xl font-bold text-white font-display">{activeSubject.name}</h2>
+            <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
+              {activeSubject.description || 'Structured topic modules aligned with standard campus recruitment patterns.'}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs font-medium text-forge-400">
-            <Sparkles size={16} />
-            <span>{topics.length} Targeted Topics</span>
+          <div className="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 shrink-0">
+            <span className="w-2 h-2 rounded-full bg-teal-500" />
+            <span>{topics.length} Topics Available</span>
           </div>
         </div>
       )}
@@ -106,50 +109,50 @@ export default function LearnPage() {
       {loadingTopics ? (
         <LoadingSpinner size="md" className="py-12" />
       ) : topics.length === 0 ? (
-        <div className="text-center py-16 glass-card border border-dashed border-border">
-          <BookOpen size={36} className="text-muted-foreground/40 mx-auto mb-2" />
-          <p className="text-sm font-medium text-foreground">No topics found in this category.</p>
+        <div className="text-center py-16 bg-slate-900 border border-dashed border-slate-800 rounded-xl">
+          <BookOpen size={36} className="text-slate-600 mx-auto mb-2" />
+          <p className="text-xs font-medium text-slate-400">No topics found for this subject.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {topics.map((t) => (
             <div
               key={t.id}
-              className="glass-card p-6 border border-border/60 hover:border-forge-500/50 transition-all flex flex-col justify-between group"
+              className="bg-slate-900 border border-slate-800 hover:border-slate-700/80 rounded-xl p-5 transition-colors flex flex-col justify-between shadow-subtle"
             >
               <div>
-                <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-forge-500/10 border border-forge-500/20 flex items-center justify-center text-forge-400 group-hover:scale-105 transition-transform">
-                    <Brain size={20} />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700/80 flex items-center justify-center text-teal-400">
+                    <Brain size={16} />
                   </div>
-                  <span className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-border font-medium text-muted-foreground">
+                  <span className="text-[11px] px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-400 font-medium">
                     {t.total_questions || 0} Questions
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-foreground group-hover:text-forge-300 transition-colors">
+                <h3 className="text-sm font-bold text-white">
                   {t.name}
                 </h3>
-                <p className="text-xs text-muted-foreground mt-2 line-clamp-2 leading-relaxed">
-                  {t.description || 'Learn core concepts, formulas, shortcuts, and solve high-probability interview problems.'}
+                <p className="text-xs text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
+                  {t.description || 'Master core formulas, problem archetypes, and shortcut techniques.'}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between gap-3">
+              <div className="mt-5 pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-2">
                 <button
                   onClick={() => navigate(`/student/topics/${t.id}`)}
-                  className="px-3.5 py-2 text-xs font-semibold rounded-lg bg-white/5 hover:bg-white/10 text-foreground border border-border transition-colors flex items-center gap-1.5"
+                  className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors flex items-center gap-1.5"
                 >
-                  <BookOpen size={14} />
-                  View Lessons ({t.total_lessons || 0})
+                  <BookOpen size={13} />
+                  Lessons ({t.total_lessons || 0})
                 </button>
 
                 <button
                   onClick={() => navigate(`/student/practice?topic_id=${t.id}`)}
-                  className="px-3.5 py-2 text-xs font-semibold rounded-lg bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white glow-button transition-all flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-teal-700 hover:bg-teal-600 text-white transition-colors flex items-center gap-1.5 shadow-subtle"
                 >
-                  <Target size={14} />
-                  Practice
+                  <Target size={13} />
+                  Practice Now
                 </button>
               </div>
             </div>

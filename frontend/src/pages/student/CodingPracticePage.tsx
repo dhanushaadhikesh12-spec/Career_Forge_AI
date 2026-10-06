@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
-  Code2, Search, Sparkles, Filter, CheckCircle2,
-  Clock, ArrowRight, History, Flame, Trophy
+  Code2, Search, History
 } from 'lucide-react';
 import { api } from '@/services/api';
 import type { CodingQuestionSummary } from '@/types';
@@ -49,46 +48,44 @@ export default function CodingPracticePage() {
   });
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-r from-blue-900/40 via-purple-900/30 to-forge-900/30 border border-blue-500/20 backdrop-blur-xl">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-semibold mb-3">
-              <Code2 size={14} className="text-blue-400" />
-              <span>Technical Coding Playground • Judge0 Isolated Runtime</span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold font-display text-white">
-              Coding <span className="gradient-text">Practice Hub</span>
-            </h1>
-            <p className="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
-              Master essential placement interview algorithms with Monaco Editor in Python, C++, Java, and JavaScript. All code executes inside isolated Judge0 sandboxes.
-            </p>
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-subtle">
+        <div>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium mb-3">
+            <Code2 size={14} className="text-teal-400" />
+            <span>Judge0 Isolated Sandbox • Multilingual Compiler</span>
           </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+            Coding Practice Workspace
+          </h1>
+          <p className="text-slate-400 mt-1.5 text-xs sm:text-sm max-w-xl">
+            Solve campus recruitment coding questions in Python, C++, Java, or JavaScript with real-time test case evaluation and memory/time benchmarking.
+          </p>
+        </div>
 
-          <div className="flex items-center gap-3">
-            <Link
-              to="/student/coding/submissions"
-              className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-xs transition-colors flex items-center gap-2 shadow-sm"
-            >
-              <History size={16} />
-              My Submissions
-            </Link>
-          </div>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/student/coding/submissions"
+            className="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium text-xs transition-colors flex items-center gap-2 shadow-sm"
+          >
+            <History size={15} />
+            My Submissions
+          </Link>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-border/60">
-        <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+      <div className="bg-slate-900 border border-slate-800 p-3.5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-subtle">
+        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
           {(['ALL', 'EASY', 'MEDIUM', 'HARD'] as const).map((diff) => (
             <button
               key={diff}
               onClick={() => setSelectedDifficulty(diff)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all shrink-0 ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 border ${
                 selectedDifficulty === diff
-                  ? 'bg-forge-600 text-white shadow-md shadow-forge-500/20 border border-forge-400/40'
-                  : 'bg-white/5 hover:bg-white/10 text-muted-foreground border border-border/40'
+                  ? 'bg-navy-800 text-white border-teal-500/60 shadow-subtle'
+                  : 'bg-slate-950 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border-slate-800'
               }`}
             >
               {diff}
@@ -96,14 +93,14 @@ export default function CodingPracticePage() {
           ))}
         </div>
 
-        <div className="relative w-full sm:w-80">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative w-full sm:w-72">
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
           <input
             type="text"
             placeholder="Search problems, topics, tags..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-white/5 border border-border/60 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-forge-500/60 transition-colors"
+            className="w-full pl-9 pr-3.5 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-500 transition-colors"
           />
         </div>
       </div>
@@ -114,39 +111,39 @@ export default function CodingPracticePage() {
           <LoadingSpinner size="lg" />
         </div>
       ) : filteredQuestions.length === 0 ? (
-        <div className="text-center py-16 border border-dashed border-border/60 rounded-3xl glass-card">
-          <Code2 size={40} className="text-muted-foreground/40 mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-foreground">No coding problems found</h3>
-          <p className="text-xs text-muted-foreground mt-1">Try clearing your search query or choosing another difficulty level.</p>
+        <div className="text-center py-16 border border-dashed border-slate-800 rounded-xl bg-slate-900">
+          <Code2 size={36} className="text-slate-600 mx-auto mb-2.5" />
+          <h3 className="text-sm font-semibold text-slate-200">No coding problems found</h3>
+          <p className="text-xs text-slate-400 mt-1">Try clearing your search query or choosing another difficulty level.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredQuestions.map((q) => {
             const diffColor =
               q.difficulty === 'EASY'
-                ? 'emerald'
+                ? 'success'
                 : q.difficulty === 'MEDIUM'
-                ? 'amber'
-                : 'red';
+                ? 'warning'
+                : 'error';
 
             return (
               <div
                 key={q.id}
-                className="glass-card p-6 rounded-2xl border border-border/60 hover:border-forge-500/40 transition-all flex flex-col justify-between group hover:-translate-y-0.5 duration-200"
+                className="bg-slate-900 border border-slate-800 hover:border-slate-700/90 rounded-xl p-5 transition-colors flex flex-col justify-between shadow-subtle"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <Badge variant={diffColor as any}>{q.difficulty}</Badge>
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-white/5 border border-border/40 text-muted-foreground">
+                  <div className="flex items-start justify-between gap-3 mb-2.5">
+                    <Badge variant={diffColor}>{q.difficulty}</Badge>
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-400">
                       {q.marks} Marks
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-foreground group-hover:text-forge-300 transition-colors">
+                  <h3 className="text-sm font-bold text-white">
                     {q.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 mt-1.5 text-xs text-slate-400">
                     <span>{q.topic_name || 'Algorithms'}</span>
                     {q.acceptance_rate !== null && (
                       <>
@@ -157,11 +154,11 @@ export default function CodingPracticePage() {
                   </div>
 
                   {q.tags && q.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mt-4">
+                    <div className="flex flex-wrap gap-1.5 mt-3.5">
                       {q.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-muted-foreground border border-border/30"
+                          className="text-[10px] px-2 py-0.2 rounded bg-slate-950 text-slate-400 border border-slate-800"
                         >
                           #{tag}
                         </span>
@@ -170,16 +167,16 @@ export default function CodingPracticePage() {
                   )}
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
-                  <span className="text-[11px] text-muted-foreground">
+                <div className="mt-5 pt-3.5 border-t border-slate-800 flex items-center justify-between">
+                  <span className="text-[11px] text-slate-500">
                     {q.supported_languages.length} Languages
                   </span>
 
                   <button
                     onClick={() => navigate(`/student/coding/${q.slug}`)}
-                    className="px-3.5 py-1.5 rounded-xl bg-forge-600/20 hover:bg-forge-600 text-forge-300 hover:text-white border border-forge-500/30 text-xs font-semibold transition-all flex items-center gap-1.5"
+                    className="px-3.5 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-subtle"
                   >
-                    Solve Challenge <ArrowRight size={14} />
+                    Solve Problem
                   </button>
                 </div>
               </div>

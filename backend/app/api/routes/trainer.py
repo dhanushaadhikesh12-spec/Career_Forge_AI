@@ -1085,11 +1085,14 @@ async def trainer_assistant_chat(
 
     # Reconstruct history if not passed
     history = req.conversation_history
-    if history is None and session and hasattr(session, "messages"):
-        history = [
-            ChatMessage(role=m.role, content=m.content)
-            for m in session.messages
-        ]
+    if history is None:
+        if req.session_id and session and "messages" in session.__dict__:
+            history = [
+                ChatMessage(role=m.role, content=m.content)
+                for m in session.messages
+            ]
+        else:
+            history = []
 
     # Persist user query
     user_msg = AIChatMessage(

@@ -50,7 +50,10 @@ async def student_dashboard(
     )
     recent_attempts = result.scalars().all()
 
-    # Topic progress
+    # Calculate and synchronize dynamic, authoritative scores and topic progress
+    metrics = await calculate_and_sync_student_scores(db, profile)
+
+    # Topic progress (freshly synchronized with actual practice attempts and test answers)
     tp_result = await db.execute(
         select(TopicProgress)
         .where(TopicProgress.student_id == profile.id)
@@ -58,21 +61,24 @@ async def student_dashboard(
     )
     topic_progresses = tp_result.scalars().all()
 
-    # Calculate weak topics (accuracy < 50%)
+    # Calculate weak topics (accuracy < 50% with at least 1 attempted question)
     weak_topics = []
     for tp in topic_progresses:
-        if tp.questions_attempted >= 5:
-            acc = (tp.questions_correct / tp.questions_attempted) * 100
+        if tp.questions_attempted >= 1:
+            acc = (tp.questions_correct / tp.questions_attempted) * 100.0
             if acc < 50.0:
                 weak_topics.append({
                     "topic_id": tp.topic_id,
                     "topic_name": tp.topic.name if tp.topic else "Unknown",
                     "accuracy": round(acc, 1),
                     "skill_rating": round(tp.skill_rating, 1),
+                    "questions_attempted": tp.questions_attempted,
+                    "questions_correct": tp.questions_correct,
+                    "category_label": "Needs Urgent Practice" if acc < 40.0 else "Needs Practice",
                 })
 
-    # Calculate and synchronize dynamic, authoritative scores
-    metrics = await calculate_and_sync_student_scores(db, profile)
+    # Sort strictly by lowest accuracy first, tie-breaking by higher attempted count
+    weak_topics.sort(key=lambda x: (x["accuracy"], -x["questions_attempted"]))
 
     return {
         "student": {
@@ -259,12 +265,21 @@ async def start_practice(
 ):
     from app.services.adaptive_engine import AdaptiveEngine
 
+    topic_id = payload.topic_id
+    if topic_id is None:
+        topic_id = await AdaptiveEngine.select_topic_weighted(db, profile.id)
+
     if payload.difficulty:
-        query = select(Question).where(Question.topic_id == payload.topic_id).where(Question.difficulty == payload.difficulty)
+        query = select(Question).where(Question.topic_id == topic_id).where(Question.difficulty == payload.difficulty)
         result = await db.execute(query.options(selectinload(Question.options)))
         questions = result.scalars().all()
         if not questions:
-            raise HTTPException(status_code=404, detail="No questions found for this topic/difficulty")
+            # Fallback to any difficulty in topic
+            query = select(Question).where(Question.topic_id == topic_id)
+            result = await db.execute(query.options(selectinload(Question.options)))
+            questions = result.scalars().all()
+        if not questions:
+            raise HTTPException(status_code=404, detail="No questions found for this topic")
         
         # Check student history to prioritize unseen questions
         hist_res = await db.execute(
@@ -283,26 +298,40 @@ async def start_practice(
             selected = list(unseen) + seen[:(payload.count - len(unseen))]
             random.shuffle(selected)
 
-        for q in selected:
-            await AdaptiveEngine.record_question_exposure(db, profile.id, q.id)
+        # Batch record exposure in strictly ascending ID order
+        for q in sorted(selected, key=lambda x: x.id):
+            try:
+                await AdaptiveEngine.record_question_exposure(db, profile.id, q.id)
+            except Exception as e:
+                logger.warning(f"Error recording question exposure: {e}")
     else:
         # Use Personalized Adaptive Engine to choose optimal questions
         selected, _ = await AdaptiveEngine.generate_adaptive_session(
             db=db,
             student_id=profile.id,
-            topic_id=payload.topic_id,
+            topic_id=topic_id,
             count=payload.count,
         )
         if not selected:
             # Fallback to any questions in topic
-            query = select(Question).where(Question.topic_id == payload.topic_id)
+            query = select(Question).where(Question.topic_id == topic_id)
             result = await db.execute(query.options(selectinload(Question.options)))
             all_q = result.scalars().all()
             if not all_q:
-                raise HTTPException(status_code=404, detail="No questions found for this topic")
+                # Global fallback to any available questions
+                query = select(Question).limit(payload.count)
+                result = await db.execute(query.options(selectinload(Question.options)))
+                all_q = result.scalars().all()
+            if not all_q:
+                raise HTTPException(status_code=404, detail="No questions found")
             selected = random.sample(all_q, min(payload.count, len(all_q)))
-            for q in selected:
-                await AdaptiveEngine.record_question_exposure(db, profile.id, q.id)
+            for q in sorted(selected, key=lambda x: x.id):
+                try:
+                    await AdaptiveEngine.record_question_exposure(db, profile.id, q.id)
+                except Exception as e:
+                    logger.warning(f"Error recording question exposure: {e}")
+
+    await db.commit()
 
     out = []
     for q in selected:
@@ -413,7 +442,7 @@ async def start_test(
         .where(TestAttempt.status == AttemptStatus.IN_PROGRESS)
         .order_by(TestAttempt.id.desc())
     )
-    active_attempt = existing.scalar_one_or_none()
+    active_attempt = existing.scalars().first()
     now = datetime.now(timezone.utc)
 
     # If active attempt exists but has expired, mark it timed out so student can start fresh
@@ -583,6 +612,7 @@ async def submit_test(
     profile: StudentProfile = Depends(get_student_profile),
     db: AsyncSession = Depends(get_db),
 ):
+    from app.services.adaptive_engine import AdaptiveEngine
     result = await db.execute(
         select(TestAttempt)
         .where(TestAttempt.id == payload.attempt_id)
@@ -637,6 +667,9 @@ async def submit_test(
         question.attempt_count += 1
         if is_correct:
             question.correct_count += 1
+
+        # Record question exposure result in adaptive engine
+        await AdaptiveEngine.update_question_exposure_result(db, profile.id, ans.question_id, is_correct)
 
     percentage = (total_score / max_score * 100) if max_score > 0 else 0.0
     attempt.score = total_score

@@ -54,39 +54,39 @@ export default function BatchesPage() {
   if (error) return <ErrorState message={error} onRetry={fetchBatches} />;
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6">
       <PageHeader
         title="Student Placement Batches"
-        subtitle="Organize student cohorts, track company-specific readiness, and assign evaluations"
+        subtitle="Organize student cohorts, track company-specific readiness, and assign evaluations."
         action={
           <button
             onClick={() => setShowModal(true)}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold text-xs glow-button flex items-center gap-2"
+            className="px-3.5 py-2 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs flex items-center gap-1.5 shadow-subtle"
           >
-            <Plus size={16} /> Create New Batch
+            <Plus size={15} /> Create Batch
           </button>
         }
       />
 
       {batches.length === 0 ? (
-        <div className="text-center py-16 glass-card border border-dashed border-border rounded-2xl">
-          <Users size={40} className="text-muted-foreground/40 mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-foreground">No batches found</h3>
-          <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto">
-            Create your first student cohort to group students and schedule customized tests.
+        <div className="text-center py-16 bg-slate-900 border border-dashed border-slate-800 rounded-xl">
+          <Users size={36} className="text-slate-600 mx-auto mb-2" />
+          <h3 className="text-sm font-semibold text-slate-200">No batches found</h3>
+          <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+            Create your first student cohort to group students and schedule tests.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {batches.map((b) => (
             <div
               key={b.id}
-              className="glass-card p-6 border border-border/60 hover:border-purple-500/50 transition-all space-y-4"
+              className="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-xl p-5 space-y-3.5 shadow-subtle transition-colors"
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-foreground">{b.name}</h3>
-                  <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                  <h3 className="text-sm font-bold text-white">{b.name}</h3>
+                  <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1.5">
                     <Building2 size={13} />
                     <span>Campus Placement Cohort</span>
                   </div>
@@ -97,82 +97,79 @@ export default function BatchesPage() {
               </div>
 
               {b.description && (
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
                   {b.description}
                 </p>
               )}
 
-              <div className="p-3 rounded-xl bg-white/5 border border-border/40 text-xs space-y-1.5">
-                <div className="flex items-center justify-between text-muted-foreground">
-                  <span>Created</span>
-                  <span className="font-semibold text-foreground">
-                    {new Date(b.created_at).toLocaleDateString()}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-muted-foreground">
-                  <span>Enrolled Candidates</span>
-                  <span className="font-semibold text-forge-400">
-                    {b.member_count ?? 15} students
-                  </span>
-                </div>
+              <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <Calendar size={13} />
+                  <span>Created {new Date(b.created_at).toLocaleDateString()}</span>
+                </span>
+                <span className="font-semibold text-slate-300">Cohort #{b.id}</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* Modal: Create Batch */}
+      {/* Create Batch Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-card p-6 border border-purple-500/30 max-w-md w-full space-y-5 animate-scale-in">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-foreground">Create Placement Cohort</h3>
+          <div className="bg-slate-900 border border-slate-800 max-w-md w-full rounded-xl p-6 space-y-4 shadow-elevated">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h3 className="font-bold text-sm text-white">Create New Placement Batch</h3>
               <button
                 onClick={() => setShowModal(false)}
-                className="text-muted-foreground hover:text-foreground"
+                className="p-1 rounded text-slate-400 hover:text-white"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
             </div>
 
             <form onSubmit={handleCreate} className="space-y-4 text-xs">
               <div>
-                <label className="block font-medium mb-1 text-muted-foreground">Cohort / Batch Name</label>
+                <label className="font-semibold text-slate-300 block mb-1">
+                  Batch Name *
+                </label>
                 <input
                   type="text"
                   required
+                  placeholder="e.g. 2026 CS Placement Alpha"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. 2025 Tier-1 FastTrack"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-border text-foreground text-xs focus:ring-1 focus:ring-purple-500"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-500"
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1 text-muted-foreground">Description & Objectives</label>
+                <label className="font-semibold text-slate-300 block mb-1">
+                  Description
+                </label>
                 <textarea
                   rows={3}
+                  placeholder="Target companies, tier, preparation goals..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Batch targets product companies: Amazon, Google, Microsoft, Atlassian"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-border text-foreground text-xs focus:ring-1 focus:ring-purple-500"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-500 resize-none"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-border/50">
+              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-border font-medium text-foreground transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={creating}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-forge-600 to-purple-600 hover:from-forge-500 hover:to-purple-500 text-white font-semibold glow-button"
+                  className="px-4 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold transition-colors disabled:opacity-50"
                 >
-                  {creating ? 'Creating…' : 'Create Cohort'}
+                  {creating ? 'Creating…' : 'Create Batch'}
                 </button>
               </div>
             </form>

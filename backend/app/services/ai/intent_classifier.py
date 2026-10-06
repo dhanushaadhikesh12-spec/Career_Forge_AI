@@ -43,18 +43,24 @@ _DATA_KEYWORDS: list[str] = [
     # Student / cohort references
     r"\bstudent(s)?\b", r"\bbatch\b", r"\bcohort\b", r"\bcandidate(s)?\b",
     r"\blearner(s)?\b", r"\btrainee(s)?\b",
-    # Performance metrics
-    r"\bperformance\b", r"\bscore(s)?\b", r"\baccurac(y|ies)\b",
+    # Performance metrics & activity
+    r"\bperform(ance|ing|ed|s)?\b", r"\bscore(s)?\b", r"\baccurac(y|ies)\b",
     r"\bprogress\b", r"\bimprovement\b", r"\btrend(s)?\b",
-    r"\brank(ing)?\b", r"\bleaderboard\b",
+    r"\brank(ing|ed|s)?\b", r"\bleaderboard\b",
+    r"\bdoing\b", r"\bfaring\b",
+    # Superlatives & comparative
+    r"\btop\b", r"\bbest\b", r"\bworst\b", r"\bhighest\b", r"\blowest\b",
+    r"\bstrong(est)?\b", r"\bweak(est|er)?\b", r"\bpoor(ly)?\b",
+    r"\bhelp\b", r"\battention\b", r"\bneed(s)?\b",
     # Outcome / placement
-    r"\bplacement\b", r"\breadiness\b", r"\bright now\b", r"\btoday\b",
+    r"\bplacement\b", r"\bread(y|iness)\b", r"\bright now\b", r"\btoday\b",
     r"\bcurrent\b", r"\blatest\b", r"\brecent\b", r"\blast (week|month)\b",
     # Risk / concern categories
-    r"\bweak\b", r"\bat.?risk\b", r"\bstruggling\b", r"\bbehind\b",
+    r"\bat.?risk\b", r"\bstruggling\b", r"\bbehind\b",
     r"\bfailing\b", r"\bbottom\b",
     # Topic / assessment analytics
-    r"\btopic\b", r"\bsubject\b", r"\bapt(itude)?\b",
+    r"\btopic\b", r"\bsubject\b", r"\bapt(itude)?\b", r"\bdsa\b",
+    r"\barray(s)?\b", r"\btree(s)?\b", r"\bgraph(s)?\b",
     r"\btest(s)?\b", r"\bassessment(s)?\b", r"\bexam(s)?\b", r"\bquiz(zes)?\b",
     r"\bcodng?\b", r"\bcoding\b", r"\bpass rate\b", r"\bfail rate\b",
     r"\bsubmission(s)?\b", r"\battempt(s)?\b",
@@ -62,11 +68,12 @@ _DATA_KEYWORDS: list[str] = [
     r"\bmalpractic(e|es)\b", r"\bproctor(ing)?\b", r"\bviolation(s)?\b",
     r"\btab switch(es)?\b", r"\bcheating?\b", r"\bsuspicious\b",
     r"\banomaly\b", r"\banomalies\b",
-    # Aggregates
+    # Aggregates & identification
     r"\baverage\b", r"\bmean\b", r"\bmedian\b", r"\bdistribution\b",
     r"\bbreakdown\b", r"\bsummary\b", r"\boverview\b", r"\breport\b",
     r"\banalytics\b", r"\binsight(s)?\b", r"\bstatistic(s)?\b",
-    r"\bwho\b", r"\bwhich student", r"\bhow many student",
+    r"\bwho\b", r"\bwhich\b", r"\bhow many\b",
+    r"\bhow is \b", r"\bhow are \b",
     r"\blist\b", r"\bshow me\b", r"\bgive me\b", r"\btell me about\b",
     r"\bcompare\b",
 ]

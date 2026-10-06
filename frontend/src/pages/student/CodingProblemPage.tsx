@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import {
-  Play, Send, ArrowLeft, CheckCircle2, XCircle, AlertTriangle,
-  Clock, Cpu, RotateCcw, Sparkles, Terminal, FileCode, Check
+  Play, Send, ArrowLeft, CheckCircle2, XCircle,
+  Clock, Cpu, RotateCcw, Terminal, FileCode
 } from 'lucide-react';
 import { api } from '@/services/api';
 import type { CodingQuestionDetail, CodeRunResponse, CodeSubmission } from '@/types';
@@ -170,18 +170,18 @@ export default function CodingProblemPage() {
   const currentCase = testResultsList[selectedCaseIndex];
 
   return (
-    <div className="space-y-4 animate-fade-in pb-12">
+    <div className="space-y-4 pb-10">
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 pb-2 border-b border-slate-800">
         <button
           onClick={() => navigate('/student/coding')}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={15} />
           Back to Problems
         </button>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Badge
             variant={
               question.difficulty === 'EASY'
@@ -193,19 +193,19 @@ export default function CodingProblemPage() {
           >
             {question.difficulty}
           </Badge>
-          <span className="text-xs font-semibold text-muted-foreground px-2.5 py-1 rounded-lg bg-white/5 border border-border/40">
+          <span className="text-xs font-semibold text-slate-300 px-2 py-0.5 rounded bg-slate-900 border border-slate-800">
             {question.marks} Marks
           </span>
         </div>
       </div>
 
-      {/* Main Workspace: Left Problem Info, Right Monaco Editor */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      {/* Main Workspace */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* LEFT PANE: Problem Description */}
-        <div className="lg:col-span-5 space-y-5 glass-card p-6 rounded-2xl border border-border/60 max-h-[82vh] overflow-y-auto">
+        <div className="lg:col-span-5 space-y-4 bg-slate-900 p-5 sm:p-6 rounded-xl border border-slate-800 max-h-[82vh] overflow-y-auto shadow-subtle">
           <div>
-            <h1 className="text-2xl font-bold font-display text-white">{question.title}</h1>
-            <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
+            <h1 className="text-xl sm:text-2xl font-bold text-white font-display">{question.title}</h1>
+            <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
               <span>{question.topic_name || 'Programming'}</span>
               <span>•</span>
               <span>Time Limit: {question.time_limit_ms}ms</span>
@@ -214,56 +214,56 @@ export default function CodingProblemPage() {
             </div>
           </div>
 
-          <div className="space-y-4 text-xs text-foreground/90 leading-relaxed border-t border-border/40 pt-4">
+          <div className="space-y-4 text-xs text-slate-300 leading-relaxed border-t border-slate-800 pt-4">
             <div>
-              <h3 className="font-semibold text-white uppercase tracking-wider text-[11px] mb-2">
+              <h3 className="font-semibold text-slate-200 uppercase tracking-wider text-[11px] mb-1.5">
                 Problem Statement
               </h3>
-              <p className="whitespace-pre-line leading-relaxed text-muted-foreground">
+              <p className="whitespace-pre-line leading-relaxed text-slate-400">
                 {question.problem_statement}
               </p>
             </div>
 
             {question.input_format && (
               <div>
-                <h3 className="font-semibold text-white uppercase tracking-wider text-[11px] mb-1">
+                <h3 className="font-semibold text-slate-200 uppercase tracking-wider text-[11px] mb-1">
                   Input Format
                 </h3>
-                <p className="whitespace-pre-line text-muted-foreground">{question.input_format}</p>
+                <p className="whitespace-pre-line text-slate-400">{question.input_format}</p>
               </div>
             )}
 
             {question.output_format && (
               <div>
-                <h3 className="font-semibold text-white uppercase tracking-wider text-[11px] mb-1">
+                <h3 className="font-semibold text-slate-200 uppercase tracking-wider text-[11px] mb-1">
                   Output Format
                 </h3>
-                <p className="whitespace-pre-line text-muted-foreground">{question.output_format}</p>
+                <p className="whitespace-pre-line text-slate-400">{question.output_format}</p>
               </div>
             )}
 
             {question.examples && question.examples.length > 0 && (
               <div className="space-y-3 pt-2">
-                <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
+                <h3 className="font-semibold text-slate-200 uppercase tracking-wider text-[11px]">
                   Sample Examples
                 </h3>
                 {question.examples.map((ex, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-black/40 border border-border/40 space-y-2">
-                    <div className="text-[11px] font-semibold text-forge-400">Example {idx + 1}:</div>
+                  <div key={idx} className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-2">
+                    <div className="text-[11px] font-semibold text-teal-400">Example {idx + 1}:</div>
                     <div>
-                      <span className="text-muted-foreground text-[10px] uppercase font-bold">Input:</span>
-                      <pre className="font-mono text-xs text-slate-200 mt-0.5 bg-white/5 p-2 rounded-lg overflow-x-auto">
+                      <span className="text-slate-500 text-[10px] uppercase font-bold">Input:</span>
+                      <pre className="font-mono text-xs text-slate-200 mt-0.5 bg-slate-900 p-2 rounded border border-slate-800/80 overflow-x-auto">
                         {ex.input}
                       </pre>
                     </div>
                     <div>
-                      <span className="text-muted-foreground text-[10px] uppercase font-bold">Output:</span>
-                      <pre className="font-mono text-xs text-slate-200 mt-0.5 bg-white/5 p-2 rounded-lg overflow-x-auto">
+                      <span className="text-slate-500 text-[10px] uppercase font-bold">Output:</span>
+                      <pre className="font-mono text-xs text-emerald-300 mt-0.5 bg-slate-900 p-2 rounded border border-slate-800/80 overflow-x-auto">
                         {ex.output}
                       </pre>
                     </div>
                     {ex.explanation && (
-                      <div className="text-muted-foreground text-[11px] italic pt-1">
+                      <div className="text-slate-400 text-[11px] italic pt-1">
                         Explanation: {ex.explanation}
                       </div>
                     )}
@@ -274,10 +274,10 @@ export default function CodingProblemPage() {
 
             {question.constraints && (
               <div className="pt-2">
-                <h3 className="font-semibold text-white uppercase tracking-wider text-[11px] mb-1">
+                <h3 className="font-semibold text-slate-200 uppercase tracking-wider text-[11px] mb-1">
                   Constraints
                 </h3>
-                <pre className="font-mono text-[11px] text-muted-foreground bg-white/5 p-2.5 rounded-xl border border-border/30 whitespace-pre-line">
+                <pre className="font-mono text-[11px] text-slate-400 bg-slate-950 p-2.5 rounded-lg border border-slate-800 whitespace-pre-line">
                   {question.constraints}
                 </pre>
               </div>
@@ -287,38 +287,38 @@ export default function CodingProblemPage() {
 
         {/* RIGHT PANE: Monaco Code Editor & Execution Panel */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="glass-card rounded-2xl border border-border/60 overflow-hidden shadow-xl">
+          <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden shadow-subtle">
             {/* Editor Toolbar */}
-            <div className="p-3 bg-black/40 border-b border-border/40 flex items-center justify-between gap-4">
+            <div className="p-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <FileCode size={16} className="text-forge-400" />
+                <FileCode size={15} className="text-teal-400" />
                 <span className="text-xs font-semibold text-white">Solution Editor</span>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <select
                   value={language}
                   onChange={(e) => handleLanguageChange(e.target.value)}
-                  className="px-3 py-1.5 rounded-xl bg-white/5 border border-border/60 text-xs font-semibold text-foreground focus:outline-none focus:border-forge-500"
+                  className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-xs font-medium text-slate-200 focus:outline-none focus:border-teal-500"
                 >
-                  <option value="python" className="bg-card text-foreground">Python 3</option>
-                  <option value="javascript" className="bg-card text-foreground">JavaScript (Node.js)</option>
-                  <option value="cpp" className="bg-card text-foreground">C++ (GCC 9.2)</option>
-                  <option value="java" className="bg-card text-foreground">Java (OpenJDK 13)</option>
+                  <option value="python">Python 3</option>
+                  <option value="javascript">JavaScript (Node.js)</option>
+                  <option value="cpp">C++ (GCC 9.2)</option>
+                  <option value="java">Java (OpenJDK 13)</option>
                 </select>
 
                 <button
                   onClick={() => setCode(STARTER_TEMPLATES[language] || '')}
-                  title="Reset to starter template"
-                  className="p-1.5 text-muted-foreground hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+                  title="Reset starter template"
+                  className="p-1.5 text-slate-400 hover:text-white rounded hover:bg-slate-800 transition-colors"
                 >
-                  <RotateCcw size={14} />
+                  <RotateCcw size={13} />
                 </button>
               </div>
             </div>
 
             {/* Monaco Editor Container */}
-            <div className="h-[430px] border-b border-border/40">
+            <div className="h-[430px] border-b border-slate-800">
               <Editor
                 height="100%"
                 language={language === 'cpp' ? 'cpp' : language === 'javascript' ? 'javascript' : language === 'java' ? 'java' : 'python'}
@@ -339,28 +339,28 @@ export default function CodingProblemPage() {
             </div>
 
             {/* Run / Submit Action Bar */}
-            <div className="p-3 bg-black/30 flex items-center justify-between gap-4">
-              <div className="text-[11px] text-muted-foreground flex items-center gap-1.5">
-                <Cpu size={14} className="text-forge-400" />
-                Judge0 Isolated Sandboxed Runtime
+            <div className="p-3 bg-slate-950/60 flex items-center justify-between gap-4">
+              <div className="text-[11px] text-slate-500 flex items-center gap-1.5">
+                <Cpu size={13} className="text-teal-400" />
+                Judge0 Isolated Sandbox
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <button
                   onClick={handleRunCode}
                   disabled={isRunning || isSubmitting}
-                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-xs transition-all flex items-center gap-1.5 disabled:opacity-50"
+                  className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs transition-colors flex items-center gap-1.5 disabled:opacity-50"
                 >
-                  {isRunning ? <LoadingSpinner size="sm" /> : <Play size={14} />}
-                  Run Code
+                  {isRunning ? <LoadingSpinner size="sm" /> : <Play size={13} />}
+                  Run Tests
                 </button>
 
                 <button
                   onClick={handleSubmitCode}
                   disabled={isRunning || isSubmitting}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-forge-500 to-purple-600 hover:from-forge-400 hover:to-purple-500 text-white font-semibold text-xs transition-all flex items-center gap-1.5 glow-button shadow-lg shadow-forge-500/20 disabled:opacity-50"
+                  className="px-4 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-600 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-subtle disabled:opacity-50"
                 >
-                  {isSubmitting ? <LoadingSpinner size="sm" /> : <Send size={14} />}
+                  {isSubmitting ? <LoadingSpinner size="sm" /> : <Send size={13} />}
                   Submit Solution
                 </button>
               </div>
@@ -377,47 +377,47 @@ export default function CodingProblemPage() {
             const errOut = submissionResult ? null : runResult?.stderr;
 
             return (
-              <div className="glass-card rounded-2xl border border-border/60 overflow-hidden shadow-lg animate-fade-in">
-                <div className="p-3 bg-black/40 border-b border-border/40 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
+              <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden shadow-subtle">
+                <div className="p-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2.5">
                     <span
-                      className={`px-2.5 py-1 rounded-lg text-xs font-bold font-display uppercase tracking-wider ${
+                      className={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${
                         activeResult.verdict === 'ACCEPTED'
-                          ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
                           : activeResult.verdict === 'WRONG_ANSWER'
-                          ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                          : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                          ? 'bg-red-500/10 text-red-400 border border-red-500/30'
+                          : 'bg-amber-500/10 text-amber-400 border border-amber-500/30'
                       }`}
                     >
                       {activeResult.verdict.replace(/_/g, ' ')}
                     </span>
 
-                    <span className="text-xs text-muted-foreground">
-                      Passed: <strong>{passedCount} / {totalCount}</strong> test cases
+                    <span className="text-xs text-slate-400">
+                      Passed: <strong className="text-white">{passedCount} / {totalCount}</strong> test cases
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
+                  <div className="flex items-center gap-3 text-[11px] text-slate-400">
                     <span className="flex items-center gap-1">
-                      <Clock size={12} /> {timeMs} ms
+                      <Clock size={11} /> {timeMs} ms
                     </span>
                     <span className="flex items-center gap-1">
-                      <Cpu size={12} /> {memKb} KB
+                      <Cpu size={11} /> {memKb} KB
                     </span>
                   </div>
                 </div>
 
                 {/* Sub-Tabs: Test Cases vs Compiler Output */}
                 <div className="p-4 space-y-3">
-                  <div className="flex items-center gap-2 border-b border-border/30 pb-2">
+                  <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
                     {testResultsList.map((tc, idx) => (
                       <button
                         key={tc.test_case_id}
                         onClick={() => setSelectedCaseIndex(idx)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+                        className={`px-2.5 py-1 rounded text-xs font-medium flex items-center gap-1.5 transition-colors ${
                           selectedCaseIndex === idx
-                            ? 'bg-white/10 text-white border border-white/20'
-                            : 'text-muted-foreground hover:bg-white/5'
+                            ? 'bg-slate-800 text-white border border-slate-700'
+                            : 'text-slate-400 hover:text-slate-200'
                         }`}
                       >
                         {tc.passed ? (
@@ -432,52 +432,52 @@ export default function CodingProblemPage() {
                     {(compileOut || errOut) && (
                       <button
                         onClick={() => setActiveOutputTab('console')}
-                        className="px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-400 hover:bg-amber-500/10 flex items-center gap-1.5 transition-colors ml-auto"
+                        className="px-2.5 py-1 rounded text-xs font-medium text-amber-400 hover:bg-amber-500/10 flex items-center gap-1.5 transition-colors ml-auto"
                       >
-                        <Terminal size={13} />
+                        <Terminal size={12} />
                         Compiler Logs
                       </button>
                     )}
                   </div>
 
-                  {/* Display Current Selected Case Result */}
+                  {/* Display Selected Case Result */}
                   {currentCase && activeOutputTab === 'tests' && (
                     <div className="space-y-3 pt-1 text-xs">
                       {currentCase.is_sample ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <div>
-                            <div className="text-[10px] uppercase font-bold text-muted-foreground mb-1">
+                            <div className="text-[10px] uppercase font-bold text-slate-500 mb-1">
                               Input:
                             </div>
-                            <pre className="font-mono bg-black/40 p-2.5 rounded-xl border border-border/40 text-foreground overflow-x-auto">
+                            <pre className="font-mono bg-slate-950 p-2.5 rounded border border-slate-800 text-slate-200 overflow-x-auto">
                               {currentCase.input}
                             </pre>
                           </div>
                           <div>
-                            <div className="text-[10px] uppercase font-bold text-muted-foreground mb-1">
+                            <div className="text-[10px] uppercase font-bold text-slate-500 mb-1">
                               Expected Output:
                             </div>
-                            <pre className="font-mono bg-black/40 p-2.5 rounded-xl border border-border/40 text-emerald-300 overflow-x-auto">
+                            <pre className="font-mono bg-slate-950 p-2.5 rounded border border-slate-800 text-emerald-400 overflow-x-auto">
                               {currentCase.expected_output}
                             </pre>
                           </div>
                           <div className="sm:col-span-2">
-                            <div className="text-[10px] uppercase font-bold text-muted-foreground mb-1">
+                            <div className="text-[10px] uppercase font-bold text-slate-500 mb-1">
                               Your Output:
                             </div>
-                            <pre className="font-mono bg-black/40 p-2.5 rounded-xl border border-border/40 text-foreground overflow-x-auto">
+                            <pre className="font-mono bg-slate-950 p-2.5 rounded border border-slate-800 text-slate-200 overflow-x-auto">
                               {currentCase.stdout || '(no output)'}
                             </pre>
                           </div>
                         </div>
                       ) : (
-                        <div className="p-4 rounded-xl bg-white/5 border border-border/40 text-center">
-                          <div className="font-semibold text-xs text-foreground mb-1">
+                        <div className="p-3.5 rounded bg-slate-950 border border-slate-800 text-center">
+                          <div className="font-semibold text-xs text-white mb-0.5">
                             Hidden Test Case
                           </div>
-                          <p className="text-[11px] text-muted-foreground">
-                            Test inputs and expected outputs are hidden to maintain assessment integrity.
-                            Status: <strong>{currentCase.status}</strong> ({currentCase.runtime_ms}ms)
+                          <p className="text-[11px] text-slate-400">
+                            Hidden test case evaluated against your submission. Status:{' '}
+                            <strong className="text-white">{currentCase.status}</strong> ({currentCase.runtime_ms}ms)
                           </p>
                         </div>
                       )}
@@ -486,7 +486,7 @@ export default function CodingProblemPage() {
 
                   {/* Compiler / Error Console */}
                   {activeOutputTab === 'console' && (
-                    <div className="p-3 bg-red-950/20 border border-red-500/30 rounded-xl space-y-1">
+                    <div className="p-3 bg-red-950/20 border border-red-500/30 rounded space-y-1">
                       <div className="text-[11px] font-bold text-red-400">Compilation / Runtime Traceback:</div>
                       <pre className="font-mono text-xs text-red-200 whitespace-pre-wrap">
                         {compileOut || errOut || 'No compile errors.'}

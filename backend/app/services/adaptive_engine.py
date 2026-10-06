@@ -191,62 +191,166 @@ class AdaptiveEngine:
     @classmethod
     async def record_question_exposure(
         cls, db: AsyncSession, student_id: int, question_id: int
-    ) -> StudentQuestionHistory:
-        """Records that a student has been exposed to / presented with a question."""
-        res = await db.execute(
-            select(StudentQuestionHistory)
-            .where(StudentQuestionHistory.student_id == student_id)
-            .where(StudentQuestionHistory.question_id == question_id)
-        )
-        hist = res.scalar_one_or_none()
+    ) -> Optional[StudentQuestionHistory]:
+        """Records that a student has been exposed to / presented with a question using atomic upsert."""
         now = datetime.now(timezone.utc)
-        if not hist:
-            hist = StudentQuestionHistory(
-                student_id=student_id,
-                question_id=question_id,
-                first_seen_at=now,
-                last_seen_at=now,
-                times_seen=1,
-                times_correct=0,
-                times_incorrect=0,
+        dialect = db.get_bind().dialect.name if db.get_bind() else "postgresql"
+        if dialect == "postgresql":
+            from sqlalchemy.dialects.postgresql import insert as pg_insert
+            stmt = (
+                pg_insert(StudentQuestionHistory)
+                .values(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=0,
+                    times_incorrect=0,
+                )
+                .on_conflict_do_update(
+                    constraint="uq_student_question_history",
+                    set_={
+                        "times_seen": StudentQuestionHistory.times_seen + 1,
+                        "last_seen_at": now,
+                    },
+                )
+                .returning(StudentQuestionHistory)
             )
-            db.add(hist)
+            res = await db.execute(stmt)
+            hist = res.scalar_one_or_none()
+            await db.flush()
+            return hist
+        elif dialect == "sqlite":
+            from sqlalchemy.dialects.sqlite import insert as sqlite_insert
+            stmt = (
+                sqlite_insert(StudentQuestionHistory)
+                .values(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=0,
+                    times_incorrect=0,
+                )
+                .on_conflict_do_update(
+                    index_elements=["student_id", "question_id"],
+                    set_={
+                        "times_seen": StudentQuestionHistory.times_seen + 1,
+                        "last_seen_at": now,
+                    },
+                )
+                .returning(StudentQuestionHistory)
+            )
+            res = await db.execute(stmt)
+            hist = res.scalar_one_or_none()
+            await db.flush()
+            return hist
         else:
-            hist.times_seen += 1
-            hist.last_seen_at = now
-        await db.flush()
-        return hist
+            res = await db.execute(
+                select(StudentQuestionHistory)
+                .where(StudentQuestionHistory.student_id == student_id)
+                .where(StudentQuestionHistory.question_id == question_id)
+            )
+            hist = res.scalar_one_or_none()
+            if not hist:
+                hist = StudentQuestionHistory(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=0,
+                    times_incorrect=0,
+                )
+                db.add(hist)
+            else:
+                hist.times_seen += 1
+                hist.last_seen_at = now
+            await db.flush()
+            return hist
 
     @classmethod
     async def update_question_exposure_result(
         cls, db: AsyncSession, student_id: int, question_id: int, is_correct: bool
     ) -> None:
-        """Updates correctness metrics for question exposure history upon submission."""
-        res = await db.execute(
-            select(StudentQuestionHistory)
-            .where(StudentQuestionHistory.student_id == student_id)
-            .where(StudentQuestionHistory.question_id == question_id)
-        )
-        hist = res.scalar_one_or_none()
+        """Updates correctness metrics for question exposure history upon submission with atomic upsert."""
         now = datetime.now(timezone.utc)
-        if not hist:
-            hist = StudentQuestionHistory(
-                student_id=student_id,
-                question_id=question_id,
-                first_seen_at=now,
-                last_seen_at=now,
-                times_seen=1,
-                times_correct=1 if is_correct else 0,
-                times_incorrect=0 if is_correct else 1,
+        dialect = db.get_bind().dialect.name if db.get_bind() else "postgresql"
+        if dialect == "postgresql":
+            from sqlalchemy.dialects.postgresql import insert as pg_insert
+            stmt = (
+                pg_insert(StudentQuestionHistory)
+                .values(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=1 if is_correct else 0,
+                    times_incorrect=0 if is_correct else 1,
+                )
+                .on_conflict_do_update(
+                    constraint="uq_student_question_history",
+                    set_={
+                        "times_correct": StudentQuestionHistory.times_correct + (1 if is_correct else 0),
+                        "times_incorrect": StudentQuestionHistory.times_incorrect + (0 if is_correct else 1),
+                        "last_seen_at": now,
+                    },
+                )
             )
-            db.add(hist)
+            await db.execute(stmt)
+            await db.flush()
+        elif dialect == "sqlite":
+            from sqlalchemy.dialects.sqlite import insert as sqlite_insert
+            stmt = (
+                sqlite_insert(StudentQuestionHistory)
+                .values(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=1 if is_correct else 0,
+                    times_incorrect=0 if is_correct else 1,
+                )
+                .on_conflict_do_update(
+                    index_elements=["student_id", "question_id"],
+                    set_={
+                        "times_correct": StudentQuestionHistory.times_correct + (1 if is_correct else 0),
+                        "times_incorrect": StudentQuestionHistory.times_incorrect + (0 if is_correct else 1),
+                        "last_seen_at": now,
+                    },
+                )
+            )
+            await db.execute(stmt)
+            await db.flush()
         else:
-            if is_correct:
-                hist.times_correct += 1
+            res = await db.execute(
+                select(StudentQuestionHistory)
+                .where(StudentQuestionHistory.student_id == student_id)
+                .where(StudentQuestionHistory.question_id == question_id)
+            )
+            hist = res.scalar_one_or_none()
+            if not hist:
+                hist = StudentQuestionHistory(
+                    student_id=student_id,
+                    question_id=question_id,
+                    first_seen_at=now,
+                    last_seen_at=now,
+                    times_seen=1,
+                    times_correct=1 if is_correct else 0,
+                    times_incorrect=0 if is_correct else 1,
+                )
+                db.add(hist)
             else:
-                hist.times_incorrect += 1
-            hist.last_seen_at = now
-        await db.flush()
+                if is_correct:
+                    hist.times_correct += 1
+                else:
+                    hist.times_incorrect += 1
+                hist.last_seen_at = now
+            await db.flush()
 
     @classmethod
     async def select_adaptive_question(
@@ -255,6 +359,7 @@ class AdaptiveEngine:
         student_id: int,
         topic_id: Optional[int] = None,
         exclude_question_ids: Optional[List[int]] = None,
+        record_exposure: bool = True,
     ) -> Optional[Question]:
         """
         Selects the single most optimal, personalized question for the student.
@@ -268,7 +373,7 @@ class AdaptiveEngine:
            - Prefers questions answered incorrectly for reinforcement
            - Prefers target difficulty
         6. Applies controlled exploration and shuffling.
-        7. Records exposure in `student_question_history`.
+        7. Records exposure in `student_question_history` if record_exposure=True.
         """
         if topic_id is None:
             topic_id = await cls.select_topic_weighted(db, student_id)
@@ -323,7 +428,7 @@ class AdaptiveEngine:
             candidate_pool = matching_diff if matching_diff else unseen_questions
 
             # Sort by Fisher information (proximity of IRT difficulty to student ability theta)
-            sorted_candidates = sorted(candidate_pool, key=lambda q: abs(q.irt_difficulty - theta))
+            sorted_candidates = sorted(candidate_pool, key=lambda q: abs((q.irt_difficulty or 0.0) - theta))
             # Pick from top 3 closest with controlled randomization / shuffle
             top_k = sorted_candidates[:min(3, len(sorted_candidates))]
             selected_question = random.choice(top_k)
@@ -368,7 +473,7 @@ class AdaptiveEngine:
             top_seen = sorted_seen[:min(3, len(sorted_seen))]
             selected_question = random.choice(top_seen)
 
-        if selected_question:
+        if selected_question and record_exposure:
             # Record exposure
             await cls.record_question_exposure(db, student_id, selected_question.id)
 
@@ -397,10 +502,19 @@ class AdaptiveEngine:
                 student_id=student_id,
                 topic_id=topic_id,
                 exclude_question_ids=selected_ids,
+                record_exposure=False,
             )
             if q and q.id not in selected_ids:
                 selected_questions.append(q)
                 selected_ids.append(q.id)
+
+        # Batch record exposure in strictly sorted order of question_id to guarantee no deadlock
+        for q_id in sorted(selected_ids):
+            try:
+                await cls.record_question_exposure(db, student_id, q_id)
+            except Exception as e:
+                import logging
+                logging.getLogger(__name__).warning(f"Failed to record exposure for question {q_id}: {e}")
 
         # Diagnostic overview
         insights = await cls.get_personalization_insights(db, student_id)
@@ -491,7 +605,8 @@ class AdaptiveEngine:
 
         # Calculate question Elo rating equivalent from IRT difficulty
         # b = 0.0 maps to 1000, b = +1.4 maps to 1250, b = -1.2 maps to 750
-        q_rating = 1000.0 + (question.irt_difficulty * 200.0)
+        q_irt_diff = question.irt_difficulty if question.irt_difficulty is not None else 0.0
+        q_rating = 1000.0 + (q_irt_diff * 200.0)
 
         # Elo update
         expected_elo = cls.calculate_elo_expected(old_skill, q_rating)
@@ -501,7 +616,7 @@ class AdaptiveEngine:
         prog.skill_rating = max(400.0, old_skill + delta_elo)
 
         # IRT theta ability update (gradient step)
-        p_irt = cls.calculate_irt_probability(old_theta, question.irt_difficulty)
+        p_irt = cls.calculate_irt_probability(old_theta, q_irt_diff)
         delta_theta = 0.3 * (actual_score - p_irt)
         prog.irt_ability = max(-3.0, min(3.0, old_theta + delta_theta))
 
@@ -582,11 +697,14 @@ class AdaptiveEngine:
         """
         Produces actionable personalization insights for the student dashboard & practice hub.
         """
-        analytics = await cls.get_student_topic_analytics(db, student_id)
-        practiced = [a for a in analytics if a["questions_attempted"] >= 3]
-        unexplored = [a for a in analytics if a["questions_attempted"] < 3]
+        from app.services.scoring import sync_student_topic_progress
+        await sync_student_topic_progress(db, student_id)
 
-        weak_topics = sorted([a for a in practiced if (a["accuracy"] or 0) < 50.0], key=lambda x: x["accuracy"] or 0)
+        analytics = await cls.get_student_topic_analytics(db, student_id)
+        practiced = [a for a in analytics if a["questions_attempted"] >= 1]
+        unexplored = [a for a in analytics if a["questions_attempted"] == 0]
+
+        weak_topics = sorted([a for a in practiced if (a["accuracy"] or 0) < 50.0], key=lambda x: (x["accuracy"] or 0, -x["questions_attempted"]))
         strong_topics = sorted([a for a in practiced if (a["accuracy"] or 0) >= 75.0], key=lambda x: -(x["accuracy"] or 0))
         improving_topics = [
             a for a in practiced

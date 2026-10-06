@@ -69,7 +69,7 @@ class QuestionWithAnswer(QuestionOut):
 
 
 class PracticeSessionRequest(BaseModel):
-    topic_id: int
+    topic_id: Optional[int] = None
     difficulty: Optional[DifficultyLevel] = None
     count: int = Field(default=10, ge=1, le=50)
 
