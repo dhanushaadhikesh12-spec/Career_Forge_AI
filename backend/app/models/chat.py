@@ -43,3 +43,35 @@ class AIChatMessage(Base):
 
     # Relationships
     session: Mapped["AIChatSession"] = relationship(back_populates="messages")
+
+
+class StudentAIChatSession(Base):
+    __tablename__ = "student_ai_chat_sessions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("student_profiles.id", ondelete="CASCADE"), nullable=False, index=True)
+    title: Mapped[str] = mapped_column(String(255), default="New Coaching Session")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now_utc)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now_utc, onupdate=now_utc)
+
+    # Relationships
+    messages: Mapped[List["StudentAIChatMessage"]] = relationship(
+        back_populates="session",
+        cascade="all, delete-orphan",
+        order_by="StudentAIChatMessage.created_at",
+    )
+
+
+class StudentAIChatMessage(Base):
+    __tablename__ = "student_ai_chat_messages"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    session_id: Mapped[int] = mapped_column(ForeignKey("student_ai_chat_sessions.id", ondelete="CASCADE"), nullable=False, index=True)
+    role: Mapped[str] = mapped_column(String(50), nullable=False)  # 'user', 'assistant', 'system'
+    content: Mapped[Text] = mapped_column(Text, nullable=False)
+    tool_name: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    tool_result_metadata: Mapped[Optional[Dict[str, Any]]] = mapped_column(JSON, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now_utc)
+
+    # Relationships
+    session: Mapped["StudentAIChatSession"] = relationship(back_populates="messages")

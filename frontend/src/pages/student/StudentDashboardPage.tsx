@@ -96,6 +96,13 @@ export default function StudentDashboardPage() {
 
         <div className="flex flex-wrap items-center gap-3">
           <Link
+            to="/student/coach"
+            className="px-3.5 py-2 rounded-lg bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 border border-teal-500/40 font-semibold text-xs transition-colors flex items-center gap-2 shadow-sm"
+          >
+            <Sparkles size={14} className="text-teal-400" />
+            AI Coach
+          </Link>
+          <Link
             to="/student/learn"
             className="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-xs transition-colors flex items-center gap-2 shadow-sm"
           >
@@ -311,12 +318,22 @@ export default function StudentDashboardPage() {
                           </div>
                         </div>
 
-                        <button
-                          onClick={() => navigate(`/student/practice?topic_id=${topic.topic_id}`)}
-                          className="px-2.5 py-1 text-[11px] rounded bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 font-medium transition-colors shrink-0"
-                        >
-                          Practice
-                        </button>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            onClick={() => navigate(`/student/coach?prompt=How can I improve my performance in ${encodeURIComponent(topic.topic_name)}?`)}
+                            className="px-2 py-1 text-[11px] rounded bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 border border-teal-500/30 font-medium transition-colors flex items-center gap-1"
+                            title="Ask AI Coach how to improve in this topic"
+                          >
+                            <Sparkles size={11} />
+                            <span>Ask AI</span>
+                          </button>
+                          <button
+                            onClick={() => navigate(`/student/practice?topic_id=${topic.topic_id}`)}
+                            className="px-2.5 py-1 text-[11px] rounded bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 font-medium transition-colors"
+                          >
+                            Practice
+                          </button>
+                        </div>
                       </div>
 
                       {/* Accuracy bar */}

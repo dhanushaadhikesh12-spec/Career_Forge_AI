@@ -10,6 +10,7 @@ import type {
   PlagiarismReport, AnomalyReport, ChatMessage, AIAssistantResponse,
   AIAssistantStatus, BatchReadinessReport, StudentReadiness,
   AIChatSessionSummary, AIChatSessionDetail,
+  StudentCoachMessage, StudentCoachSessionSummary, StudentCoachSessionDetail, StudentCoachResponse,
 } from '@/types';
 
 const BASE_URL = '/api';
@@ -426,6 +427,57 @@ class ApiClient {
 
   async retrainReadinessModel(): Promise<any> {
     const res = await this.client.post('/trainers/analytics/retrain-readiness');
+    return res.data;
+  }
+
+  // ── Student AI Placement Coach ─────────────────────────────────────────────
+
+  async getStudentCoachStatus(): Promise<{ available: boolean; provider: string; model: string; mode: string }> {
+    const res = await this.client.get('/students/coach/status');
+    return res.data;
+  }
+
+  async getStudentCoachSessions(): Promise<StudentCoachSessionSummary[]> {
+    const res = await this.client.get('/students/coach/sessions');
+    return res.data;
+  }
+
+  async createStudentCoachSession(title?: string): Promise<StudentCoachSessionSummary> {
+    const res = await this.client.post('/students/coach/sessions', { title });
+    return res.data;
+  }
+
+  async getStudentCoachSession(sessionId: number): Promise<StudentCoachSessionDetail> {
+    const res = await this.client.get(`/students/coach/sessions/${sessionId}`);
+    return res.data;
+  }
+
+  async updateStudentCoachSession(sessionId: number, title: string): Promise<StudentCoachSessionSummary> {
+    const res = await this.client.patch(`/students/coach/sessions/${sessionId}`, { title });
+    return res.data;
+  }
+
+  async deleteStudentCoachSession(sessionId: number): Promise<{ message: string }> {
+    const res = await this.client.delete(`/students/coach/sessions/${sessionId}`);
+    return res.data;
+  }
+
+  async sendStudentCoachChat(params: {
+    query: string;
+    sessionId?: number;
+    history?: { role: string; content: string }[];
+    questionContext?: { question_id?: number; attempt_id?: number };
+  }): Promise<StudentCoachResponse> {
+    const res = await this.client.post(
+      '/students/coach/chat',
+      {
+        query: params.query,
+        session_id: params.sessionId,
+        conversation_history: params.history,
+        question_context: params.questionContext,
+      },
+      { timeout: 95000 }
+    );
     return res.data;
   }
 }

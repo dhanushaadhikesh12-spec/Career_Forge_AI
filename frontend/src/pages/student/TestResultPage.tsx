@@ -435,6 +435,28 @@ export default function TestResultPage() {
                     {q.explanation}
                   </div>
                 )}
+
+                <div className="flex items-center justify-between pt-1">
+                  <button
+                    onClick={() =>
+                      navigate(
+                        `/student/coach?questionId=${q.question_id}&attemptId=${data.attempt_id}&prompt=${encodeURIComponent(
+                          q.is_correct
+                            ? `Can you explain the key concepts and edge cases behind this question?`
+                            : `Why was my answer wrong on this question? Please explain the mistake and correct logic.`
+                        )}`
+                      )
+                    }
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 border border-teal-500/30 text-xs font-medium transition-colors"
+                  >
+                    <Sparkles size={13} className="text-teal-400" />
+                    <span>
+                      {q.is_correct
+                        ? 'Deepen Concept with AI Coach'
+                        : 'Ask AI Coach: Why is my answer wrong?'}
+                    </span>
+                  </button>
+                </div>
               </div>
             );
           })}

@@ -6,7 +6,7 @@ from app.models.content import (
 from app.models.test import Test, TestQuestion, TestAttempt, TestAnswer, ProctoringEvent
 from app.models.coding import CodingQuestion, TestCase, CodeSubmission
 from app.models.analytics import AnalyticsRecord, PlacementReadiness
-from app.models.chat import AIChatSession, AIChatMessage
+from app.models.chat import AIChatSession, AIChatMessage, StudentAIChatSession, StudentAIChatMessage
 
 __all__ = [
     "User", "StudentProfile", "TrainerProfile", "Batch", "BatchMembership", "TopicProgress",
@@ -15,6 +15,6 @@ __all__ = [
     "Test", "TestQuestion", "TestAttempt", "TestAnswer", "ProctoringEvent",
     "CodingQuestion", "TestCase", "CodeSubmission",
     "AnalyticsRecord", "PlacementReadiness",
-    "AIChatSession", "AIChatMessage",
+    "AIChatSession", "AIChatMessage", "StudentAIChatSession", "StudentAIChatMessage",
 ]
 

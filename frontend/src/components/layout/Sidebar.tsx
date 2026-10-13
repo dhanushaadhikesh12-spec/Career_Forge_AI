@@ -15,6 +15,7 @@ interface NavItem {
 
 const STUDENT_NAV: NavItem[] = [
   { to: '/student/dashboard', icon: <LayoutDashboard size={17} />, label: 'Dashboard' },
+  { to: '/student/coach', icon: <Sparkles size={17} />, label: 'AI Placement Coach' },
   { to: '/student/learn', icon: <BookOpen size={17} />, label: 'Learning Hub' },
   { to: '/student/practice', icon: <Brain size={17} />, label: 'Aptitude Practice' },
   { to: '/student/coding', icon: <Code2 size={17} />, label: 'Coding Practice' },

@@ -19,6 +19,7 @@ import CodingPracticePage from '@/pages/student/CodingPracticePage';
 import CodingProblemPage from '@/pages/student/CodingProblemPage';
 import CodingSubmissionsPage from '@/pages/student/CodingSubmissionsPage';
 import CodingAssessmentPage from '@/pages/student/CodingAssessmentPage';
+import StudentAICoachPage from '@/pages/student/StudentAICoachPage';
 
 // Trainer Pages
 import TrainerDashboardPage from '@/pages/trainer/TrainerDashboardPage';
@@ -117,6 +118,8 @@ export default function App() {
                 <AppLayout>
                   <Routes>
                     <Route path="dashboard" element={<StudentDashboardPage />} />
+                    <Route path="coach" element={<StudentAICoachPage />} />
+                    <Route path="assistant" element={<StudentAICoachPage />} />
                     <Route path="learn" element={<LearnPage />} />
                     <Route path="topics/:topicId" element={<TopicDetailPage />} />
                     <Route path="practice" element={<PracticePage />} />

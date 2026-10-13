@@ -615,3 +615,42 @@ export interface BatchReadinessReport {
   };
   students: StudentReadiness[];
 }
+
+// ─── Student AI Placement Coach Types ─────────────────────────────────────────
+
+export interface StudentCoachMessage {
+  id: number;
+  session_id: number;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  tool_name?: string;
+  tool_result_metadata?: any;
+  created_at: string;
+}
+
+export interface StudentCoachSessionSummary {
+  id: number;
+  title: string;
+  created_at: string;
+  updated_at: string;
+  message_count: number;
+}
+
+export interface StudentCoachSessionDetail {
+  id: number;
+  title: string;
+  created_at: string;
+  updated_at: string;
+  messages: StudentCoachMessage[];
+}
+
+export interface StudentCoachResponse {
+  reply: string;
+  tool_called?: string;
+  structured_data?: any;
+  intent: string;
+  model_used: string;
+  status: string;
+  session_id?: number;
+  error?: string;
+}
